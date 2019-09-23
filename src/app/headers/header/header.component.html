@@ -1,0 +1,40 @@
+<header>
+  <mat-toolbar>
+
+    <a [routerLink]="['/']">
+      <img class="logo" src="../../assets/img/logo.png" alt="GPSP" />
+    </a>
+    <span class="spacer"></span>
+    <span class="spacer"></span>
+
+    <!-- DROPDOWN LOGGED USER -->
+    <div *ngIf="user && !user.isAdmin" class="menu">
+      <a [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>{{ user.fullname }}
+      </a>
+      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
+      </mat-menu>
+    </div>
+    <!-- /DROPDOWN LOGGED USER -->
+
+    <!-- DROPDOWN ADMIN USER -->
+    <div *ngIf="user && user.isAdmin" class="menu">
+      <a [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>{{ user.fullname }}
+      </a>
+      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['/admin']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Dashboard</button>
+        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
+        <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
+      </mat-menu>
+    </div>
+    <!-- /DROPDOWN ADMIN USER -->
+
+  </mat-toolbar>
+</header>
+

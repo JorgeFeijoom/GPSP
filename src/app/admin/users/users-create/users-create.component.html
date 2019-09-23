@@ -1,0 +1,71 @@
+<form [formGroup]="userForm" (ngSubmit)="saveUser()">
+  <h1 mat-dialog-title>Crear usuario</h1>
+  <div mat-dialog-content class="user-create-dialog">
+    <h3>Información básica</h3>
+    <div class="basic-info-container" fxLayout="row" fxLayout="center center">
+      <div fxFlex="100" class="basic-info">
+        
+        <!-- NAME -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput #name name="fullname" formControlName="fullname" maxlength="120" placeholder="Nombre completo">
+          <mat-error *ngIf="userForm.get('fullname').hasError('required')">
+            Este campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+        <!-- /NAME -->
+        
+        <!-- EMAIL -->
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput #email name="email" formControlName="email" maxlength="120" placeholder="Correo electrónico">
+          <mat-error *ngIf="userForm.get('email').hasError('required')">
+            Este campo es obligatorio
+          </mat-error>
+          <mat-error *ngIf="!userForm.get('email').hasError('required') && userForm.get('email').hasError('email')">
+            El email no es una dirección válida
+          </mat-error>
+        </mat-form-field>
+        <!-- /EMAIL -->
+
+        <!-- PASSWORD -->
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div fxFlex="70">
+            <mat-form-field appearance="outline">
+              <mat-label> Contraseña</mat-label>
+              <input type="{{ isPasswordHidden ? 'password' : 'text' }}" matInput #password name="password" formControlName="password" maxlength="30" placeholder="Contraseña">
+              <button type="button" mat-button  matSuffix mat-icon-button aria-label="Ver contraseña" (click)="togglePassword();">
+                <mat-icon>{{ isPasswordHidden ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <mat-error *ngIf="userForm.get('password').hasError('required')">
+                Este campo es obligatorio
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="create-password-container" fxFlx="30">
+            <button type="button" mat-raised-button color="info" (click)="generatePassword()">Generar contraseña</button>
+          </div>
+        </div>
+        <!-- /PASSWORD -->
+
+        <div class="send-email-container" style="width: 100%;">
+          <mat-checkbox formControlName="send_email">Enviar acceso y contraseña por correo</mat-checkbox>
+        </div>
+
+        <mat-form-field class="permits-container">
+          <mat-label>Permisos</mat-label>
+          <mat-select formControlName="roles">
+            <mat-option *ngFor="let permit of permits" [value]="permit">
+              {{ permit }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button type="button" mat-button mat-dialog-close color="warn">Cancelar</button>
+    <button type="submit" mat-button cdkFocusInitial color="success">Guardar</button>
+  </div>
+</form>

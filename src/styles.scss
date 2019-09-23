@@ -1,0 +1,235 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~angular-tree-component/dist/angular-tree-component.css';
+@import '~@angular/material/theming';
+@import '~dragula/dist/dragula.css';
+@import '~ngx-toastr/toastr.css';
+@import '~quill/dist/quill.snow.css';
+
+$custom-typography: mat-typography-config(
+    $font-family: 'Exo'
+);
+
+@include mat-core($custom-typography);
+
+/*
+ * Defining CEH colors
+ *
+ */
+
+ $mean-web-primary: mat-palette($mat-orange, A400, A100, A700);
+ $mean-web-accent: mat-palette($mat-amber, A200, A100, A700);
+ $mean-web-warn: mat-palette($mat-red);
+ 
+ $mean-web-theme: mat-light-theme($mean-web-primary, $mean-web-accent, $mean-web-warn);
+
+ @mixin mix-app-theme($mean-web-theme) {
+  $primary: map-get($mean-web-theme, primary);
+  $accent: map-get($mean-web-theme, accent);
+}
+
+@mixin mat-ripple-theme($mean-web-theme) {
+  .mat-stroked-button.mat-info,
+  .mat-icon-button.mat-info {
+    .mat-ripple-element {
+      background-color: rgba(30, 136, 229, .20);
+    }
+  }
+
+  .mat-stroked-button.mat-success,
+  .mat-button.mat-success {
+    .mat-ripple-element {
+      background-color: rgba(126, 165, 35, 0.19);
+    }
+  }
+}
+
+@include mix-app-theme($mean-web-theme);
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal !important;
+  background-color: #f4f3f3;
+  margin: 0;
+
+  app-root * {
+    font-family: 'Exo', sans-serif;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  //
+  // Buttons
+  //
+
+  .mat-button,
+  .mat-stroked-button
+  .mat-raised-button,
+  .mat-flat-button {
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    border-radius: 4px !important;
+  }
+  
+  
+  .mat-button-wrapper {
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    border-radius: 4px !important;
+  }
+
+  //
+  // Buttons - Info color (blue)
+  //
+
+  .mat-stroked-button.mat-info,
+  .mat-button.mat-info {
+    color: #1e88e5;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    border-radius: 4px !important;
+    .mat-button-focus-overlay {
+      background-color: rgba(30, 136, 229, 0.05);
+    }
+  }
+
+  .mat-flat-button.mat-info,
+  .mat-raised-button.mat-info {
+    background-color: #1e88e5;
+    color: #fff;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    border-radius: 4px !important;
+  }
+
+  .mat-icon-button.mat-info {
+    color: #1e88e5;
+  }
+
+
+  //
+  // Buttons - Success color (green)
+  //
+
+  .mat-stroked-button.mat-success,
+  .mat-button.mat-success {
+    color: #8bbd19;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    border-radius: 4px !important;
+    .mat-button-focus-overlay {
+      background-color: rgba(126, 165, 35, 0.19);
+    }
+  }
+
+  .mat-flat-button.mat-success,
+  .mat-raised-button.mat-success {
+    background-color: #8bbd19;
+    color: #fff;
+    font-family: Roboto, "Helvetica Neue", sans-serif !important;
+    border-radius: 4px !important;
+  }
+
+  .mat-icon-button.mat-success {
+    color: #8bbd19;
+  }
+
+  //
+  // Align
+  //
+
+  .text-right { text-align: right }
+  .text-left { text-align: left }
+  .text-center { text-align: center }
+
+
+  //
+  // SweetAlert 2
+  //
+
+  .swal2-popup {
+    font-family: 'Exo';
+  }
+
+  .swal2-button-margin {
+    margin: 10px;
+  }
+
+  
+  //
+  // Toastr
+  //
+
+  .toast-container {
+    font-family: 'Exo', sans-serif;
+    font-size: 14px;
+  }
+
+  .toast-container .toast {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  }
+
+  /*.toast {
+    background-color: #323232;
+  }*/
+
+  .toast-title,
+  .toast-message {
+    color: #fff;
+  }
+
+  .toast-success {
+    background-color: #20b764;
+  }
+
+
+  //
+  // Global styles
+  //
+
+  mat-form-field {
+    width: 100%;
+  }
+
+
+  //
+  // Quill editor
+  //
+
+  .ql-toolbar.ql-snow {
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+
+  .ql-container.ql-snow {
+    border: none;
+    font-family: emona !important;
+    font-size: 22px;
+    line-height: 1.6;
+    letter-spacing: 0;
+    color: #4c4c4c;
+
+    .ql-video {
+      width: 100%;
+      height: 350px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .ql-editor {
+    font-family: emona !important;
+    font-weight: 400;
+    p, strong, em, u, s, blockquote, ol, li, a {
+      font-family: emona !important;
+      color: #4c4c4c;
+    }
+  }
+
+  .ql-editing,
+  .ql-tooltip {
+    font-size: 18px;
+    z-index: 20;
+  }
+
+}
+
+@include angular-material-theme($mean-web-theme);
