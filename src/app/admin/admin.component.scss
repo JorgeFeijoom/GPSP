@@ -1,0 +1,16 @@
+.main-container {
+  padding: 10px;
+
+  mat-grid-list {
+    width: 100%;
+
+    mat-grid-tile {
+
+      mat-card {
+        width: 100%;
+        margin: 5px;
+      }
+    }
+  }
+
+}

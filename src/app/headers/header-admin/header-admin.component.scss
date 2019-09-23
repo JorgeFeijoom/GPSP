@@ -1,0 +1,51 @@
+header {
+  width: 100%;
+  height: 83px;
+  .logo {
+    width: 60px;
+  }
+  .mat-toolbar {
+    background-color: #313030;
+    color: #fff;
+    padding-top: 10px;
+    height: 83px;
+    position: fixed;
+    z-index: 10;
+  }
+  .mat-icon {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .social-icon {
+    margin-right: 15px;
+  }
+  .menu {
+    margin-top: -5px;
+    
+    mat-icon {
+      margin-left: 15px;
+      margin-right: 5px;
+    }
+  }
+  button {
+    margin-top: -5px;
+  }
+  a {
+    cursor: pointer;
+  }
+}
+
+.header-menu-icon-margin {
+  margin-top: -4px;
+}
+
+.header-button-active {
+  color: #4e94a8;
+  font-weight: 600;
+  mat-icon {
+    color: #4e94a8;
+  }
+}

@@ -1,0 +1,128 @@
+<div class="main-container" fxLayout="row" fxLayoutAlign="center center">
+
+  <div fxFlex="90">
+    <mat-toolbar color="accent">
+      <mat-toolbar-row>
+        <div class="main-icon"><mat-icon>create</mat-icon></div>
+        <div><span>Blog</span></div>
+        <span class="spacer"></span>
+        <button (click)="toggleSearchBar();" mat-icon-button matTooltip="Buscar">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button routerLink="/admin/blog/create" mat-icon-button matTooltip="Crear publicaciones">
+          <mat-icon>add</mat-icon>
+        </button>
+        <button routerLink="/admin" mat-icon-button matTooltip="Volver al Dashboard">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+</div>
+<div class="main-container" fxLayout="row" fxLayoutAlign="center center">
+
+  <div fxFlex="95">
+    <mat-tab-group mat-align-tabs="center" color="accent">
+      <mat-tab>
+        <ng-template mat-tab-label>Todos</ng-template>
+
+        <!-- TABLE -- All articles -->
+        <div class="table mat-elevation-z8">
+
+          <!-- PROGRESS BAR  -->
+          <div class="progress-bar-container" class="progress-bar-container">
+            <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
+          </div>
+
+          <!-- SEARCH BAR -->
+          <div *ngIf="searchBar" class="search-container">
+            <mat-form-field>
+              <input matInput placeholder="Buscar" [(ngModel)]="searchValue" (ngModelChange)="didFilterUsers($event);">
+              <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Borrar" (click)="searchValue='';didFilterUsers($event)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+
+          <!-- NO ITEMS FOR SHOWING -->
+          <div *ngIf="paginationConfig.totalItems === 0 && !isLoading" class="no-results-container">
+            <h3>No hay publicaciones para mostrar</h3>
+          </div>
+
+          <table mat-table [dataSource]="dataSource" matSort (matSortChange)="didSortPosts($event)" *ngIf="paginationConfig.totalItems > 0">
+    
+            <!-- Fullname Column -->
+            <ng-container matColumnDef="fullname">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+              <td mat-cell *matCellDef="let user"> <strong>{{ user.fullname }}</strong> </td>
+            </ng-container>
+    
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+            </ng-container>
+
+            <!-- Permits At Column -->
+            <ng-container matColumnDef="permits">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Permisos </th>
+              <td mat-cell *matCellDef="let user"> {{ user.roles[0] ? user.roles[0] : '-' }} </td>
+            </ng-container>
+    
+            <!-- Created At Column -->
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Creado </th>
+              <td mat-cell *matCellDef="let user"> {{ user.createdAt | date:'longDate' }} </td>
+            </ng-container>
+
+            <!-- Actions At Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let user" class="text-right">
+                <button mat-icon-button matTooltip="Editar usuario" color="info" (click)="openEditUserDialog(user)">
+                  <mat-icon aria-label="Editar usuario">create</mat-icon>
+                </button>
+                <button *ngIf="user._id !== myUser._id" [swal]="userDeletionAlert" mat-icon-button matTooltip="Borrar usuario" color="info" (confirm)="deleteUser(user)">
+                  <mat-icon aria-label="Editar usuario">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <!-- Footer -->
+            <ng-container matColumnDef="pagination">
+              <td mat-footer-cell *matFooterCellDef colspan="5">
+                <div class="pagination-container">
+                  <ul>
+                    <li *ngFor="let post of posts | paginate: paginationConfig">pene</li>
+                  </ul>
+                  <pagination-controls [id]="paginationConfig.id"
+                  (pageChange)="didPageChange($event)"
+                  maxSize="7"
+                  directionLinks="true"
+                  autoHide="false"
+                  responsive="true"
+                  previousLabel="Anterior"
+                  nextLabel="Siguiente"
+                  screenReaderPaginationLabel="Paginación"
+                  screenReaderPageLabel="página"
+                  screenReaderCurrentLabel="Estás en la página">
+                  </pagination-controls>
+                </div>
+              </td>
+            </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="['pagination']"></tr>
+          </table>
+    
+        </div>
+        <!-- /TABLE - All articles -->
+
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+
+</div>

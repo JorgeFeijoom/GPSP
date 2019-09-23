@@ -1,0 +1,27 @@
+.user-create-dialog {
+  font-family: 'Exo';
+  h3 {
+    color: rgba(48, 48, 48, 0.6901960784313725);
+    margin-top: 0;
+  }
+  h3.social {
+    margin-bottom: 0;
+  }
+  .basic-info-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .basic-info {
+    padding-left: 20px;
+    .create-password-container {
+      margin-top: -18px;
+    }
+    .send-email-container {
+      width: 100%;
+    }
+    .permits-container {
+      width: 50%;
+      margin-top: 25px;
+    }
+  }
+}

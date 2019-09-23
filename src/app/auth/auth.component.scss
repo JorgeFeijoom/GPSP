@@ -1,0 +1,71 @@
+.login {
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  .logo {
+    width: 100%;
+    max-width: 200px;
+  }
+  img {
+    margin: 5% auto;
+  }
+  .login-card {
+    text-align: left;
+    background-color: #565555;
+    color: #fff;
+    border-radius: 6px;
+    mat-card-title {
+      font-size: 18px;
+    }
+    mat-card-content {
+      padding-top: 20px;
+    }
+    mat-card-subtitle {
+      color: rgba(255, 255, 255, 0.7686274509803922);
+    }
+    mat-card-actions {
+      text-align: right;
+    }
+  }
+}
+
+::ng-deep {
+  .login {
+    .mat-form-field-wrapper,
+    .mat-form-field {
+      font-family: Roboto,"Helvetica Neue",sans-serif;
+      font-weight: 400;
+      line-height: 1.125;
+      font-size: 17px;
+    }
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: white;
+    }
+
+    input.mat-input-element {
+      color: white;
+    }
+
+    .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+  }
+}
+
+.mat-form-field-label {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgba(255, 255, 255, 0.5) !important;
+}

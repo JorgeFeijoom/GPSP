@@ -1,0 +1,33 @@
+.table {
+  background-color: #fff;
+  margin-top: 20px;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  table {
+    width: 100%;
+    .pagination-container {
+      text-align: right;
+    }
+  }
+  .no-results-container {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .progress-bar-container {
+    height: 3px;
+    mat-progress-bar {
+      height: 3px;
+    }
+  }
+  
+  .search-container {
+    padding: 15px 22px;
+    mat-form-field {
+      width: 100%;
+    }
+  }
+}

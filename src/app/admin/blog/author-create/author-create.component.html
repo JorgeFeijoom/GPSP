@@ -1,0 +1,114 @@
+<form [formGroup]="authorForm" (ngSubmit)="saveAuthor()">
+    <h1 mat-dialog-title>Crear autor externo</h1>
+    <div mat-dialog-content class="external-author-dialog">
+      <h3>Información básica</h3>
+      <div class="basic-info-container" fxLayout="row" fxLayout="center center">
+        <div fxFlex="40">
+          <div *ngIf="imageUploader.queue.length === 0 && !authorForm.value.thumbnail" class="drag-drop" ng2FileDrop [ngClass]="{ 'drag-drop-container-over': imageHasBaseDropZoneOver }" [ngStyle]="{ 'border-color': authorForm.get('thumbnail').hasError('required') && authorForm.invalid && (authorForm.touched || authorForm.dirty) ? 'red' : '#888' }" (fileOver)="imageOverBase($event)" (onFileDrop)="imageDroppedOverBase($event)" [uploader]="imageUploader">
+            <div>
+              Arrastra una imagen a aquí<br/>
+              <span class="error" *ngIf="authorForm.get('thumbnail').hasError('required') && authorForm.invalid && (authorForm.touched || authorForm.dirty)">Campo obligatorio</span>
+            </div>
+          </div>
+          <div *ngFor="let item of imageUploader.queue">
+            <img src mediaPreview [media]="item?._file" class="media-object" />
+            <div class="progress-bar-container">
+              <mat-progress-bar #imageProgress mode="determinate" value="{{ item.progress }}"></mat-progress-bar>
+            </div>
+            <div class="buttons-container">
+              <div class="left-buttons">
+                <button mat-icon-button color="success" matTooltip="Subir imagen" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                  <mat-icon>cloud_upload</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" matTooltip="Cancelar subida" (click)="item.cancel()" [disabled]="!item.isUploading">
+                  <mat-icon>not_interested</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" matTooltip="Borrar imagen" (click)="item.remove()">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+              <div class="right-icon" *ngIf="authorForm.value.thumbnail">
+                <mat-icon>check_circle_outline</mat-icon>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="mode === 'edit' && imageUploader.queue.length === 0" ng2FileDrop [ngClass]="{ 'drag-drop-container-over': imageHasBaseDropZoneOver }" (fileOver)="imageOverBase($event)" (onFileDrop)="imageDroppedOverBase($event)" [uploader]="imageUploader">
+            <img [src]="authorForm.value.thumbnail" class="media-object" />
+          </div>
+          <input type="file" mat-button ng2FileSelect (onFileSelected)="imageDroppedOverBase($event)" [uploader]="imageUploader" />
+          <div class="error" *ngIf="imageUploader.queue.length > 0 && authorForm.get('thumbnail').hasError('required') && authorForm.invalid && (authorForm.touched || authorForm.dirty)">
+            Tienes que subir la imagen
+          </div>
+        </div>
+        <div fxFlex="60" class="basic-info">
+          <!-- NAME -->
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Nombre</mat-label>
+            <input matInput #name name="name" formControlName="name" maxlength="120" placeholder="Nombre completo">
+            <mat-error *ngIf="authorForm.get('name').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /NAME -->
+          
+          <!-- EMAIL -->
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Email</mat-label>
+            <input matInput #email name="email" formControlName="email" maxlength="120" placeholder="Correo electrónico">
+            <mat-error *ngIf="authorForm.get('email').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+            <mat-error *ngIf="!authorForm.get('email').hasError('required') && authorForm.get('email').hasError('email')">
+              El email no es una dirección válida
+            </mat-error>
+          </mat-form-field>
+          <!-- /EMAIL -->
+  
+          <!-- BIO -->
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Biografía</mat-label>
+            <textarea matInput #bio name="bio" formControlName="bio" placeholder="Biografía o cargo del autor"></textarea>
+            <mat-error *ngIf="authorForm.get('bio').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /BIO -->
+        </div>
+      </div>
+      <h3 class="social">Redes sociales</h3>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="50">
+          <div class="social-networks" fxLayout="column" fxLayoutAlign="center center">
+            <div>
+              <mat-form-field style="width: 100%;">
+                <mat-label>Facebook</mat-label>
+                <input matInput #facebook name="facebook" formControlName="facebook" placeholder="Facebook">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field style="width: 100%;">
+                <mat-label>Twitter</mat-label>
+                <input matInput #twitter name="twitter" formControlName="twitter" placeholder="Twitter">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field style="width: 100%;">
+                <mat-label>Instagram</mat-label>
+                <input matInput #instagram name="instagram" formControlName="instagram" placeholder="Instagram">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field style="width: 100%;">
+                <mat-label>LinkedIn</mat-label>
+                <input matInput #linkedin name="linkedin" formControlName="linkedin" placeholder="LinkedIn">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close color="warn">Cancelar</button>
+      <button type="submit" mat-button cdkFocusInitial color="success">Guardar</button>
+    </div>
+  </form>
