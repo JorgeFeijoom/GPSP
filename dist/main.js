@@ -460,7 +460,7 @@ var AuthRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@charset \"UTF-8\";\n.login {\n  max-width: 500px;\n  width: 100%;\n  text-align: center;\n  margin: 0 auto; }\n.login .logo {\n    width: 100%;\n    max-width: 200px; }\n.login img {\n    margin: 5% auto; }\n.login .login-card {\n    text-align: left;\n    background-color: #565555;\n    color: #fff;\n    border-radius: 6px; }\n.login .login-card mat-card-title {\n      font-size: 18px; }\n.login .login-card mat-card-content {\n      padding-top: 20px; }\n.login .login-card mat-card-subtitle {\n      color: rgba(255, 255, 255, 0.768627); }\n.login .login-card mat-card-actions {\n      text-align: right; }\n::ng-deep .login .mat-form-field-wrapper,\n::ng-deep .login .mat-form-field {\n  font-family: Roboto,\"Helvetica Neue\",sans-serif;\n  font-weight: 400;\n  line-height: 1.125;\n  font-size: 17px; }\n::ng-deep .login .mat-form-field-appearance-outline .mat-form-field-outline {\n  color: white; }\n::ng-deep .login input.mat-input-element {\n  color: white; }\n::ng-deep .login .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, ::ng-deep .login .mat-form-field-empty.mat-form-field-label {\n  color: rgba(255, 255, 255, 0.6) !important; }\n.mat-form-field-label  {\n  color: rgba(255, 255, 255, 0.6) !important; }\n::-webkit-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n:-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n::-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n::placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n:-ms-input-placeholder {\n  /* Internet Explorer 10-11 */\n  color: rgba(255, 255, 255, 0.5) !important; }\n::-ms-input-placeholder {\n  /* Microsoft Edge */\n  color: rgba(255, 255, 255, 0.5) !important; }\n"
+module.exports = "@charset \"UTF-8\";\n.login {\n  max-width: 500px;\n  width: 100%;\n  text-align: center;\n  margin: 40px auto; }\n.login .logo {\n    width: 100%;\n    max-width: 200px; }\n.login img {\n    margin: 5% auto; }\n.login .login-card {\n    text-align: left;\n    background-color: #565555;\n    color: #fff;\n    border-radius: 6px; }\n.login .login-card mat-card-title {\n      font-size: 18px; }\n.login .login-card mat-card-content {\n      padding-top: 20px; }\n.login .login-card mat-card-subtitle {\n      color: rgba(255, 255, 255, 0.768627); }\n.login .login-card mat-card-actions {\n      text-align: right; }\n::ng-deep .login .mat-form-field-wrapper,\n::ng-deep .login .mat-form-field {\n  font-family: Roboto,\"Helvetica Neue\",sans-serif;\n  font-weight: 400;\n  line-height: 1.125;\n  font-size: 17px; }\n::ng-deep .login .mat-form-field-appearance-outline .mat-form-field-outline {\n  color: white; }\n::ng-deep .login input.mat-input-element {\n  color: white; }\n::ng-deep .login .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, ::ng-deep .login .mat-form-field-empty.mat-form-field-label {\n  color: rgba(255, 255, 255, 0.6) !important; }\n.mat-form-field-label  {\n  color: rgba(255, 255, 255, 0.6) !important; }\n::-webkit-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n:-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n::-ms-input-placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n::placeholder {\n  /* Chrome, Firefox, Opera, Safari 10.1+ */\n  color: rgba(255, 255, 255, 0.5) !important;\n  opacity: 1;\n  /* Firefox */ }\n:-ms-input-placeholder {\n  /* Internet Explorer 10-11 */\n  color: rgba(255, 255, 255, 0.5) !important; }\n::-ms-input-placeholder {\n  /* Microsoft Edge */\n  color: rgba(255, 255, 255, 0.5) !important; }\n"
 
 /***/ }),
 
@@ -679,7 +679,7 @@ var AuthService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"loginForm\">\n  <div class=\"login\">\n    <img class=\"logo\" src=\"../../assets/img/logo.png\" alt=\"GPSP\">\n    <mat-card class=\"login-card mat-elevation-z8\">\n      <mat-card-header>\n        <mat-card-title><strong>Autenticación</strong></mat-card-title>\n        <mat-card-subtitle>Introduce tus credenciales de acceso al <strong>backoffice</strong></mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-content>\n\n        <mat-form-field appearance=\"outline\" style=\"width: 100%;\">\n          <mat-label>Email</mat-label>\n          <input matInput #email name=\"email\" formControlName=\"email\" maxlength=\"120\" placeholder=\"Introduce tu correo electrónico\">\n        </mat-form-field>\n\n        <mat-form-field appearance=\"outline\" style=\"width: 100%;\">\n          <mat-label>Contraseña</mat-label>\n          <input matInput type=\"password\" #password name=\"password\" formControlName=\"password\" maxlength=\"120\" placeholder=\"Introduce tu contraseña\">\n        </mat-form-field>\n\n      </mat-card-content>\n      <mat-card-actions>\n        <button mat-button (click)=\"login()\" color=\"primary\">ENTRAR</button>\n        <button mat-button (click)=\"login()\" color=\"primary\">RECUPERAR CONTRASEÑA</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n</form>\n\n"
+module.exports = "<form [formGroup]=\"loginForm\">\n  <div class=\"login\">\n    <img class=\"logo\" src=\"../../assets/img/logo-rgb.png\" alt=\"ulpgc\">\n    <mat-card class=\"login-card mat-elevation-z8\">\n      <mat-card-header>\n        <mat-card-title><strong>Autenticación</strong></mat-card-title>\n        <mat-card-subtitle>Introduce tus credenciales de acceso al <strong>backoffice</strong></mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-content>\n\n        <mat-form-field appearance=\"outline\" style=\"width: 100%;\">\n          <mat-label>Email</mat-label>\n          <input matInput #email name=\"email\" formControlName=\"email\" maxlength=\"120\" placeholder=\"Introduce tu correo electrónico\">\n        </mat-form-field>\n\n        <mat-form-field appearance=\"outline\" style=\"width: 100%;\">\n          <mat-label>Contraseña</mat-label>\n          <input matInput type=\"password\" #password name=\"password\" formControlName=\"password\" maxlength=\"120\" placeholder=\"Introduce tu contraseña\">\n        </mat-form-field>\n\n      </mat-card-content>\n      <mat-card-actions>\n        <button mat-button (click)=\"login()\" color=\"primary\">ENTRAR</button>\n        <button mat-button (click)=\"login()\" color=\"primary\">RECUPERAR CONTRASEÑA</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n</form>\n\n"
 
 /***/ }),
 
@@ -970,7 +970,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <mat-toolbar>\n\n    <a [routerLink]=\"['/']\">\n      <img class=\"logo\" src=\"../../assets/img/logo.png\" alt=\"GPSP\" />\n    </a>\n    <span class=\"spacer\"></span>\n    <span class=\"spacer\"></span>\n\n    <!-- DROPDOWN LOGGED USER -->\n    <div *ngIf=\"user && !user.isAdmin\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\">\n        <mat-icon>account_circle</mat-icon>{{ user.fullname }}\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n    </div>\n    <!-- /DROPDOWN LOGGED USER -->\n\n    <!-- DROPDOWN ADMIN USER -->\n    <div *ngIf=\"user && user.isAdmin\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\">\n        <mat-icon>account_circle</mat-icon>{{ user.fullname }}\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/admin']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Dashboard</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.middle\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.bottom\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n    </div>\n    <!-- /DROPDOWN ADMIN USER -->\n\n  </mat-toolbar>\n</header>\n\n"
+module.exports = "<header>\n  <mat-toolbar>\n    <a [routerLink]=\"['/']\" id=\"logo\">\n      <!-- <img class=\"logo\" src=\"../../assets/img/logo-text.gif\" alt=\"GPSP\" /> -->\n    </a>\n    <!-- NOT LOGGED USER -->\n    <div *ngIf=\"!user\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\" >\n       <span> <img class=\"mat-icon\" src=\".../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [routerLink]=\"['/auth/login']\"  class=\"menu-element\">\n        Iniciar sesión <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <a class=\"menu-element\">\n        Asignaturas  <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_1.svg\"> </span>\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Lorem Ipsum</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.middle\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.bottom\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n    </div>\n    <!-- /NOT LOGGED USER -->\n\n    <!-- DROPDOWN LOGGED USER -->\n    <div *ngIf=\"user && !user.isAdmin\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span><img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Lorem Ipsum</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.middle\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.bottom\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <a class=\"menu-element\">\n        Asignaturas  <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_1.svg\"> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN LOGGED USER -->\n\n    <!-- DROPDOWN ADMIN USER -->\n    <div *ngIf=\"user && user.isAdmin\" class=\"menu user\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Lorem Ipsum</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.middle\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.bottom\" [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">star_border</mat-icon>Lorem Ipsum</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/admin']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Dashboard</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.middle\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.bottom\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n      <a class=\"menu-element\">\n        Asignaturas  <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_1.svg\"> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN ADMIN USER -->\n  </mat-toolbar>\n</header>\n"
 
 /***/ }),
 
@@ -981,7 +981,7 @@ module.exports = "<header>\n  <mat-toolbar>\n\n    <a [routerLink]=\"['/']\">\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "header {\n  width: 100%;\n  height: 83px; }\n  header .logo {\n    width: 60px; }\n  header .mat-toolbar {\n    padding-top: 10px;\n    height: 83px;\n    color: #212529;\n    background: linear-gradient(to left, #002e67 0%, #42648e 100%);\n    color: #fff;\n    position: fixed;\n    z-index: 10; }\n  header .mat-icon {\n    vertical-align: middle;\n    width: 40px;\n    height: 40px;\n    font-size: 40px;\n    line-height: 40px; }\n  header .social-icon {\n    margin-right: 15px; }\n  header .menu {\n    margin-top: -5px; }\n  header .menu mat-icon {\n      margin-left: 15px;\n      margin-right: 5px; }\n  header button {\n    margin-top: -5px; }\n  header a {\n    cursor: pointer; }\n"
+module.exports = "header {\n  top: 0;\n  width: 100%;\n  height: 83px;\n  position: fixed;\n  background: linear-gradient(to bottom, #002e67 0%, #42648e 100%);\n  z-index: 999;\n  color: white; }\n  header #logo {\n    background: url('ulpgc_graficos_v14.svg') -641px -2128px no-repeat;\n    background-size: 1900px;\n    width: 370px;\n    height: 70px; }\n  header .mat-toolbar {\n    padding-top: 10px;\n    height: 83px;\n    background-color: transparent;\n    color: #fff;\n    position: fixed;\n    z-index: 10;\n    max-width: 1920px; }\n  header .mat-icon {\n    vertical-align: middle;\n    width: 40px;\n    height: 40px;\n    font-size: 40px;\n    line-height: 40px; }\n  header .social-icon {\n    margin-right: 15px; }\n  header .menu {\n    margin-top: -5px;\n    color: #fff;\n    width: 100%; }\n  header .menu .mat-icon {\n      margin-left: 15px;\n      margin-right: 5px;\n      color: #fff; }\n  header .menu .menu-element {\n      float: right;\n      margin-right: 30px;\n      text-decoration: none;\n      color: #fff;\n      font-size: 18px;\n      font-weight: 600; }\n  header .menu .menu-element .material-icons {\n        margin-left: 0px;\n        vertical-align: bottom; }\n  header .menu .menu-element span {\n        vertical-align: super; }\n  header .menu .menu-element span .mat-icon {\n          vertical-align: middle;\n          width: 30px;\n          height: 30px;\n          font-size: 30px;\n          line-height: 30px;\n          margin-left: 10px; }\n  header .menu .menu-element.hamb {\n      padding-top: 2px; }\n  header .menu .menu-element.hamb img.mat-icon {\n        width: 40px; }\n  header button {\n    margin-top: -5px; }\n  header a {\n    cursor: pointer; }\n  header .container.large {\n    max-width: 1920px;\n    width: 100%;\n    position: relative; }\n  header .logo-link {\n    padding: 0px 0px 0px 60px; }\n  header .logo {\n    width: 170px; }\n  .cdk-overlay-connected-position-bounding-box {\n  top: 80px;\n  padding-left: 22px; }\n  @media (max-width: 1360px) {\n  header {\n    width: 100%; }\n    header .mat-toolbar {\n      max-width: 1200px;\n      width: 100%;\n      margin: auto;\n      left: 0;\n      right: 0; }\n    header .logo-link {\n      padding-left: 0px; } }\n  @media (max-width: 1260px) {\n  header .mat-toolbar {\n    padding: 10px 5% 0 5%; } }\n"
 
 /***/ }),
 
@@ -1239,7 +1239,7 @@ module.exports = "<div class=\"wrapper-app\">\n  <router-outlet></router-outlet>
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "body {\n  background: linear-gradient(to bottom, #002e67 0%, #42648e 100%); }\n"
 
 /***/ }),
 
@@ -1275,7 +1275,7 @@ var AuthLayoutComponent = /** @class */ (function () {
         //
         // Changing body background color
         //
-        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#414141';
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#000';
     };
     AuthLayoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1299,7 +1299,7 @@ var AuthLayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header [user]=\"user\"></app-header>\n<div class=\"wrapper-app\">\n  <router-outlet></router-outlet>\n</div>\n<app-footer></app-footer>"
+module.exports = "<app-header [user]=\"user\"></app-header>\n<div class=\"wrapper-app\">\n  <mat-sidenav-container class=\"dashboard\" autosize>\n    <mat-sidenav #sidenav class=\"sidenav\" mode=\"side\" opened=\"true\" [fixedInViewport]=\"'true'\" [fixedTopGap]=\"'83'\">\n  \n      <mat-nav-list>\n        <mat-list-item>\n          <button mat-icon-button matTooltip=\"{{ !isExpanded ? 'Expandir menú' : 'Ocultar menú' }}\" [matTooltipPosition]=\"'right'\"  (click)=\"isExpanded = !isExpanded\">\n            <mat-icon *ngIf=\"!isExpanded\">chevron_right</mat-icon>\n            <mat-icon *ngIf=\"isExpanded\">chevron_left</mat-icon>\n          </button>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-top\"></mat-divider>\n\n        <mat-list-item routerLink=\"/\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{ exact: true }\">\n          <mat-icon mat-list-icon matTooltip=\"{{ !isExpanded ? 'Dashboard' : '' }}\" [matTooltipPosition]=\"'right'\">home</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">Dashboard</p>\n        </mat-list-item>\n        <mat-list-item *ngFor=\"let section of menu.top\" routerLink=\"{{ section.url }}\" matTooltip=\"{{ !isExpanded ? section.name : '' }}\"  [matTooltipPosition]=\"'right'\"  routerLinkActive=\"active\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-bottom\"></mat-divider>\n\n        <mat-list-item *ngFor=\"let section of menu.middle\" routerLink=\"{{ section.url }}\" routerLinkActive=\"active\" matTooltip=\"{{ !isExpanded ? section.name : '' }}\"  [matTooltipPosition]=\"'right'\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-top\"></mat-divider>\n\n        <mat-list-item *ngFor=\"let section of menu.bottom\" routerLink=\"{{ section.url }}\" routerLinkActive=\"active\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-list-item (click)=\"logout()\">\n          <mat-icon mat-list-icon matTooltip=\"{{ !isExpanded ? 'Salir' : '' }}\" [matTooltipPosition]=\"'right'\">power_settings_new</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">Salir</p>\n        </mat-list-item>\n\n      </mat-nav-list>\n\n    </mat-sidenav>\n  \n    <div class=\"sidenav-main-content\">\n      <router-outlet></router-outlet>\n    </div>\n  \n  </mat-sidenav-container>\n\n</div>"
 
 /***/ }),
 
@@ -1310,7 +1310,7 @@ module.exports = "<app-header [user]=\"user\"></app-header>\n<div class=\"wrappe
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.dashboard {\n  overflow: visible !important; }\n.dashboard .sidenav {\n    background-color: #42648e;\n    color: #fff;\n    overflow-y: auto;\n    overflow-x: hidden; }\n.dashboard .sidenav mat-list-item {\n      color: #fff; }\n.dashboard .sidenav mat-divider {\n      border-color: rgba(255, 255, 255, 0.17); }\n.dashboard .sidenav mat-divider.margin-top {\n      margin-top: 20px; }\n.dashboard .sidenav mat-divider.margin-bottom {\n      margin-bottom: 20px; }\n.dashboard .sidenav mat-list-item.active {\n      color: #ff9a00; }\n.dashboard .sidenav mat-list-item.active p {\n        font-weight: 800; }\n.dashboard .sidenav-main-content {\n    display: flex;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n    background-color: #f4f3f3;\n    width: 100%;\n    padding-top: 20px; }\n:host ::ng-deep router-outlet + *:not(nav) {\n  width: 100%; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar {\n    max-width: 1024px;\n    margin: 20px auto; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar .main-icon {\n      margin-top: 5px;\n      margin-right: 5px; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar a {\n      text-decoration: none;\n      color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-fill::after {\n    background-color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-buffer {\n    background-color: #8ed5f1; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar {\n    height: 3px; }\n"
 
 /***/ }),
 
@@ -1325,7 +1325,9 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MainLayoutComponent", function() { return MainLayoutComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menu */ "./src/app/layouts/main-layout/menu.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1337,13 +1339,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
 var MainLayoutComponent = /** @class */ (function () {
-    function MainLayoutComponent(authService, elementRef) {
+    function MainLayoutComponent(authService, router, elementRef) {
         this.authService = authService;
+        this.router = router;
         this.elementRef = elementRef;
+        this.isExpanded = false;
     }
     MainLayoutComponent.prototype.ngOnInit = function () {
+        //
+        // Loading menu
+        //
         var _this = this;
+        this.menu = new _menu__WEBPACK_IMPORTED_MODULE_3__["Menu"]();
         // init this.user on startup
         this.authService.me().subscribe(function (data) {
             if (!data)
@@ -1360,7 +1370,14 @@ var MainLayoutComponent = /** @class */ (function () {
         //
         // Changing body background color
         //
-        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f3f3';
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#fff';
+    };
+    MainLayoutComponent.prototype.logout = function () {
+        this.authService.signOut();
+        this.navigate('');
+    };
+    MainLayoutComponent.prototype.navigate = function (link) {
+        this.router.navigate([link]);
     };
     MainLayoutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1368,10 +1385,54 @@ var MainLayoutComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./main-layout.component.html */ "./src/app/layouts/main-layout/main-layout.component.html"),
             styles: [__webpack_require__(/*! ./main-layout.component.scss */ "./src/app/layouts/main-layout/main-layout.component.scss")]
         }),
-        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"],
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"],
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]])
     ], MainLayoutComponent);
     return MainLayoutComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/layouts/main-layout/menu.ts":
+/*!*********************************************!*\
+  !*** ./src/app/layouts/main-layout/menu.ts ***!
+  \*********************************************/
+/*! exports provided: Menu */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Menu", function() { return Menu; });
+var Menu = /** @class */ (function () {
+    function Menu() {
+        this.top = [{
+                url: '/profile',
+                icon: 'face',
+                name: 'Mi Perfil',
+                pos: 'top'
+            }];
+        this.middle = [{
+                url: '/asignaturas',
+                icon: 'class',
+                name: 'Asignaturas',
+                pos: 'middle'
+            }, {
+                url: '/matricularme',
+                icon: 'queue',
+                name: 'Matricularme',
+                pos: 'middle'
+            }, {
+                url: '/mv',
+                icon: 'dns',
+                name: 'Máquinas virtuales',
+                pos: 'middle'
+            }];
+        this.bottom = [];
+    }
+    return Menu;
 }());
 
 
@@ -1604,7 +1665,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/becario/21ninjas/GPSP/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/jorgefeijoo/Proyectos/GPSP/src/main.ts */"./src/main.ts");
 
 
 /***/ })
