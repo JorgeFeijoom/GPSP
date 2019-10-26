@@ -14,7 +14,7 @@ export class Menu {
     }];
 
     this.middle = [{
-      url: '/asignaturas',
+      url: '/subjects',
       icon: 'class',
       name: 'Asignaturas',
       pos: 'middle'

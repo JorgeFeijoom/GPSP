@@ -27,6 +27,8 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FooterComponent } from './footers/footer/footer.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SubjectsComponent } from './subjects/subjects.component';
 
 registerLocaleData(localeEs, 'es-ES', localeEsExtra);
 
@@ -50,7 +52,9 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
     HomeComponent,
     AuthLayoutComponent,
     MainLayoutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProfileComponent,
+    SubjectsComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

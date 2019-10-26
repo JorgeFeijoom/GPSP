@@ -1,0 +1,15 @@
+<div class="container">
+  <h2> Perfil </h2>
+  <div *ngIf="user" class="profile-wrap">
+      <h4> {{ user.fullname }} </h4>
+      <h4> {{ user.dni }} </h4>
+      <h4> {{ user.email }} </h4>
+      <h4> {{ user.telefono }} </h4>
+      <h4> {{ user.bio }} </h4>
+      <h4> {{ user.ciudad }} </h4>
+      <h4> {{ user.direccion }} </h4>
+  </div>
+  <div *ngIf="!user" class="profile-wrap">
+    <a href="/auth/login"> Iniciar sesión </a>
+  </div>
+</div>

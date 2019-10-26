@@ -64,12 +64,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../layouts/main-layout/main-layout.component */ "./src/app/layouts/main-layout/main-layout.component.ts");
 /* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../subjects/subjects.component */ "./src/app/subjects/subjects.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -88,6 +92,18 @@ var routes = [{
     }, {
         path: 'auth',
         loadChildren: 'app/auth/auth.module#AuthModule'
+    }, {
+        path: 'profile',
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_4__["MainLayoutComponent"],
+        children: [
+            { path: '', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_6__["ProfileComponent"] }
+        ]
+    }, {
+        path: 'subjects',
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_4__["MainLayoutComponent"],
+        children: [
+            { path: '', component: _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_7__["SubjectsComponent"] }
+        ]
     }, {
         path: '**',
         component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__["PageNotFoundComponent"]
@@ -274,12 +290,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./layouts/main-layout/main-layout.component */ "./src/app/layouts/main-layout/main-layout.component.ts");
 /* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
 /* harmony import */ var _footers_footer_footer_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./footers/footer/footer.component */ "./src/app/footers/footer/footer.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./subjects/subjects.component */ "./src/app/subjects/subjects.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -329,7 +349,9 @@ var AppModule = /** @class */ (function () {
                 _home_home_component__WEBPACK_IMPORTED_MODULE_18__["HomeComponent"],
                 _layouts_auth_layout_auth_layout_component__WEBPACK_IMPORTED_MODULE_19__["AuthLayoutComponent"],
                 _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_20__["MainLayoutComponent"],
-                _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_21__["PageNotFoundComponent"]
+                _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_21__["PageNotFoundComponent"],
+                _profile_profile_component__WEBPACK_IMPORTED_MODULE_23__["ProfileComponent"],
+                _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_24__["SubjectsComponent"]
             ],
             providers: [{
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
@@ -1310,7 +1332,7 @@ module.exports = "<app-header [user]=\"user\"></app-header>\n<div class=\"wrappe
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.dashboard {\n  overflow: visible !important; }\n.dashboard .sidenav {\n    background-color: #42648e;\n    color: #fff;\n    overflow-y: auto;\n    overflow-x: hidden; }\n.dashboard .sidenav mat-list-item {\n      color: #fff; }\n.dashboard .sidenav mat-divider {\n      border-color: rgba(255, 255, 255, 0.17); }\n.dashboard .sidenav mat-divider.margin-top {\n      margin-top: 20px; }\n.dashboard .sidenav mat-divider.margin-bottom {\n      margin-bottom: 20px; }\n.dashboard .sidenav mat-list-item.active {\n      color: #ff9a00; }\n.dashboard .sidenav mat-list-item.active p {\n        font-weight: 800; }\n.dashboard .sidenav-main-content {\n    display: flex;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n    background-color: #f4f3f3;\n    width: 100%;\n    padding-top: 20px; }\n:host ::ng-deep router-outlet + *:not(nav) {\n  width: 100%; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar {\n    max-width: 1024px;\n    margin: 20px auto; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar .main-icon {\n      margin-top: 5px;\n      margin-right: 5px; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar a {\n      text-decoration: none;\n      color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-fill::after {\n    background-color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-buffer {\n    background-color: #8ed5f1; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar {\n    height: 3px; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.dashboard {\n  overflow: visible !important; }\n.dashboard .sidenav {\n    background-color: #42648e;\n    color: #fff;\n    overflow-y: auto;\n    overflow-x: hidden; }\n.dashboard .sidenav mat-list-item {\n      color: #fff; }\n.dashboard .sidenav mat-divider {\n      border-color: rgba(255, 255, 255, 0.17); }\n.dashboard .sidenav mat-divider.margin-top {\n      margin-top: 20px; }\n.dashboard .sidenav mat-divider.margin-bottom {\n      margin-bottom: 20px; }\n.dashboard .sidenav mat-list-item.active {\n      color: #ff9a00; }\n.dashboard .sidenav mat-list-item.active p {\n        font-weight: 800; }\n.dashboard .sidenav-main-content {\n    display: flex;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n    width: 100%;\n    padding-top: 20px; }\n:host ::ng-deep router-outlet + *:not(nav) {\n  width: 100%; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar {\n    max-width: 1024px;\n    margin: 20px auto; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar .main-icon {\n      margin-top: 5px;\n      margin-right: 5px; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar a {\n      text-decoration: none;\n      color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-fill::after {\n    background-color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-buffer {\n    background-color: #8ed5f1; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar {\n    height: 3px; }\n"
 
 /***/ }),
 
@@ -1415,7 +1437,7 @@ var Menu = /** @class */ (function () {
                 pos: 'top'
             }];
         this.middle = [{
-                url: '/asignaturas',
+                url: '/subjects',
                 icon: 'class',
                 name: 'Asignaturas',
                 pos: 'middle'
@@ -1496,6 +1518,79 @@ var PageNotFoundComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], PageNotFoundComponent);
     return PageNotFoundComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/profile/profile.component.html":
+/*!************************************************!*\
+  !*** ./src/app/profile/profile.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <h2> Perfil </h2>\n  <div *ngIf=\"user\" class=\"profile-wrap\">\n      <h4> {{ user.fullname }} </h4>\n      <h4> {{ user.dni }} </h4>\n      <h4> {{ user.email }} </h4>\n      <h4> {{ user.telefono }} </h4>\n      <h4> {{ user.bio }} </h4>\n      <h4> {{ user.ciudad }} </h4>\n      <h4> {{ user.direccion }} </h4>\n  </div>\n  <div *ngIf=\"!user\" class=\"profile-wrap\">\n    <a href=\"/auth/login\"> Iniciar sesión </a>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/profile/profile.component.scss":
+/*!************************************************!*\
+  !*** ./src/app/profile/profile.component.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/profile/profile.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/profile/profile.component.ts ***!
+  \**********************************************/
+/*! exports provided: ProfileComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ProfileComponent = /** @class */ (function () {
+    function ProfileComponent(authService) {
+        this.authService = authService;
+    }
+    ProfileComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.me().subscribe(function (data) {
+            if (!data)
+                _this.user = null;
+            else
+                _this.user = data.user;
+        });
+    };
+    ProfileComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-profile',
+            template: __webpack_require__(/*! ./profile.component.html */ "./src/app/profile/profile.component.html"),
+            styles: [__webpack_require__(/*! ./profile.component.scss */ "./src/app/profile/profile.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
+    ], ProfileComponent);
+    return ProfileComponent;
 }());
 
 
@@ -1605,6 +1700,69 @@ var SharedModule = /** @class */ (function () {
         })
     ], SharedModule);
     return SharedModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/subjects/subjects.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/subjects/subjects.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/subjects/subjects.component.scss":
+/*!**************************************************!*\
+  !*** ./src/app/subjects/subjects.component.scss ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/subjects/subjects.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/subjects/subjects.component.ts ***!
+  \************************************************/
+/*! exports provided: SubjectsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectsComponent", function() { return SubjectsComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var SubjectsComponent = /** @class */ (function () {
+    function SubjectsComponent() {
+    }
+    SubjectsComponent.prototype.ngOnInit = function () {
+    };
+    SubjectsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-subjects',
+            template: __webpack_require__(/*! ./subjects.component.html */ "./src/app/subjects/subjects.component.html"),
+            styles: [__webpack_require__(/*! ./subjects.component.scss */ "./src/app/subjects/subjects.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], SubjectsComponent);
+    return SubjectsComponent;
 }());
 
 

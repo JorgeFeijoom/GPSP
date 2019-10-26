@@ -56,7 +56,6 @@ export class AuthService {
 
   me(): Observable<any> {
     return Observable.create(observer => {
-      
       const tokenVal = this.token.getToken();
 
       //
