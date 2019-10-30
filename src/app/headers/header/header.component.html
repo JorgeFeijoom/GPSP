@@ -1,40 +1,93 @@
 <header>
   <mat-toolbar>
-
-    <a [routerLink]="['/']">
-      <img class="logo" src="../../assets/img/logo.png" alt="GPSP" />
+    <a [routerLink]="['/']" id="logo">
+      <!-- <img class="logo" src="../../assets/img/logo-text.gif" alt="GPSP" /> -->
     </a>
-    <span class="spacer"></span>
-    <span class="spacer"></span>
+    <!-- NOT LOGGED USER -->
+    <div *ngIf="!user" class="menu">
+      <a [matMenuTriggerFor]="menu" class="menu-element hamb" >
+       <span> <img class="mat-icon" src=".../../../assets/img/icons/Recurso_2.svg"> </span>
+      </a>
+      <a [routerLink]="['/auth/login']"  class="menu-element">
+        Iniciar sesión <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_3.svg"></span>
+      </a>
+      <a class="menu-element">
+        Asignaturas  <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_1.svg"> </span>
+      </a>
+      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
+      </mat-menu>
+    </div>
+    <!-- /NOT LOGGED USER -->
 
     <!-- DROPDOWN LOGGED USER -->
     <div *ngIf="user && !user.isAdmin" class="menu">
-      <a [matMenuTriggerFor]="menu">
-        <mat-icon>account_circle</mat-icon>{{ user.fullname }}
+      <a [matMenuTriggerFor]="menu" class="menu-element hamb">
+        <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_2.svg"> </span>
       </a>
-      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+      <a [matMenuTriggerFor]="userMenu" class="menu-element">
+        {{ user.fullname }} <span><img class="mat-icon" src="../../../assets/img/icons/Recurso_3.svg"></span>
+      </a>
+      <mat-menu #userMenu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['/profile']"><mat-icon class="header-menu-icon-margin">person</mat-icon>Perfil</button>
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
+
+      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
+      </mat-menu>
+
+      <a class="menu-element">
+        Asignaturas  <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_1.svg"> </span>
+      </a>
     </div>
     <!-- /DROPDOWN LOGGED USER -->
 
     <!-- DROPDOWN ADMIN USER -->
-    <div *ngIf="user && user.isAdmin" class="menu">
-      <a [matMenuTriggerFor]="menu">
-        <mat-icon>account_circle</mat-icon>{{ user.fullname }}
+    <div *ngIf="user && user.isAdmin" class="menu user">
+      <a [matMenuTriggerFor]="menu" class="menu-element hamb">
+        <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_2.svg"> </span>
+      </a>
+      <a [matMenuTriggerFor]="userMenu" class="menu-element">
+        {{ user.fullname }} <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_3.svg"></span>
       </a>
       <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
+      </mat-menu>
+
+      <mat-menu #userMenu="matMenu" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item [routerLink]="['/profile']"><mat-icon class="header-menu-icon-margin">person</mat-icon>Perfil</button>
+        <mat-divider></mat-divider>
         <button mat-menu-item [routerLink]="['/admin']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Dashboard</button>
         <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
+        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
+        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
+      <a class="menu-element">
+        Asignaturas  <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_1.svg"> </span>
+      </a>
     </div>
     <!-- /DROPDOWN ADMIN USER -->
-
   </mat-toolbar>
 </header>
-

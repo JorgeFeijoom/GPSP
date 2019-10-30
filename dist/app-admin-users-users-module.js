@@ -119,7 +119,7 @@ module.exports = "<form [formGroup]=\"userForm\" (ngSubmit)=\"saveUser()\">\n  <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".user-create-dialog {\n  font-family: 'Exo'; }\n  .user-create-dialog h3 {\n    color: rgba(48, 48, 48, 0.690196);\n    margin-top: 0; }\n  .user-create-dialog h3.social {\n    margin-bottom: 0; }\n  .user-create-dialog .basic-info-container {\n    width: 100%;\n    margin-bottom: 20px; }\n  .user-create-dialog .basic-info {\n    padding-left: 20px; }\n  .user-create-dialog .basic-info .create-password-container {\n      margin-top: -18px; }\n  .user-create-dialog .basic-info .send-email-container {\n      width: 100%; }\n  .user-create-dialog .basic-info .permits-container {\n      width: 50%;\n      margin-top: 25px; }\n"
+module.exports = ".user-create-dialog {\n  font-family: 'Raleway'; }\n  .user-create-dialog h3 {\n    color: rgba(48, 48, 48, 0.690196);\n    margin-top: 0; }\n  .user-create-dialog h3.social {\n    margin-bottom: 0; }\n  .user-create-dialog .basic-info-container {\n    width: 100%;\n    margin-bottom: 20px; }\n  .user-create-dialog .basic-info {\n    padding-left: 20px; }\n  .user-create-dialog .basic-info .create-password-container {\n      margin-top: -18px; }\n  .user-create-dialog .basic-info .send-email-container {\n      width: 100%; }\n  .user-create-dialog .basic-info .permits-container {\n      width: 50%;\n      margin-top: 25px; }\n"
 
 /***/ }),
 
@@ -314,7 +314,7 @@ module.exports = "<h1 mat-dialog-title>Modificar usuario</h1>\n<div mat-dialog-c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".user-edit-dialog {\n  font-family: 'Exo'; }\n  .user-edit-dialog h3 {\n    color: rgba(48, 48, 48, 0.690196);\n    margin-top: 0; }\n  .user-edit-dialog mat-card {\n    margin-bottom: 25px; }\n  .user-edit-dialog mat-card mat-card-title {\n      font-size: 20px;\n      font-weight: 500;\n      color: rgba(0, 0, 0, 0.72); }\n  .user-edit-dialog mat-card .mat-card-actions {\n      margin-bottom: 0;\n      padding-bottom: 0; }\n  .user-edit-dialog .create-password-container {\n    margin-top: -18px; }\n  .user-edit-dialog .send-email-container {\n    width: 100%; }\n  .user-edit-dialog .permits-container {\n    width: 50%;\n    margin-top: 25px; }\n"
+module.exports = ".user-edit-dialog {\n  font-family: 'Raleway'; }\n  .user-edit-dialog h3 {\n    color: rgba(48, 48, 48, 0.690196);\n    margin-top: 0; }\n  .user-edit-dialog mat-card {\n    margin-bottom: 25px; }\n  .user-edit-dialog mat-card mat-card-title {\n      font-size: 20px;\n      font-weight: 500;\n      color: rgba(0, 0, 0, 0.72); }\n  .user-edit-dialog mat-card .mat-card-actions {\n      margin-bottom: 0;\n      padding-bottom: 0; }\n  .user-edit-dialog .create-password-container {\n    margin-top: -18px; }\n  .user-edit-dialog .send-email-container {\n    width: 100%; }\n  .user-edit-dialog .permits-container {\n    width: 50%;\n    margin-top: 25px; }\n"
 
 /***/ }),
 

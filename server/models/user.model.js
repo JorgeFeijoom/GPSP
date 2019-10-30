@@ -6,12 +6,25 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imagen: {
+    type: String
+  },
+  dni: {
+    type: String,
+    required: true,
+    unique: true,
+    uppercase: true
+  },
   email: {
     type: String,
     required: true,
     unique: true,
+    lowercase: true,
     // Regexp to validate emails with more strict rules as added in tests/users.js which also conforms mostly with RFC2822 guide lines
     match: [/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter a valid email'],
+  },
+  telefono: {
+    type: String,
   },
   hashedPassword: {
     type: String,
@@ -21,17 +34,33 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  thumbnail: String,
-  createdAt: {
-    type: Date,
-    default: Date.now
+  ciudad: {
+    type: String
   },
-  deletedAt: {
+  direccion: {
+    type: String
+  },
+  nacimiento: {
+    type: Date
+  },
+  created: {
     type: Date,
-    default: null
+    default: Date.now 
+  },
+  updated: { 
+    type: Date, 
+    default: Date.now 
+  },
+  lastAccess:{
+    type: Date, 
+    default: Date.now 
+  },
+  asignaturas:{
+    type: [Number]
   },
   roles: [{
     type: String,
+    enum: ['alumno', 'profesor', 'admin']
   }]
 }, {
   versionKey: false

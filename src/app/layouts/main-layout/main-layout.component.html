@@ -1,5 +1,54 @@
 <app-header [user]="user"></app-header>
 <div class="wrapper-app">
-  <router-outlet></router-outlet>
+  <mat-sidenav-container class="dashboard" autosize>
+    <mat-sidenav #sidenav class="sidenav" mode="side" opened="true" [fixedInViewport]="'true'" [fixedTopGap]="'83'">
+  
+      <mat-nav-list>
+        <mat-list-item>
+          <button mat-icon-button matTooltip="{{ !isExpanded ? 'Expandir menú' : 'Ocultar menú' }}" [matTooltipPosition]="'right'"  (click)="isExpanded = !isExpanded">
+            <mat-icon *ngIf="!isExpanded">chevron_right</mat-icon>
+            <mat-icon *ngIf="isExpanded">chevron_left</mat-icon>
+          </button>
+        </mat-list-item>
+
+        <mat-divider class="margin-top"></mat-divider>
+
+        <mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <mat-icon mat-list-icon matTooltip="{{ !isExpanded ? 'Dashboard' : '' }}" [matTooltipPosition]="'right'">home</mat-icon>
+          <p matLine *ngIf="isExpanded">Dashboard</p>
+        </mat-list-item>
+        <mat-list-item *ngFor="let section of menu.top" routerLink="{{ section.url }}" matTooltip="{{ !isExpanded ? section.name : '' }}"  [matTooltipPosition]="'right'"  routerLinkActive="active">
+          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>
+          <p matLine *ngIf="isExpanded">{{ section.name }}</p>
+        </mat-list-item>
+
+        <mat-divider class="margin-bottom"></mat-divider>
+
+        <mat-list-item *ngFor="let section of menu.middle" routerLink="{{ section.url }}" routerLinkActive="active" matTooltip="{{ !isExpanded ? section.name : '' }}"  [matTooltipPosition]="'right'">
+          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>
+          <p matLine *ngIf="isExpanded">{{ section.name }}</p>
+        </mat-list-item>
+
+        <mat-divider class="margin-top"></mat-divider>
+
+        <mat-list-item *ngFor="let section of menu.bottom" routerLink="{{ section.url }}" routerLinkActive="active">
+          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>
+          <p matLine *ngIf="isExpanded">{{ section.name }}</p>
+        </mat-list-item>
+
+        <mat-list-item (click)="logout()">
+          <mat-icon mat-list-icon matTooltip="{{ !isExpanded ? 'Salir' : '' }}" [matTooltipPosition]="'right'">power_settings_new</mat-icon>
+          <p matLine *ngIf="isExpanded">Salir</p>
+        </mat-list-item>
+
+      </mat-nav-list>
+
+    </mat-sidenav>
+  
+    <div class="sidenav-main-content">
+      <router-outlet></router-outlet>
+    </div>
+  
+  </mat-sidenav-container>
+
 </div>
-<app-footer></app-footer>

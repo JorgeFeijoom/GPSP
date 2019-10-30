@@ -4,6 +4,8 @@ import { AuthGuard } from '../auth/auth-guard.service';
 import { HomeComponent } from '../home/home.component';
 import { MainLayoutComponent } from '../layouts/main-layout/main-layout.component';
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
+import { ProfileComponent } from '../profile/profile.component';
+import { SubjectsComponent } from '../subjects/subjects.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +19,18 @@ const routes: Routes = [{
 }, {
   path: 'auth',
   loadChildren: 'app/auth/auth.module#AuthModule'
+}, {
+  path: 'profile',
+  component: MainLayoutComponent,
+  children: [
+    { path: '', component: ProfileComponent }
+  ]
+}, {
+  path: 'subjects',
+  component: MainLayoutComponent,
+  children: [
+    { path: '', component: SubjectsComponent }
+  ]
 }, {
   path: '**',
   component: PageNotFoundComponent

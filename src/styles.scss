@@ -5,9 +5,10 @@
 @import '~dragula/dist/dragula.css';
 @import '~ngx-toastr/toastr.css';
 @import '~quill/dist/quill.snow.css';
+@import '_settings.scss';
 
 $custom-typography: mat-typography-config(
-    $font-family: 'Exo'
+    $font-family: 'Raleway'
 );
 
 @include mat-core($custom-typography);
@@ -50,15 +51,47 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: normal !important;
-  background-color: #f4f3f3;
+  background-color: $bg !important;
   margin: 0;
 
   app-root * {
-    font-family: 'Exo', sans-serif;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  // Headers
+  h1 {
+    font-size: 4em;
+    font-weight: 900;
+  }
+  h2 {
+    font-size: 3em;
+    font-weight: 900;
+  }
+  h3 {
+    font-size: 2.5em;
+    font-weight: 800;
+  }
+
+  h4 {
+
+  }
+
+  h5 {
+
+  }
+
+  h6 {
+
   }
 
   .spacer {
     flex: 1 1 auto;
+  }
+
+  .container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 100px auto;
   }
 
   //
@@ -146,7 +179,7 @@ body {
   //
 
   .swal2-popup {
-    font-family: 'Exo';
+    font-family: 'Raleway';
   }
 
   .swal2-button-margin {
@@ -159,7 +192,7 @@ body {
   //
 
   .toast-container {
-    font-family: 'Exo', sans-serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 14px;
   }
 

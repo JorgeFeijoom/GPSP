@@ -19,7 +19,7 @@ export class AuthLayoutComponent implements OnInit {
     // Changing body background color
     //
 
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#414141';
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#000';
   }
 
 }
