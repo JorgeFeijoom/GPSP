@@ -62,31 +62,29 @@ body {
   h1 {
     font-size: 4em;
     font-weight: 900;
+    color: $black;
   }
   h2 {
     font-size: 3em;
     font-weight: 900;
+    color: $black;
   }
   h3 {
     font-size: 2.5em;
     font-weight: 800;
+    color: $black;
   }
-
-  h4 {
-
-  }
-
-  h5 {
-
-  }
-
-  h6 {
-
+  .click {
+    cursor: pointer;
   }
 
   .spacer {
     flex: 1 1 auto;
   }
+
+  .mat-table {
+    background: #fafafa;
+}
 
   .container {
     max-width: 1200px;

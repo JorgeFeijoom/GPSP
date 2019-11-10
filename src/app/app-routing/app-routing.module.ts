@@ -6,12 +6,14 @@ import { MainLayoutComponent } from '../layouts/main-layout/main-layout.componen
 import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { SubjectsComponent } from '../subjects/subjects.component';
+import { SubjectDetailComponent } from '../subject-detail/subject-detail.component';
+import { MatricularmeComponent } from '../matricularme/matricularme.component';
 
 const routes: Routes = [{
   path: '',
   component: MainLayoutComponent,
   children: [
-    { path: '', component: HomeComponent, pathMatch: 'full' }
+    { path: '', component: SubjectsComponent, pathMatch: 'full' }
   ]
 }, {
   path: 'admin',
@@ -30,6 +32,18 @@ const routes: Routes = [{
   component: MainLayoutComponent,
   children: [
     { path: '', component: SubjectsComponent }
+  ]
+}, {
+  path: 'detail/:code',
+  component: MainLayoutComponent,
+  children: [
+    { path: '', component: SubjectDetailComponent }
+  ]
+}, {
+  path: 'matricularme',
+  component: MainLayoutComponent,
+  children: [
+    { path: '', component: MatricularmeComponent }
   ]
 }, {
   path: '**',

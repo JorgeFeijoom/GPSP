@@ -1,0 +1,38 @@
+<div class="container">
+  <div *ngIf="subject" class="subject-wrap">
+    <h2> {{ subject.nombre }} </h2>
+    <mat-grid-list cols="5" rowHeight="100px">
+      <mat-grid-tile class="grid"
+          *ngFor="let detail of details"
+          [colspan]="detail.cols"
+          [rowspan]="detail.rows"
+          [style.background]="detail.color">
+        <h3> {{detail.title}} </h3>
+        <p>{{detail.text}} </p>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-list fxLayout="row wrap" class="files-wrap">
+      <div fxFlex="50">
+        <h3 mat-subheader>Ficheros</h3>
+        <mat-list-item *ngFor="let doc of docs">
+          <mat-icon mat-list-icon>{{ doc.icon }}</mat-icon>
+          <h4 mat-line>{{doc.name}}</h4>
+          <p mat-line> {{doc.updated | date}} </p>
+        </mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxFlex="50">
+        <h3 mat-subheader>Máquina Virtual</h3>
+        <mat-list-item *ngFor="let mvi of mv">
+          <mat-icon mat-list-icon>{{ mvi.icon }} </mat-icon>
+          <h4 mat-line>{{ mvi.name}}</h4>
+          <p mat-line> {{ mvi.updated | date}} </p>
+        </mat-list-item>
+      </div>
+    </mat-list>
+  </div>
+  <div *ngIf="!subject" class="subject-wrap">
+    <p> No existe esta asignatura </p>
+  </div>
+  <img (click)="goBack()" id="return" src="../../assets/icons/previous.svg">
+</div>

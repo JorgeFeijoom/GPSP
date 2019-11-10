@@ -7,7 +7,7 @@ import { Category } from './post';
 @Injectable()
 export class CategoryService {
 
-  constructor(private http : HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   /**
    * create

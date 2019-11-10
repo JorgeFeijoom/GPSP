@@ -7,7 +7,7 @@ import { User } from './user';
 @Injectable()
 export class UserService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * getAll

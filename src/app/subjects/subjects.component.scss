@@ -1,0 +1,26 @@
+@import '_settings.scss';
+
+.subjects-table {
+    width: 100%;
+}
+
+.ngx-pagination {
+    padding: 0px;
+    text-align: center;
+}
+
+.subjects-table td {
+    padding: 40px 20px;
+}
+
+.subjects-table th {
+    padding: 20px 20px;
+    color: $blue;
+    font-weight: bold;
+}
+.click {
+    transition: all .5s;
+}
+.click:hover {
+    color: $orange;
+}

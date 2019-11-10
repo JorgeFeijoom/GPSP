@@ -2,7 +2,7 @@
 
 const Joi = require('joi');
 // const slugify = require('slugify');
-const Subject = require('../../models/subject.model');
+const Subject = require('../models/subject.model');
 
 
 //
@@ -30,9 +30,9 @@ module.exports = {
  * @param {ObjectId} id
  */
 
-function subject (req, res, next, id) {
-
-  const validation = Joi.validate(id, subjectIdSchema);
+function subject (req, res, next) {
+  const validation = Joi.validate(code, subjectIdSchema);
+  var code = req.query.code;
 
   if ( validation.error ) {
     let error = new Error('Bad Request');
@@ -41,7 +41,7 @@ function subject (req, res, next, id) {
   }
 
   Subject
-    .findOne({ _id: id })
+    .findOne({ codigo: code })
     .exec((err, subject) => {
 
       // Error - 500
@@ -60,9 +60,8 @@ function subject (req, res, next, id) {
       }
 
       // Success
-      req.subject = subject;
-      next();
-      
+      console.log(subject);
+      res.send(subject);
     });
 }
 
