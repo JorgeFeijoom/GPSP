@@ -3,6 +3,7 @@ const userRoutes = require('./user.route');
 const authRoutes = require('./auth.route');
 const blogRoutes = require('./blog.route');
 const mediaRoutes = require('./media.route');
+const subjectRoutes = require('./subject.route');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -15,5 +16,6 @@ router.use('/auth', authRoutes);
 router.use('/user', userRoutes);
 router.use('/post', blogRoutes);
 router.use('/media', mediaRoutes);
+router.use('/subject', subjectRoutes);
 
 module.exports = router;

@@ -1,0 +1,50 @@
+@import '_settings.scss';
+#return {
+    position: absolute;
+    top: 110px;
+    right: 45px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+#return:hover {
+    filter: hue-rotate(145deg); 
+    -webkit-filter: hue-rotate(145deg);
+    -moz-filter: hue-rotate(145deg);
+    -o-filter: hue-rotate(145deg);
+    -ms-filter: hue-rotate(145deg);
+}
+
+::ng-deep .mat-grid-tile .mat-figure {
+    display: block !important;
+    padding: 10px !important;
+    h3 {
+        font-size: 20px;
+        margin:  0px;
+    }
+}
+
+textarea {
+    width: 90%;
+    min-height: 15rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    padding: 50px 6%;
+}
+
+.files-wrap {
+    margin-top: 10px;
+}
+  
+::ng-deep .mat-list-item-content {
+    max-width: 230px;
+    cursor: pointer;
+    transition: all .5s;
+}
+::ng-deep .mat-list-item-content:hover h4 {
+    color: $orange;
+    font-weight: bold;
+}

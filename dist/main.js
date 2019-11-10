@@ -61,11 +61,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _auth_auth_guard_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth-guard.service */ "./src/app/auth/auth-guard.service.ts");
-/* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../home/home.component */ "./src/app/home/home.component.ts");
-/* harmony import */ var _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../layouts/main-layout/main-layout.component */ "./src/app/layouts/main-layout/main-layout.component.ts");
-/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../profile/profile.component */ "./src/app/profile/profile.component.ts");
-/* harmony import */ var _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../subjects/subjects.component */ "./src/app/subjects/subjects.component.ts");
+/* harmony import */ var _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../layouts/main-layout/main-layout.component */ "./src/app/layouts/main-layout/main-layout.component.ts");
+/* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile/profile.component */ "./src/app/profile/profile.component.ts");
+/* harmony import */ var _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../subjects/subjects.component */ "./src/app/subjects/subjects.component.ts");
+/* harmony import */ var _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../subject-detail/subject-detail.component */ "./src/app/subject-detail/subject-detail.component.ts");
+/* harmony import */ var _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../matricularme/matricularme.component */ "./src/app/matricularme/matricularme.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -80,11 +81,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [{
         path: '',
-        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_4__["MainLayoutComponent"],
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
         children: [
-            { path: '', component: _home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"], pathMatch: 'full' }
+            { path: '', component: _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__["SubjectsComponent"], pathMatch: 'full' }
         ]
     }, {
         path: 'admin',
@@ -94,19 +96,31 @@ var routes = [{
         loadChildren: 'app/auth/auth.module#AuthModule'
     }, {
         path: 'profile',
-        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_4__["MainLayoutComponent"],
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
         children: [
-            { path: '', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_6__["ProfileComponent"] }
+            { path: '', component: _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"] }
         ]
     }, {
         path: 'subjects',
-        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_4__["MainLayoutComponent"],
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
         children: [
-            { path: '', component: _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_7__["SubjectsComponent"] }
+            { path: '', component: _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__["SubjectsComponent"] }
+        ]
+    }, {
+        path: 'detail/:code',
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
+        children: [
+            { path: '', component: _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_7__["SubjectDetailComponent"] }
+        ]
+    }, {
+        path: 'matricularme',
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
+        children: [
+            { path: '', component: _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_8__["MatricularmeComponent"] }
         ]
     }, {
         path: '**',
-        component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__["PageNotFoundComponent"]
+        component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_4__["PageNotFoundComponent"]
     }];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -292,12 +306,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _footers_footer_footer_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./footers/footer/footer.component */ "./src/app/footers/footer/footer.component.ts");
 /* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./profile/profile.component */ "./src/app/profile/profile.component.ts");
 /* harmony import */ var _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./subjects/subjects.component */ "./src/app/subjects/subjects.component.ts");
+/* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ngx-pagination */ "./node_modules/ngx-pagination/dist/ngx-pagination.js");
+/* harmony import */ var _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./subject-detail/subject-detail.component */ "./src/app/subject-detail/subject-detail.component.ts");
+/* harmony import */ var _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./matricularme/matricularme.component */ "./src/app/matricularme/matricularme.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -340,7 +360,8 @@ var AppModule = /** @class */ (function () {
                 _app_routing_app_routing_module__WEBPACK_IMPORTED_MODULE_16__["AppRoutingModule"],
                 _ngx_loading_bar_http_client__WEBPACK_IMPORTED_MODULE_8__["LoadingBarHttpClientModule"],
                 ngx_toastr__WEBPACK_IMPORTED_MODULE_10__["ToastrModule"].forRoot(),
-                _ngx_loading_bar_router__WEBPACK_IMPORTED_MODULE_9__["LoadingBarRouterModule"]
+                _ngx_loading_bar_router__WEBPACK_IMPORTED_MODULE_9__["LoadingBarRouterModule"],
+                ngx_pagination__WEBPACK_IMPORTED_MODULE_25__["NgxPaginationModule"]
             ],
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"],
@@ -351,7 +372,9 @@ var AppModule = /** @class */ (function () {
                 _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_20__["MainLayoutComponent"],
                 _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_21__["PageNotFoundComponent"],
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_23__["ProfileComponent"],
-                _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_24__["SubjectsComponent"]
+                _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_24__["SubjectsComponent"],
+                _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_26__["SubjectDetailComponent"],
+                _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__["MatricularmeComponent"]
             ],
             providers: [{
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
@@ -1461,6 +1484,126 @@ var Menu = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/matricularme/matricularme.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/matricularme/matricularme.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n          <mat-tab-group mat-align-tabs=\"left\" color=\"accent\">\n            <mat-tab>\n              <ng-template mat-tab-label>Todas</ng-template>\n      \n              <!-- TABLE -- All articles -->\n              <div class=\"table mat-elevation-z8\">\n      \n                <!-- PROGRESS BAR  -->\n                <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n                  <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n                </div>\n                <!-- SEARCH BAR -->\n                <!-- <div *ngIf=\"searchBar\" class=\"search-container\">\n                  <mat-form-field>\n                    <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterUsers($event);\">\n                    <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterUsers($event)\">\n                      <mat-icon>close</mat-icon>\n                    </button>\n                  </mat-form-field>\n                </div> -->\n      \n                <!-- NO ITEMS FOR SHOWING -->\n                <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                  <h3>No hay asignaturas para mostrar</h3>\n                </div>\n      \n                <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n          \n                  <!-- Codigo Column -->\n                  <ng-container matColumnDef=\"codigo\">\n                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                    <td mat-cell *matCellDef=\"let subject\" routerLink=\"/detail/{{subject.codigo}}\"> <strong>{{ subject.codigo }}</strong> </td>\n                  </ng-container>\n          \n                  <!-- Nombre Column -->\n                  <ng-container matColumnDef=\"nombre\">\n                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                    <td mat-cell *matCellDef=\"let subject\" routerLink=\"/detail/{{subject.codigo}}\"> {{ subject.nombre }} </td>\n                  </ng-container>\n      \n                  <!--  Duracion Column -->\n                  <ng-container matColumnDef=\"duracion\">\n                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                    <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                  </ng-container>\n          \n                  <!-- Curso At Column -->\n                  <ng-container matColumnDef=\"curso\">\n                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                    <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                  </ng-container>\n\n                  <!--  Updated Column -->\n                  <ng-container matColumnDef=\"updated\">\n                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                    <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                  </ng-container>\n      \n                  <!-- Actions At Column -->\n                  <!-- <ng-container matColumnDef=\"actions\">\n                    <th mat-header-cell *matHeaderCellDef> </th>\n                    <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                      <button mat-icon-button matTooltip=\"Editar usuario\" color=\"info\" (click)=\"openEditUserDialog(user)\">\n                        <mat-icon aria-label=\"Editar usuario\">create</mat-icon>\n                      </button>\n                      <button *ngIf=\"user._id !== myUser._id\" [swal]=\"userDeletionAlert\" mat-icon-button matTooltip=\"Borrar usuario\" color=\"info\" (confirm)=\"deleteUser(user)\">\n                        <mat-icon aria-label=\"Editar usuario\">delete</mat-icon>\n                      </button>\n                    </td>\n                  </ng-container> -->\n      \n                  <!-- Footer -->\n                  <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                    <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                      <div class=\"pagination-container\">\n                        <ul>\n                          <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                        </ul>\n                        <pagination-controls [id]=\"paginationConfig.id\"\n                        (pageChange)=\"didPageChange($event)\"\n                        maxSize=\"7\"\n                        directionLinks=\"true\"\n                        autoHide=\"false\"\n                        responsive=\"true\"\n                        previousLabel=\"Anterior\"\n                        nextLabel=\"Siguiente\"\n                        screenReaderPaginationLabel=\"Paginación\"\n                        screenReaderPageLabel=\"página\"\n                        screenReaderCurrentLabel=\"Estás en la página\">\n                        </pagination-controls>\n                      </div>\n                    </td>\n                  </ng-container>\n          \n                  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                  <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                  <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n                </table>\n          \n              </div>\n              <!-- /TABLE - All articles -->\n      \n            </mat-tab>\n      \n          </mat-tab-group>\n        </div>\n      \n      </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/matricularme/matricularme.component.scss":
+/*!**********************************************************!*\
+  !*** ./src/app/matricularme/matricularme.component.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".subjects-table {\n  width: 100%; }\n\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n"
+
+/***/ }),
+
+/***/ "./src/app/matricularme/matricularme.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/matricularme/matricularme.component.ts ***!
+  \********************************************************/
+/*! exports provided: MatricularmeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatricularmeComponent", function() { return MatricularmeComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var MatricularmeComponent = /** @class */ (function () {
+    function MatricularmeComponent(subjectService, toastr) {
+        this.subjectService = subjectService;
+        this.toastr = toastr;
+        this.subjects = [];
+        this.paginationConfig = {
+            id: 'subjects_pagination',
+            itemsPerPage: 5,
+            currentPage: 1,
+            totalItems: 0
+        };
+        this.isLoading = true;
+        this.displayedColumns = ['codigo', 'nombre', 'duracion', 'curso', 'updated'];
+        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatTableDataSource"](this.subjects);
+    }
+    MatricularmeComponent.prototype.ngOnInit = function () {
+        this.dataSource.sort = this.sort;
+        this.getAll();
+    };
+    MatricularmeComponent.prototype.getAll = function () {
+        var _this = this;
+        this.isLoading = true;
+        this
+            .subjectService
+            .getAll({
+            page: this.paginationConfig.currentPage,
+            pageSize: this.paginationConfig.itemsPerPage,
+            sort: this.sortValue && this.sortValue.direction ? this.sortValue.direction : '',
+            sortField: this.sortValue && this.sortValue.active ? this.sortValue.active : '',
+        }, 'no-loading-bar')
+            .subscribe(function (subjects) {
+            _this.paginationConfig.currentPage = subjects.page;
+            _this.paginationConfig.totalItems = subjects.totalDocs;
+            _this.paginationConfig.itemsPerPage = subjects.limit;
+            _this.dataSource.data = subjects.docs;
+            setTimeout(function () {
+                _this.isLoading = false;
+            }, 1000);
+        }, function (error) {
+            console.error(error);
+            _this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+        });
+    };
+    MatricularmeComponent.prototype.didPageChange = function (page) {
+        this.paginationConfig.currentPage = page;
+        this.getAll();
+    };
+    MatricularmeComponent.prototype.didSortSubjects = function (event) {
+        this.sortValue = event;
+        this.getAll();
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSort"])
+    ], MatricularmeComponent.prototype, "sort", void 0);
+    MatricularmeComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-matricularme',
+            template: __webpack_require__(/*! ./matricularme.component.html */ "./src/app/matricularme/matricularme.component.html"),
+            styles: [__webpack_require__(/*! ./matricularme.component.scss */ "./src/app/matricularme/matricularme.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_subjects_subject_service__WEBPACK_IMPORTED_MODULE_3__["SubjectService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
+    ], MatricularmeComponent);
+    return MatricularmeComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/page-not-found/page-not-found.component.html":
 /*!**************************************************************!*\
   !*** ./src/app/page-not-found/page-not-found.component.html ***!
@@ -1706,6 +1849,221 @@ var SharedModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/subject-detail/subject-detail.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/subject-detail/subject-detail.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <div *ngIf=\"subject\" class=\"subject-wrap\">\n    <h2> {{ subject.nombre }} </h2>\n    <mat-grid-list cols=\"5\" rowHeight=\"100px\">\n      <mat-grid-tile class=\"grid\"\n          *ngFor=\"let detail of details\"\n          [colspan]=\"detail.cols\"\n          [rowspan]=\"detail.rows\"\n          [style.background]=\"detail.color\">\n        <h3> {{detail.title}} </h3>\n        <p>{{detail.text}} </p>\n      </mat-grid-tile>\n    </mat-grid-list>\n    <mat-list fxLayout=\"row wrap\" class=\"files-wrap\">\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Ficheros</h3>\n        <mat-list-item *ngFor=\"let doc of docs\">\n          <mat-icon mat-list-icon>{{ doc.icon }}</mat-icon>\n          <h4 mat-line>{{doc.name}}</h4>\n          <p mat-line> {{doc.updated | date}} </p>\n        </mat-list-item>\n      </div>\n      <mat-divider></mat-divider>\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Máquina Virtual</h3>\n        <mat-list-item *ngFor=\"let mvi of mv\">\n          <mat-icon mat-list-icon>{{ mvi.icon }} </mat-icon>\n          <h4 mat-line>{{ mvi.name}}</h4>\n          <p mat-line> {{ mvi.updated | date}} </p>\n        </mat-list-item>\n      </div>\n    </mat-list>\n  </div>\n  <div *ngIf=\"!subject\" class=\"subject-wrap\">\n    <p> No existe esta asignatura </p>\n  </div>\n  <img (click)=\"goBack()\" id=\"return\" src=\"../../assets/icons/previous.svg\">\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/subject-detail/subject-detail.component.scss":
+/*!**************************************************************!*\
+  !*** ./src/app/subject-detail/subject-detail.component.scss ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n#return {\n  position: absolute;\n  top: 110px;\n  right: 45px;\n  width: 60px;\n  height: 60px;\n  cursor: pointer;\n  transition: all .5s; }\n#return:hover {\n  filter: hue-rotate(145deg);\n  -webkit-filter: hue-rotate(145deg);\n  -moz-filter: hue-rotate(145deg);\n  -o-filter: hue-rotate(145deg);\n  -ms-filter: hue-rotate(145deg); }\n::ng-deep .mat-grid-tile .mat-figure {\n  display: block !important;\n  padding: 10px !important; }\n::ng-deep .mat-grid-tile .mat-figure h3 {\n    font-size: 20px;\n    margin: 0px; }\ntextarea {\n  width: 90%;\n  min-height: 15rem;\n  font-family: \"Lucida Console\", Monaco, monospace;\n  font-size: 0.8rem;\n  line-height: 1.2;\n  padding: 50px 6%; }\n.files-wrap {\n  margin-top: 10px; }\n::ng-deep .mat-list-item-content {\n  max-width: 230px;\n  cursor: pointer;\n  transition: all .5s; }\n::ng-deep .mat-list-item-content:hover h4 {\n  color: #ff9a00;\n  font-weight: bold; }\n"
+
+/***/ }),
+
+/***/ "./src/app/subject-detail/subject-detail.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/subject-detail/subject-detail.component.ts ***!
+  \************************************************************/
+/*! exports provided: SubjectDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectDetailComponent", function() { return SubjectDetailComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var SubjectDetailComponent = /** @class */ (function () {
+    function SubjectDetailComponent(route, subjectService, location, router) {
+        this.route = route;
+        this.subjectService = subjectService;
+        this.location = location;
+        this.router = router;
+        this.docs = [
+            {
+                icon: 'description',
+                name: 'Temario',
+                updated: new Date('1/1/19'),
+            },
+            {
+                icon: 'face',
+                name: 'Profesorado',
+                updated: new Date('1/17/19'),
+            },
+            {
+                icon: 'date_range',
+                name: 'Horario Académico',
+                updated: new Date('1/28/19'),
+            },
+            {
+                icon: 'book',
+                name: 'Proyecto Docente',
+                updated: new Date('1/28/19'),
+            }
+        ];
+        this.mv = [
+            {
+                icon: 'dns',
+                name: 'archivo.disk',
+                updated: new Date('2/20/19'),
+            },
+            {
+                icon: 'offline_bolt',
+                name: 'imagen.iso',
+                updated: new Date('1/18/19'),
+            },
+            {
+                icon: 'storage',
+                name: 'otro.sql',
+                updated: new Date('2/20/19'),
+            },
+            {
+                icon: 'folder',
+                name: 'hard-disk.mv',
+                updated: new Date('1/18/19'),
+            }
+        ];
+    }
+    SubjectDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.getSubject();
+        console.log(this.route.snapshot.paramMap);
+        this.router.events.subscribe(function (val) {
+            _this.getSubject();
+        });
+    };
+    SubjectDetailComponent.prototype.getSubject = function () {
+        var _this = this;
+        this.code = +this.route.snapshot.paramMap.get('code');
+        // console.log(this.code);
+        this.subject = this.subjectService.getSubject(this.code).subscribe(function (res) {
+            _this.subject = res;
+            // console.log(this.subject);
+            _this.details = [
+                { title: 'Titulación', text: _this.subject.titulacion, cols: 1, rows: 1, color: 'lightblue' },
+                { title: 'Especialidad', text: _this.subject.especialidad, cols: 1, rows: 1, color: 'lightblue' },
+                { title: 'Centro', text: _this.subject.centro, cols: 2, rows: 1, color: 'lightblue' },
+                { title: 'Curso', text: _this.subject.curso, cols: 1, rows: 1, color: '#DDBDF1' },
+                { title: 'Departamento', text: _this.subject.departamento, cols: 1, rows: 1, color: 'lightblue' },
+                { title: 'Tipo', text: _this.subject.tipo, cols: 1, rows: 1, color: 'lightblue' },
+                { title: 'Carácter', text: _this.subject.caracter, cols: 1, rows: 1, color: 'lightblue' },
+                { title: 'Créditos', text: _this.subject.creditos, cols: 1, rows: 1, color: 'lightblue' },
+                { title: 'Duración', text: _this.subject.duracion, cols: 1, rows: 1, color: '#DDBDF1' },
+            ];
+        });
+    };
+    SubjectDetailComponent.prototype.goBack = function () {
+        this.location.back();
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Object)
+    ], SubjectDetailComponent.prototype, "subject", void 0);
+    SubjectDetailComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-subject-detail',
+            template: __webpack_require__(/*! ./subject-detail.component.html */ "./src/app/subject-detail/subject-detail.component.html"),
+            styles: [__webpack_require__(/*! ./subject-detail.component.scss */ "./src/app/subject-detail/subject-detail.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
+            _subjects_subject_service__WEBPACK_IMPORTED_MODULE_3__["SubjectService"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], SubjectDetailComponent);
+    return SubjectDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/subjects/subject.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/subjects/subject.service.ts ***!
+  \*********************************************/
+/*! exports provided: SubjectService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectService", function() { return SubjectService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var SubjectService = /** @class */ (function () {
+    function SubjectService(http) {
+        this.http = http;
+    }
+    /**
+     * getAll
+     * Retrieves posts from backend. Different kind of
+     * params are allowed.
+     *
+     * @param params - Query
+     * @param loading - Must show main loading bar?
+     */
+    SubjectService.prototype.getAll = function (params, loading) {
+        var url = '/api/subject/all';
+        return this.http
+            .get(url, {
+            params: params,
+            headers: loading === 'no-loading-bar' ? new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ ignoreLoadingBar: '' }) : {}
+        });
+    };
+    SubjectService.prototype.getSubject = function (code) {
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
+        params = params.set('code', code);
+        var url = '/api/subject/get';
+        return this.http.get(url, { params: params });
+    };
+    SubjectService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], SubjectService);
+    return SubjectService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/subjects/subjects.component.html":
 /*!**************************************************!*\
   !*** ./src/app/subjects/subjects.component.html ***!
@@ -1713,7 +2071,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n</div>"
+module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <!-- TABLE -- All articles -->\n              <!-- SEARCH BAR -->\n              <!-- <div *ngIf=\"searchBar\" class=\"search-container\">\n                <mat-form-field>\n                  <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterUsers($event);\">\n                  <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterUsers($event)\">\n                    <mat-icon>close</mat-icon>\n                  </button>\n                </mat-form-field>\n              </div> -->\n    \n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" routerLink=\"/detail/{{subject.codigo}}\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" routerLink=\"/detail/{{subject.codigo}}\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <!-- <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Editar usuario\" color=\"info\" (click)=\"openEditUserDialog(user)\">\n                      <mat-icon aria-label=\"Editar usuario\">create</mat-icon>\n                    </button>\n                    <button *ngIf=\"user._id !== myUser._id\" [swal]=\"userDeletionAlert\" mat-icon-button matTooltip=\"Borrar usuario\" color=\"info\" (confirm)=\"deleteUser(user)\">\n                      <mat-icon aria-label=\"Editar usuario\">delete</mat-icon>\n                    </button>\n                  </td>\n                </ng-container> -->\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
 
 /***/ }),
 
@@ -1724,7 +2082,7 @@ module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n</div>"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.subjects-table {\n  width: 100%; }\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n.subjects-table td {\n  padding: 40px 20px; }\n.subjects-table th {\n  padding: 20px 20px;\n  color: #002E67;\n  font-weight: bold; }\n.click {\n  transition: all .5s; }\n.click:hover {\n  color: #ff9a00; }\n"
 
 /***/ }),
 
@@ -1738,7 +2096,10 @@ module.exports = ""
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SubjectsComponent", function() { return SubjectsComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _subject_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./subject.service */ "./src/app/subjects/subject.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1749,18 +2110,72 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var SubjectsComponent = /** @class */ (function () {
-    function SubjectsComponent() {
+    function SubjectsComponent(subjectService, toastr) {
+        this.subjectService = subjectService;
+        this.toastr = toastr;
+        this.subjects = [];
+        this.paginationConfig = {
+            id: 'subjects_pagination',
+            itemsPerPage: 5,
+            currentPage: 1,
+            totalItems: 0
+        };
+        this.isLoading = true;
+        this.displayedColumns = ['codigo', 'nombre', 'duracion', 'curso', 'updated'];
+        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.subjects);
     }
     SubjectsComponent.prototype.ngOnInit = function () {
+        this.dataSource.sort = this.sort;
+        this.getAll();
     };
+    SubjectsComponent.prototype.getAll = function () {
+        var _this = this;
+        this.isLoading = true;
+        this
+            .subjectService
+            .getAll({
+            page: this.paginationConfig.currentPage,
+            pageSize: this.paginationConfig.itemsPerPage,
+            sort: this.sortValue && this.sortValue.direction ? this.sortValue.direction : '',
+            sortField: this.sortValue && this.sortValue.active ? this.sortValue.active : '',
+        }, 'no-loading-bar')
+            .subscribe(function (subjects) {
+            _this.paginationConfig.currentPage = subjects.page;
+            _this.paginationConfig.totalItems = subjects.totalDocs;
+            _this.paginationConfig.itemsPerPage = subjects.limit;
+            _this.dataSource.data = subjects.docs;
+            setTimeout(function () {
+                _this.isLoading = false;
+            }, 1000);
+        }, function (error) {
+            console.error(error);
+            _this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+        });
+    };
+    SubjectsComponent.prototype.didPageChange = function (page) {
+        this.paginationConfig.currentPage = page;
+        this.getAll();
+    };
+    SubjectsComponent.prototype.didSortSubjects = function (event) {
+        this.sortValue = event;
+        this.getAll();
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
+    ], SubjectsComponent.prototype, "sort", void 0);
     SubjectsComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-subjects',
             template: __webpack_require__(/*! ./subjects.component.html */ "./src/app/subjects/subjects.component.html"),
             styles: [__webpack_require__(/*! ./subjects.component.scss */ "./src/app/subjects/subjects.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_subject_service__WEBPACK_IMPORTED_MODULE_0__["SubjectService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
     ], SubjectsComponent);
     return SubjectsComponent;
 }());

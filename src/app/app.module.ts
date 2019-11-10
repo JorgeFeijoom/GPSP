@@ -29,6 +29,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FooterComponent } from './footers/footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SubjectsComponent } from './subjects/subjects.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SubjectDetailComponent } from './subject-detail/subject-detail.component';
+import { MatricularmeComponent } from './matricularme/matricularme.component';
 
 registerLocaleData(localeEs, 'es-ES', localeEsExtra);
 
@@ -43,7 +46,8 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
     AppRoutingModule,
     LoadingBarHttpClientModule,
     ToastrModule.forRoot(),
-    LoadingBarRouterModule
+    LoadingBarRouterModule,
+    NgxPaginationModule
   ],
   declarations: [
     AppComponent,
@@ -54,7 +58,9 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
     MainLayoutComponent,
     PageNotFoundComponent,
     ProfileComponent,
-    SubjectsComponent
+    SubjectsComponent,
+    SubjectDetailComponent,
+    MatricularmeComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
