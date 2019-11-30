@@ -1,0 +1,16 @@
+<form [formGroup]="enrollForm" (ngSubmit)="enrollUser()">
+  <h1 mat-dialog-title>Matriculación</h1>
+  <div mat-dialog-content>
+    <p>Introduce el código de acceso</p>
+    <mat-form-field>
+      <input matInput formControlName="accessCode" maxlength="20" minlength="5">
+      <mat-error *ngIf="enrollForm.get('accessCode').hasError('required')">
+        Este campo es obligatorio
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions align="end"> 
+    <button mat-button (click)="onNoClick()" color="primary">Cancelar</button>
+    <button mat-button type="submit" cdkFocusInitial color="success">Enviar</button>
+  </div>
+</form>

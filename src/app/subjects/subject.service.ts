@@ -35,4 +35,13 @@ export class SubjectService {
     const url = '/api/subject/get';
     return this.http.get(url, { params });
   }
+
+  enrolled(code): Observable<any> {
+    const url = '/api/subject/enrolled';
+    const data = {'code': code };
+    return this.http
+      .post<any> (url, data,
+        { headers: {}, responseType: 'text' as 'json' }
+      );
+  }
 }

@@ -24,13 +24,13 @@
                 <!-- Codigo Column -->
                 <ng-container matColumnDef="codigo">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
-                  <td class="click" mat-cell *matCellDef="let subject" routerLink="/detail/{{subject.codigo}}"> <strong>{{ subject.codigo }}</strong> </td>
+                  <td class="click" mat-cell *matCellDef="let subject" (click)="enrolled(subject.codigo)"> <strong>{{ subject.codigo }}</strong> </td>
                 </ng-container>
         
                 <!-- Nombre Column -->
                 <ng-container matColumnDef="nombre">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                  <td class="click" mat-cell *matCellDef="let subject" routerLink="/detail/{{subject.codigo}}"> <strong>{{ subject.nombre }} </strong></td>
+                  <td class="click" mat-cell *matCellDef="let subject" (click)="enrolled(subject.codigo)"> <strong>{{ subject.nombre }} </strong></td>
                 </ng-container>
     
                 <!--  Duracion Column -->
@@ -51,17 +51,14 @@
                 </ng-container>
     
                 <!-- Actions At Column -->
-                <!-- <ng-container matColumnDef="actions">
+                <ng-container matColumnDef="actions">
                   <th mat-header-cell *matHeaderCellDef> </th>
                   <td mat-cell *matCellDef="let subject" class="text-right">
-                    <button mat-icon-button matTooltip="Editar usuario" color="info" (click)="openEditUserDialog(user)">
-                      <mat-icon aria-label="Editar usuario">create</mat-icon>
-                    </button>
-                    <button *ngIf="user._id !== myUser._id" [swal]="userDeletionAlert" mat-icon-button matTooltip="Borrar usuario" color="info" (confirm)="deleteUser(user)">
-                      <mat-icon aria-label="Editar usuario">delete</mat-icon>
+                    <button mat-icon-button matTooltip="Matricularme" color="info" (click)="openDialog(subject.codigo)">
+                      <mat-icon aria-label="Matricularme">queue</mat-icon>
                     </button>
                   </td>
-                </ng-container> -->
+                </ng-container>
     
                 <!-- Footer -->
                 <ng-container matColumnDef="pagination" class="pagination">

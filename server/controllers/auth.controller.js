@@ -7,7 +7,6 @@ module.exports = {
   generateToken,
 };
 
-
 /**
  * generateToken - Generates a new token
  *

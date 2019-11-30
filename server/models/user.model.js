@@ -55,9 +55,6 @@ const UserSchema = new mongoose.Schema({
     type: Date, 
     default: Date.now 
   },
-  asignaturas:{
-    type: [Number]
-  },
   roles: [{
     type: String,
     enum: ['alumno', 'profesor', 'admin']

@@ -309,12 +309,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_pagination__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ngx-pagination */ "./node_modules/ngx-pagination/dist/ngx-pagination.js");
 /* harmony import */ var _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./subject-detail/subject-detail.component */ "./src/app/subject-detail/subject-detail.component.ts");
 /* harmony import */ var _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./matricularme/matricularme.component */ "./src/app/matricularme/matricularme.component.ts");
+/* harmony import */ var _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./subjects/enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -374,7 +376,8 @@ var AppModule = /** @class */ (function () {
                 _profile_profile_component__WEBPACK_IMPORTED_MODULE_23__["ProfileComponent"],
                 _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_24__["SubjectsComponent"],
                 _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_26__["SubjectDetailComponent"],
-                _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__["MatricularmeComponent"]
+                _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__["MatricularmeComponent"],
+                _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"]
             ],
             providers: [{
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
@@ -387,7 +390,7 @@ var AppModule = /** @class */ (function () {
                 }, {
                     provide: _angular_core__WEBPACK_IMPORTED_MODULE_3__["LOCALE_ID"], useValue: 'es-ES'
                 }],
-            entryComponents: [],
+            entryComponents: [_subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]]
         })
     ], AppModule);
@@ -1849,6 +1852,52 @@ var SharedModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/subject-detail/matriculate.service.ts":
+/*!*******************************************************!*\
+  !*** ./src/app/subject-detail/matriculate.service.ts ***!
+  \*******************************************************/
+/*! exports provided: MatriculateService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatriculateService", function() { return MatriculateService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var MatriculateService = /** @class */ (function () {
+    function MatriculateService(http) {
+        this.http = http;
+    }
+    MatriculateService.prototype.matriculate = function (subjectCode, accessCode) {
+        var url = '/api/matriculate/add';
+        var data = { 'subjectCode': subjectCode, 'accessCode': accessCode };
+        return this.http
+            .post(url, data, { headers: {}, responseType: 'text' });
+    };
+    MatriculateService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], MatriculateService);
+    return MatriculateService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/subject-detail/subject-detail.component.html":
 /*!**************************************************************!*\
   !*** ./src/app/subject-detail/subject-detail.component.html ***!
@@ -1856,7 +1905,7 @@ var SharedModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div *ngIf=\"subject\" class=\"subject-wrap\">\n    <h2> {{ subject.nombre }} </h2>\n    <mat-grid-list cols=\"5\" rowHeight=\"100px\">\n      <mat-grid-tile class=\"grid\"\n          *ngFor=\"let detail of details\"\n          [colspan]=\"detail.cols\"\n          [rowspan]=\"detail.rows\"\n          [style.background]=\"detail.color\">\n        <h3> {{detail.title}} </h3>\n        <p>{{detail.text}} </p>\n      </mat-grid-tile>\n    </mat-grid-list>\n    <mat-list fxLayout=\"row wrap\" class=\"files-wrap\">\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Ficheros</h3>\n        <mat-list-item *ngFor=\"let doc of docs\">\n          <mat-icon mat-list-icon>{{ doc.icon }}</mat-icon>\n          <h4 mat-line>{{doc.name}}</h4>\n          <p mat-line> {{doc.updated | date}} </p>\n        </mat-list-item>\n      </div>\n      <mat-divider></mat-divider>\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Máquina Virtual</h3>\n        <mat-list-item *ngFor=\"let mvi of mv\">\n          <mat-icon mat-list-icon>{{ mvi.icon }} </mat-icon>\n          <h4 mat-line>{{ mvi.name}}</h4>\n          <p mat-line> {{ mvi.updated | date}} </p>\n        </mat-list-item>\n      </div>\n    </mat-list>\n  </div>\n  <div *ngIf=\"!subject\" class=\"subject-wrap\">\n    <p> No existe esta asignatura </p>\n  </div>\n  <img (click)=\"goBack()\" id=\"return\" src=\"../../assets/icons/previous.svg\">\n</div>"
+module.exports = "<div class=\"container\">\n  <div *ngIf=\"subject && isEnrolled\" class=\"subject-wrap\">\n    <h2> {{ subject.nombre }} </h2>\n    <mat-grid-list cols=\"5\" rowHeight=\"100px\">\n      <mat-grid-tile class=\"grid\"\n          *ngFor=\"let detail of details\"\n          [colspan]=\"detail.cols\"\n          [rowspan]=\"detail.rows\"\n          [style.background]=\"detail.color\">\n        <h3> {{detail.title}} </h3>\n        <p>{{detail.text}} </p>\n      </mat-grid-tile>\n    </mat-grid-list>\n    <mat-list fxLayout=\"row wrap\" class=\"files-wrap\">\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Ficheros</h3>\n        <mat-list-item *ngFor=\"let doc of docs\">\n          <mat-icon mat-list-icon>{{ doc.icon }}</mat-icon>\n          <h4 mat-line>{{doc.name}}</h4>\n          <p mat-line> {{doc.updated | date}} </p>\n        </mat-list-item>\n      </div>\n      <mat-divider></mat-divider>\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Máquina Virtual</h3>\n        <mat-list-item *ngFor=\"let mvi of mv\">\n          <mat-icon mat-list-icon>{{ mvi.icon }} </mat-icon>\n          <h4 mat-line>{{ mvi.name}}</h4>\n          <p mat-line> {{ mvi.updated | date}} </p>\n        </mat-list-item>\n      </div>\n    </mat-list>\n  </div>\n  <div *ngIf=\"!subject\" class=\"subject-wrap\">\n    <p> No existe esta asignatura </p>\n  </div>\n  <div *ngIf=\"!isEnrolled\" class=\"subject-wrap\">\n    <p> No estás matriculado en esta asignatura. </p>\n    <p> Utiliza el código de acceso o contacta con el coordinador. </p>\n  </div>\n  <img (click)=\"goBack()\" id=\"return\" src=\"../../assets/icons/previous.svg\">\n</div>\n"
 
 /***/ }),
 
@@ -1885,6 +1934,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
+/* harmony import */ var _matriculate_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./matriculate.service */ "./src/app/subject-detail/matriculate.service.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1898,10 +1949,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var SubjectDetailComponent = /** @class */ (function () {
-    function SubjectDetailComponent(route, subjectService, location, router) {
+    function SubjectDetailComponent(route, subjectService, matriculateService, toastr, location, router) {
         this.route = route;
         this.subjectService = subjectService;
+        this.matriculateService = matriculateService;
+        this.toastr = toastr;
         this.location = location;
         this.router = router;
         this.docs = [
@@ -1952,7 +2007,6 @@ var SubjectDetailComponent = /** @class */ (function () {
     SubjectDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getSubject();
-        console.log(this.route.snapshot.paramMap);
         this.router.events.subscribe(function (val) {
             _this.getSubject();
         });
@@ -1960,7 +2014,8 @@ var SubjectDetailComponent = /** @class */ (function () {
     SubjectDetailComponent.prototype.getSubject = function () {
         var _this = this;
         this.code = +this.route.snapshot.paramMap.get('code');
-        // console.log(this.code);
+        console.log(this.code);
+        this.enrolled(this.code);
         this.subject = this.subjectService.getSubject(this.code).subscribe(function (res) {
             _this.subject = res;
             // console.log(this.subject);
@@ -1977,6 +2032,29 @@ var SubjectDetailComponent = /** @class */ (function () {
             ];
         });
     };
+    /* matriculate(subject) {
+      console.log(subject);
+        this
+          .matriculateService
+          .matriculate(subject.code, 'acceso')
+          .subscribe((matriculateService) => {
+            this.toastr.success('Estás matriculado', 'Correcto');
+          }, (error) => {
+            console.log(error);
+            this.toastr.warning('Ha habido un error inesperado. Consulta con un administrador.', 'Ups!');
+          });
+    } */
+    SubjectDetailComponent.prototype.enrolled = function (code) {
+        var _this = this;
+        this
+            .subjectService
+            .enrolled(code)
+            .subscribe(function (subjectService) {
+            _this.isEnrolled = true;
+        }, function (error) {
+            _this.isEnrolled = false;
+        });
+    };
     SubjectDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
@@ -1984,6 +2062,10 @@ var SubjectDetailComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Object)
     ], SubjectDetailComponent.prototype, "subject", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], SubjectDetailComponent.prototype, "isEnrolled", void 0);
     SubjectDetailComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-subject-detail',
@@ -1992,10 +2074,102 @@ var SubjectDetailComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"],
             _subjects_subject_service__WEBPACK_IMPORTED_MODULE_3__["SubjectService"],
+            _matriculate_service__WEBPACK_IMPORTED_MODULE_4__["MatriculateService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_5__["ToastrService"],
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"],
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], SubjectDetailComponent);
     return SubjectDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/subjects/enroll-dialog/enroll-dialog.component.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/subjects/enroll-dialog/enroll-dialog.component.html ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form [formGroup]=\"enrollForm\" (ngSubmit)=\"enrollUser()\">\n  <h1 mat-dialog-title>Matriculación</h1>\n  <div mat-dialog-content>\n    <p>Introduce el código de acceso</p>\n    <mat-form-field>\n      <input matInput formControlName=\"accessCode\" maxlength=\"20\" minlength=\"5\">\n      <mat-error *ngIf=\"enrollForm.get('accessCode').hasError('required')\">\n        Este campo es obligatorio\n      </mat-error>\n    </mat-form-field>\n  </div>\n  <div mat-dialog-actions align=\"end\"> \n    <button mat-button (click)=\"onNoClick()\" color=\"primary\">Cancelar</button>\n    <button mat-button type=\"submit\" cdkFocusInitial color=\"success\">Enviar</button>\n  </div>\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/subjects/enroll-dialog/enroll-dialog.component.scss":
+/*!*********************************************************************!*\
+  !*** ./src/app/subjects/enroll-dialog/enroll-dialog.component.scss ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "h1 {\n  font-weight: 900;\n  font-size: 25px; }\n\np {\n  font-family: Arial, Helvetica, sans-serif; }\n\nform {\n  padding: 30px 15px; }\n"
+
+/***/ }),
+
+/***/ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/subjects/enroll-dialog/enroll-dialog.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: EnrollDialogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EnrollDialogComponent", function() { return EnrollDialogComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+var EnrollDialogComponent = /** @class */ (function () {
+    function EnrollDialogComponent(dialogRef, data, fb) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        this.fb = fb;
+        this.enrollForm = this.fb.group({
+            accessCode: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]]
+        });
+        this.subjectCode = this.data.subjectCode;
+        this.accessSubjectCode = this.data.subjectAccessCode;
+    }
+    EnrollDialogComponent.prototype.ngOnInit = function () { };
+    EnrollDialogComponent.prototype.onNoClick = function () {
+        this.dialogRef.close();
+    };
+    EnrollDialogComponent.prototype.enrollUser = function () {
+        // Validation
+        console.log('Formulario: ' + this.enrollForm.value.accessCode + ' / Subject: ' + this.accessSubjectCode);
+        if (this.enrollForm.invalid)
+            return;
+        if (this.enrollForm.value.accessCode !== this.accessSubjectCode)
+            return;
+        alert('Coincide');
+    };
+    EnrollDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-enroll-dialog',
+            template: __webpack_require__(/*! ./enroll-dialog.component.html */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.html"),
+            styles: [__webpack_require__(/*! ./enroll-dialog.component.scss */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.scss")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+    ], EnrollDialogComponent);
+    return EnrollDialogComponent;
 }());
 
 
@@ -2051,6 +2225,12 @@ var SubjectService = /** @class */ (function () {
         var url = '/api/subject/get';
         return this.http.get(url, { params: params });
     };
+    SubjectService.prototype.enrolled = function (code) {
+        var url = '/api/subject/enrolled';
+        var data = { 'code': code };
+        return this.http
+            .post(url, data, { headers: {}, responseType: 'text' });
+    };
     SubjectService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -2071,7 +2251,7 @@ var SubjectService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <!-- TABLE -- All articles -->\n              <!-- SEARCH BAR -->\n              <!-- <div *ngIf=\"searchBar\" class=\"search-container\">\n                <mat-form-field>\n                  <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterUsers($event);\">\n                  <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterUsers($event)\">\n                    <mat-icon>close</mat-icon>\n                  </button>\n                </mat-form-field>\n              </div> -->\n    \n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" routerLink=\"/detail/{{subject.codigo}}\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" routerLink=\"/detail/{{subject.codigo}}\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <!-- <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Editar usuario\" color=\"info\" (click)=\"openEditUserDialog(user)\">\n                      <mat-icon aria-label=\"Editar usuario\">create</mat-icon>\n                    </button>\n                    <button *ngIf=\"user._id !== myUser._id\" [swal]=\"userDeletionAlert\" mat-icon-button matTooltip=\"Borrar usuario\" color=\"info\" (confirm)=\"deleteUser(user)\">\n                      <mat-icon aria-label=\"Editar usuario\">delete</mat-icon>\n                    </button>\n                  </td>\n                </ng-container> -->\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <!-- TABLE -- All articles -->\n              <!-- SEARCH BAR -->\n              <!-- <div *ngIf=\"searchBar\" class=\"search-container\">\n                <mat-form-field>\n                  <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterUsers($event);\">\n                  <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterUsers($event)\">\n                    <mat-icon>close</mat-icon>\n                  </button>\n                </mat-form-field>\n              </div> -->\n    \n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"enrolled(subject.codigo)\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"enrolled(subject.codigo)\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Matricularme\" color=\"info\" (click)=\"openDialog(subject.codigo)\">\n                      <mat-icon aria-label=\"Matricularme\">queue</mat-icon>\n                    </button>\n                  </td>\n                </ng-container>\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
 
 /***/ }),
 
@@ -2100,6 +2280,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2113,10 +2296,15 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var SubjectsComponent = /** @class */ (function () {
-    function SubjectsComponent(subjectService, toastr) {
+    function SubjectsComponent(subjectService, toastr, router, dialog) {
         this.subjectService = subjectService;
         this.toastr = toastr;
+        this.router = router;
+        this.dialog = dialog;
         this.subjects = [];
         this.paginationConfig = {
             id: 'subjects_pagination',
@@ -2125,7 +2313,7 @@ var SubjectsComponent = /** @class */ (function () {
             totalItems: 0
         };
         this.isLoading = true;
-        this.displayedColumns = ['codigo', 'nombre', 'duracion', 'curso', 'updated'];
+        this.displayedColumns = ['codigo', 'nombre', 'duracion', 'curso', 'updated', 'actions'];
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.subjects);
     }
     SubjectsComponent.prototype.ngOnInit = function () {
@@ -2164,6 +2352,31 @@ var SubjectsComponent = /** @class */ (function () {
         this.sortValue = event;
         this.getAll();
     };
+    SubjectsComponent.prototype.enrolled = function (code) {
+        var _this = this;
+        this
+            .subjectService
+            .enrolled(code)
+            .subscribe(function (subjectService) {
+            _this.toastr.success('Estás matriculado', 'Correcto');
+            _this.router.navigateByUrl('/detail/' + code);
+        }, function (error) {
+            _this.toastr.warning('No estás matriculado en la asignatura. Utiliza el código de acceso.', 'Ups!');
+            return false;
+        });
+    };
+    SubjectsComponent.prototype.openDialog = function (subjectCode) {
+        var _this = this;
+        var dialogRef = this.dialog.open(_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__["EnrollDialogComponent"], {
+            width: '400px',
+            data: { accesCode: this.accessCode, subjectCode: subjectCode }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+            _this.accessCode = result;
+            alert(_this.accessCode);
+        });
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
         __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
@@ -2175,7 +2388,9 @@ var SubjectsComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./subjects.component.scss */ "./src/app/subjects/subjects.component.scss")]
         }),
         __metadata("design:paramtypes", [_subject_service__WEBPACK_IMPORTED_MODULE_0__["SubjectService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialog"]])
     ], SubjectsComponent);
     return SubjectsComponent;
 }());
@@ -2238,7 +2453,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jorgefeijoo/Proyectos/GPSP/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/jorgefeijoo/GPSP/src/main.ts */"./src/main.ts");
 
 
 /***/ })

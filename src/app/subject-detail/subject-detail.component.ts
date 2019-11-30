@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject } from '../subjects/subject';
 import { SubjectService } from '../subjects/subject.service';
+import { MatriculateService } from './matriculate.service';
+import { ToastrService } from 'ngx-toastr';
 
 export interface Details {
   title: string;
@@ -27,6 +29,7 @@ export class SubjectDetailComponent implements OnInit {
   @Input() subject: any;
   code: any;
   details: Details[];
+  @Input() isEnrolled: Boolean;
 
   docs: Section[] = [
     {
@@ -76,6 +79,8 @@ export class SubjectDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private subjectService: SubjectService,
+    private matriculateService: MatriculateService,
+    private toastr: ToastrService,
     private location: Location,
     private router: Router
   ) {
@@ -83,7 +88,6 @@ export class SubjectDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSubject();
-    console.log(this.route.snapshot.paramMap);
     this.router.events.subscribe((val) => {
       this.getSubject();
     });
@@ -91,7 +95,8 @@ export class SubjectDetailComponent implements OnInit {
 
   getSubject(): void {
     this.code = +this.route.snapshot.paramMap.get('code');
-    // console.log(this.code);
+    console.log(this.code);
+    this.enrolled(this.code);
     this.subject = this.subjectService.getSubject(this.code).subscribe(
       (res) => {
         this.subject = res;
@@ -109,6 +114,30 @@ export class SubjectDetailComponent implements OnInit {
         ];
       }
     );
+  }
+
+  /* matriculate(subject) {
+    console.log(subject);
+      this
+        .matriculateService
+        .matriculate(subject.code, 'acceso')
+        .subscribe((matriculateService) => {
+          this.toastr.success('Estás matriculado', 'Correcto');
+        }, (error) => {
+          console.log(error);
+          this.toastr.warning('Ha habido un error inesperado. Consulta con un administrador.', 'Ups!');
+        });
+  } */
+
+  enrolled(code) {
+    this
+    .subjectService
+    .enrolled(code)
+    .subscribe((subjectService) => {
+      this.isEnrolled = true;
+    }, (error) => {
+      this.isEnrolled = false;
+    });
   }
 
   goBack(): void {

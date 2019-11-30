@@ -1,8 +1,15 @@
 import { SubjectService } from './subject.service';
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, Inject } from '@angular/core';
 import { Subject } from './subject';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { EnrollDialogComponent } from './enroll-dialog/enroll-dialog.component';
+
+export interface DialogData {
+  acessCode: string;
+}
 
 @Component({
   selector: 'app-subjects',
@@ -22,12 +29,16 @@ export class SubjectsComponent implements OnInit {
 
   sortValue: any;
   isLoading = true;
-  displayedColumns: string[] = ['codigo', 'nombre', 'duracion', 'curso', 'updated'];
+  displayedColumns: string[] = ['codigo', 'nombre', 'duracion', 'curso', 'updated', 'actions'];
   dataSource = new MatTableDataSource<Subject>(this.subjects);
+
+  accessCode: string;
 
   constructor(
     private subjectService: SubjectService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -73,4 +84,31 @@ export class SubjectsComponent implements OnInit {
     this.getAll();
   }
 
+  enrolled(code) {
+    this
+    .subjectService
+    .enrolled(code)
+    .subscribe((subjectService) => {
+      this.toastr.success('Estás matriculado', 'Correcto');
+      this.router.navigateByUrl('/detail/' + code);
+    }, (error) => {
+      this.toastr.warning('No estás matriculado en la asignatura. Utiliza el código de acceso.', 'Ups!');
+      return false;
+    });
+  }
+
+  openDialog(subjectCode): void {
+    const dialogRef = this.dialog.open(EnrollDialogComponent, {
+      width: '400px',
+      data: {accesCode: this.accessCode, subjectCode: subjectCode}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.accessCode = result;
+      alert(this.accessCode);
+    });
+  }
+
 }
+

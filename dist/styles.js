@@ -580,8 +580,8 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/jorgefeijoo/Proyectos/GPSP/src/styles.scss */"./src/styles.scss");
-module.exports = __webpack_require__(/*! /Users/jorgefeijoo/Proyectos/GPSP/src/fonts.scss */"./src/fonts.scss");
+__webpack_require__(/*! /Users/jorgefeijoo/GPSP/src/styles.scss */"./src/styles.scss");
+module.exports = __webpack_require__(/*! /Users/jorgefeijoo/GPSP/src/fonts.scss */"./src/fonts.scss");
 
 
 /***/ })

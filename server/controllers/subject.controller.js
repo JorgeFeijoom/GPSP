@@ -3,7 +3,7 @@
 const Joi = require('joi');
 // const slugify = require('slugify');
 const Subject = require('../models/subject.model');
-
+const Enrolled = require('../models/enrolled.model');
 
 //
 // Validation schemas
@@ -17,6 +17,7 @@ const subjectIdSchema = Joi.string().alphanum().regex(/^[0-9a-fA-F]{24}$/);
 module.exports = {
   subject,
   all,
+  enrolled
   //remove,
   //create,
   //update
@@ -130,6 +131,40 @@ function all (req, res, next) {
     });
 }
 
+/**
+ * enrolled
+ * Returns if an user is enrolled on a subject
+ * 
+ * @param {int} code
+ */
+function enrolled (req, res, next) {
+  var userId = req.user._id;
+  var code = req.body.code;
+  console.log("UserId: " + userId + ' / Code: ' + code);
+
+  Enrolled
+    .findOne({'idUser': userId, 'codeSubject': code})
+    .exec((err, result) => {
+      // Error - 500
+      if ( err || !result) {
+        console.log(err);
+        let error = new Error('Cannot retrieve enrolled for the given ids');
+        error.status = 400;
+        return next(error);
+      }
+
+      // Result
+      if ( result.length === 0 ) {
+        return res.sendStatus(404);
+      }
+
+      if (result.deletedAt != null || result.expiresOn < new Date()) {
+        return res.sendStatus(404);
+      }
+
+      return res.sendStatus(200);
+    });
+}
 
 /**
  * category

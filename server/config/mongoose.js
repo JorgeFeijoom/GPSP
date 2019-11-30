@@ -6,6 +6,7 @@ const debug = require('debug')('express-mongoose-es6-rest-api:index');
 const config = require('./config');
 var Subject = require('../models/subject.model');
 var User = require('../models/user.model');
+var Enrolled = require('../models/enrolled.model');
 
 // connect to mongo db
 const mongoUri = config.mongo.host;
@@ -22,6 +23,15 @@ if (config.MONGOOSE_DEBUG) {
   });
 }
 
+var enroll = new Enrolled({
+  idUser: "5dc99ba66f237c1b16672535",
+  codeSubject: "40806",
+});
+
+/* enroll.save(function (err) {
+  if (err) return handleError(err);
+  console.log("+ Enroll creado");
+});*/ 
 // Create instances of Users
 var alumno = new User ({
   fullname : "Alumno Prueba",
@@ -75,9 +85,8 @@ profesor.save(function (err) {
 admin.save(function (err) {
   if (err) return handleError(err);
   console.log("+ Admin creado");
-}); */
-
-
+});
+*/
 // Create instances of Subject
 // Primer curso
 var algebra = new Subject ({
@@ -272,7 +281,7 @@ var daw1 = new Subject ({
   curso : 4
 });
 
-// Save Subject instances, passing a callback 
+// Save Subject instances, passing a callback  
 /* algebra.save(function (err) {
   if (err) return handleError(err);
   console.log("Algebra creado");
@@ -371,5 +380,5 @@ mda.save(function (err) {
 as.save(function (err) {
   if (err) return handleError(err);
   console.log("AS creado");
-});
+}); 
 */
