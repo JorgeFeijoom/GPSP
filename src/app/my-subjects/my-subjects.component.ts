@@ -1,25 +1,21 @@
-import { SubjectService } from './subject.service';
+import { SubjectService } from '../subjects/subject.service';
 import { Component, OnInit, Output, ViewChild, Inject, Input } from '@angular/core';
-import { Subject } from './subject';
+import { Subject } from '../subjects/subject';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { EnrollDialogComponent } from './enroll-dialog/enroll-dialog.component';
+import { EnrollDialogComponent } from '../subjects/enroll-dialog/enroll-dialog.component';
 import { Subject as SubjectIn } from 'rxjs';
 import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
-
-export interface DialogData {
-  acessCode: string;
-}
-
 @Component({
-  selector: 'app-subjects',
-  templateUrl: './subjects.component.html',
-  styleUrls: ['./subjects.component.scss']
+  selector: 'app-my-subjects',
+  templateUrl: './my-subjects.component.html',
+  styleUrls: ['./my-subjects.component.scss']
 })
-export class SubjectsComponent implements OnInit {
+
+export class MySubjectsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @Output() searchValue: String;
   mySubject: Subject;
@@ -61,10 +57,17 @@ export class SubjectsComponent implements OnInit {
 
   getAll(filterValue?: String) {
     this.isLoading = true;
-
     this
+    .subjectService
+    .getMySubjects()
+    .subscribe((result) => {
+      console.log(result);
+    }, (error) => {
+      console.log(error);
+    });
+    /*this
       .subjectService
-      .getAll({
+      .getMySubjects({
         page: this.paginationConfig.currentPage,
         pageSize: this.paginationConfig.itemsPerPage,
         sort: this.sortValue && this.sortValue.direction ? this.sortValue.direction : '',
@@ -85,7 +88,7 @@ export class SubjectsComponent implements OnInit {
       }, (error) => {
         console.error(error);
         this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
-      });
+      });*/
   }
 
   didPageChange (page: number) {
@@ -152,4 +155,3 @@ export class SubjectsComponent implements OnInit {
   }
 
 }
-

@@ -13,3 +13,6 @@ router.route('/get')
 
 router.route('/enrolled')
   .post(subjectCtrl.enrolled)
+
+router.route('/mysubjects')
+  .post(subjectCtrl.mySubjects)

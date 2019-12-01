@@ -29,6 +29,24 @@ export class SubjectService {
       });
   }
 
+  /*getMySubjects(params?: any, loading?: string): Observable<string | any> {
+    const url = '/api/subject/mysubjects';
+
+    return this.http
+      .get<any>(url, {
+        params: params,
+        headers: loading === 'no-loading-bar' ? new HttpHeaders({ ignoreLoadingBar: '' }) : {}
+      });
+  }*/
+    /* Enroll user */
+    getMySubjects(): Observable<any> {
+      const url = '/api/subject/mysubjects';
+      return this.http
+        .post<any> (url,
+          { headers: {}, responseType: 'text' as 'json' }
+        );
+    }
+
   getSubject(code): Observable<any> {
     let params = new HttpParams();
     params = params.set('code', code);

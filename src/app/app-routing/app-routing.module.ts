@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 import { ProfileComponent } from '../profile/profile.component';
 import { SubjectsComponent } from '../subjects/subjects.component';
 import { SubjectDetailComponent } from '../subject-detail/subject-detail.component';
-import { MatricularmeComponent } from '../matricularme/matricularme.component';
+import { MySubjectsComponent } from '../my-subjects/my-subjects.component';
 
 const routes: Routes = [{
   path: '',
@@ -31,7 +31,7 @@ const routes: Routes = [{
   path: 'subjects',
   component: MainLayoutComponent,
   children: [
-    { path: '', component: SubjectsComponent }
+    { path: '', component: MySubjectsComponent }
   ]
 }, {
   path: 'detail/:code',
@@ -43,7 +43,7 @@ const routes: Routes = [{
   path: 'matricularme',
   component: MainLayoutComponent,
   children: [
-    { path: '', component: MatricularmeComponent }
+    { path: '', component: SubjectsComponent }
   ]
 }, {
   path: '**',

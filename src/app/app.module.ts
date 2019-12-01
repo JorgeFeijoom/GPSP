@@ -33,6 +33,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SubjectDetailComponent } from './subject-detail/subject-detail.component';
 import { MatricularmeComponent } from './matricularme/matricularme.component';
 import { EnrollDialogComponent } from './subjects/enroll-dialog/enroll-dialog.component';
+import { MySubjectsComponent } from './my-subjects/my-subjects.component';
 
 registerLocaleData(localeEs, 'es-ES', localeEsExtra);
 
@@ -62,7 +63,8 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
     SubjectsComponent,
     SubjectDetailComponent,
     MatricularmeComponent,
-    EnrollDialogComponent
+    EnrollDialogComponent,
+    MySubjectsComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

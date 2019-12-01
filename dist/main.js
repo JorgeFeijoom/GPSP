@@ -66,7 +66,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_profile_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../profile/profile.component */ "./src/app/profile/profile.component.ts");
 /* harmony import */ var _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../subjects/subjects.component */ "./src/app/subjects/subjects.component.ts");
 /* harmony import */ var _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../subject-detail/subject-detail.component */ "./src/app/subject-detail/subject-detail.component.ts");
-/* harmony import */ var _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../matricularme/matricularme.component */ "./src/app/matricularme/matricularme.component.ts");
+/* harmony import */ var _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../my-subjects/my-subjects.component */ "./src/app/my-subjects/my-subjects.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -104,7 +104,7 @@ var routes = [{
         path: 'subjects',
         component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
         children: [
-            { path: '', component: _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__["SubjectsComponent"] }
+            { path: '', component: _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_8__["MySubjectsComponent"] }
         ]
     }, {
         path: 'detail/:code',
@@ -116,7 +116,7 @@ var routes = [{
         path: 'matricularme',
         component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
         children: [
-            { path: '', component: _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_8__["MatricularmeComponent"] }
+            { path: '', component: _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__["SubjectsComponent"] }
         ]
     }, {
         path: '**',
@@ -310,12 +310,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./subject-detail/subject-detail.component */ "./src/app/subject-detail/subject-detail.component.ts");
 /* harmony import */ var _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./matricularme/matricularme.component */ "./src/app/matricularme/matricularme.component.ts");
 /* harmony import */ var _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./subjects/enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
+/* harmony import */ var _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./my-subjects/my-subjects.component */ "./src/app/my-subjects/my-subjects.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -377,7 +379,8 @@ var AppModule = /** @class */ (function () {
                 _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_24__["SubjectsComponent"],
                 _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_26__["SubjectDetailComponent"],
                 _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__["MatricularmeComponent"],
-                _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"]
+                _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"],
+                _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__["MySubjectsComponent"]
             ],
             providers: [{
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
@@ -1029,7 +1032,7 @@ module.exports = "<header>\n  <mat-toolbar>\n    <a [routerLink]=\"['/']\" id=\"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "header {\n  top: 0;\n  width: 100%;\n  height: 83px;\n  position: fixed;\n  background: linear-gradient(to bottom, #002e67 0%, #42648e 100%);\n  z-index: 999;\n  color: white; }\n  header #logo {\n    background: url('ulpgc_graficos_v14.svg') -641px -2128px no-repeat;\n    background-size: 1900px;\n    width: 370px;\n    height: 70px; }\n  header .mat-toolbar {\n    padding-top: 10px;\n    height: 83px;\n    background-color: transparent;\n    color: #fff;\n    position: fixed;\n    z-index: 10;\n    max-width: 1920px; }\n  header .mat-icon {\n    vertical-align: middle;\n    width: 40px;\n    height: 40px;\n    font-size: 40px;\n    line-height: 40px; }\n  header .social-icon {\n    margin-right: 15px; }\n  header .menu {\n    margin-top: -5px;\n    color: #fff;\n    width: 100%; }\n  header .menu .mat-icon {\n      margin-left: 15px;\n      margin-right: 5px;\n      color: #fff; }\n  header .menu .menu-element {\n      float: right;\n      margin-right: 30px;\n      text-decoration: none;\n      color: #fff;\n      font-size: 18px;\n      font-weight: 600; }\n  header .menu .menu-element .material-icons {\n        margin-left: 0px;\n        vertical-align: bottom; }\n  header .menu .menu-element span {\n        vertical-align: super; }\n  header .menu .menu-element span .mat-icon {\n          vertical-align: middle;\n          width: 30px;\n          height: 30px;\n          font-size: 30px;\n          line-height: 30px;\n          margin-left: 10px; }\n  header .menu .menu-element.hamb {\n      padding-top: 2px; }\n  header .menu .menu-element.hamb img.mat-icon {\n        width: 40px; }\n  header button {\n    margin-top: -5px; }\n  header a {\n    cursor: pointer; }\n  header .container.large {\n    max-width: 1920px;\n    width: 100%;\n    position: relative; }\n  header .logo-link {\n    padding: 0px 0px 0px 60px; }\n  header .logo {\n    width: 170px; }\n  .cdk-overlay-connected-position-bounding-box {\n  top: 80px;\n  padding-left: 22px; }\n  @media (max-width: 1360px) {\n  header {\n    width: 100%; }\n    header .mat-toolbar {\n      max-width: 1200px;\n      width: 100%;\n      margin: auto;\n      left: 0;\n      right: 0; }\n    header .logo-link {\n      padding-left: 0px; } }\n  @media (max-width: 1260px) {\n  header .mat-toolbar {\n    padding: 10px 5% 0 5%; } }\n"
+module.exports = "header {\n  top: 0;\n  width: 100%;\n  height: 83px;\n  position: fixed;\n  background: linear-gradient(to bottom, #002e67 0%, #42648e 100%);\n  z-index: 999;\n  color: white; }\n  header #logo {\n    background: url('ulpgc_graficos_v14.svg') -641px -2128px no-repeat;\n    background-size: 1900px;\n    width: 440px;\n    height: 70px; }\n  header .mat-toolbar {\n    padding-top: 10px;\n    height: 83px;\n    background-color: transparent;\n    color: #fff;\n    position: fixed;\n    z-index: 10;\n    max-width: 1920px; }\n  header .mat-icon {\n    vertical-align: middle;\n    width: 40px;\n    height: 40px;\n    font-size: 40px;\n    line-height: 40px; }\n  header .social-icon {\n    margin-right: 15px; }\n  header .menu {\n    margin-top: -5px;\n    color: #fff;\n    width: 100%; }\n  header .menu .mat-icon {\n      margin-left: 15px;\n      margin-right: 5px;\n      color: #fff; }\n  header .menu .menu-element {\n      float: right;\n      margin-right: 30px;\n      text-decoration: none;\n      color: #fff;\n      font-size: 18px;\n      font-weight: 600; }\n  header .menu .menu-element .material-icons {\n        margin-left: 0px;\n        vertical-align: bottom; }\n  header .menu .menu-element span {\n        vertical-align: super; }\n  header .menu .menu-element span .mat-icon {\n          vertical-align: middle;\n          width: 30px;\n          height: 30px;\n          font-size: 30px;\n          line-height: 30px;\n          margin-left: 10px; }\n  header .menu .menu-element.hamb {\n      padding-top: 2px; }\n  header .menu .menu-element.hamb img.mat-icon {\n        width: 40px; }\n  header button {\n    margin-top: -5px; }\n  header a {\n    cursor: pointer; }\n  header .container.large {\n    max-width: 1920px;\n    width: 100%;\n    position: relative; }\n  header .logo-link {\n    padding: 0px 0px 0px 60px; }\n  header .logo {\n    width: 170px; }\n  .cdk-overlay-connected-position-bounding-box {\n  top: 80px;\n  padding-left: 22px; }\n  @media (max-width: 1360px) {\n  header {\n    width: 100%; }\n    header .mat-toolbar {\n      max-width: 1200px;\n      width: 100%;\n      margin: auto;\n      left: 0;\n      right: 0; }\n    header .logo-link {\n      padding-left: 0px; } }\n  @media (max-width: 1260px) {\n  header .mat-toolbar {\n    padding: 10px 5% 0 5%; } }\n"
 
 /***/ }),
 
@@ -1601,6 +1604,211 @@ var MatricularmeComponent = /** @class */ (function () {
             ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"]])
     ], MatricularmeComponent);
     return MatricularmeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/my-subjects/my-subjects.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/my-subjects/my-subjects.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n    <!-- <h2> Asignaturas </h2>-->\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <mat-toolbar color=\"accent\">\n                <mat-toolbar-row>\n                  <div class=\"main-icon\"><mat-icon>class</mat-icon></div>\n                  <div><span class=\"title\">Mis asignaturas</span></div>\n                  <span class=\"spacer\"></span>\n                  <button (click)=\"toggleSearchBar();\" mat-icon-button matTooltip=\"Buscar\">\n                    <mat-icon>search</mat-icon>\n                  </button>\n                  <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                    <mat-icon>chevron_left</mat-icon>\n                  </button>\n                </mat-toolbar-row>\n            </mat-toolbar>\n            <!-- SEARCH BAR -->\n            <div *ngIf=\"searchBar\" class=\"search-container\">\n              <mat-form-field>\n                <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterSubjects($event);\">\n                <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterSubjects($event)\">\n                  <mat-icon>close</mat-icon>\n                </button>\n              </mat-form-field>\n            </div>\n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Matricularme\" color=\"info\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Matricularme\">queue</mat-icon>\n                    </button>\n                    <button mat-icon-button matTooltip=\"Ver detalles\" color=\"primary\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Ver detalles\">visibility</mat-icon>\n                    </button>\n                  </td>\n                </ng-container>\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/my-subjects/my-subjects.component.scss":
+/*!********************************************************!*\
+  !*** ./src/app/my-subjects/my-subjects.component.scss ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.subjects-table {\n  max-width: 1024px;\n  width: 100%;\n  margin: 50px auto; }\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n.subjects-table td {\n  padding: 40px 20px; }\n.subjects-table th {\n  padding: 20px 20px;\n  color: #002E67;\n  font-weight: bold; }\n.click {\n  transition: all .5s; }\n.click:hover {\n  color: #ff9a00; }\n.search-container {\n  max-width: 1024px;\n  margin: 20px auto 0px; }\n.title {\n  font-weight: 900;\n  padding-left: 5px; }\n"
+
+/***/ }),
+
+/***/ "./src/app/my-subjects/my-subjects.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/my-subjects/my-subjects.component.ts ***!
+  \******************************************************/
+/*! exports provided: MySubjectsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MySubjectsComponent", function() { return MySubjectsComponent; });
+/* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../subjects/enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+var MySubjectsComponent = /** @class */ (function () {
+    function MySubjectsComponent(subjectService, toastr, router, dialog) {
+        this.subjectService = subjectService;
+        this.toastr = toastr;
+        this.router = router;
+        this.dialog = dialog;
+        this.subjects = [];
+        this.paginationConfig = {
+            id: 'subjects_pagination',
+            itemsPerPage: 5,
+            currentPage: 1,
+            totalItems: 0
+        };
+        this.searchBar = false;
+        this.searchBarInput = new rxjs__WEBPACK_IMPORTED_MODULE_7__["Subject"]();
+        this.isLoading = true;
+        this.displayedColumns = ['codigo', 'nombre', 'duracion', 'curso', 'updated', 'actions'];
+        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.subjects);
+    }
+    MySubjectsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dataSource.sort = this.sort;
+        this.getAll();
+        this
+            .searchBarInput
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["debounceTime"])(300), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["distinctUntilChanged"])())
+            .subscribe(function (filterValue) {
+            _this.getAll();
+        });
+    };
+    MySubjectsComponent.prototype.getAll = function (filterValue) {
+        this.isLoading = true;
+        this
+            .subjectService
+            .getMySubjects()
+            .subscribe(function (result) {
+            console.log(result);
+        }, function (error) {
+            console.log(error);
+        });
+        /*this
+          .subjectService
+          .getMySubjects({
+            page: this.paginationConfig.currentPage,
+            pageSize: this.paginationConfig.itemsPerPage,
+            sort: this.sortValue && this.sortValue.direction ? this.sortValue.direction : '',
+            sortField: this.sortValue && this.sortValue.active ? this.sortValue.active : '',
+            filter: this.searchValue ? this.searchValue : ''
+          }, 'no-loading-bar')
+          .subscribe((subjects: any) => {
+    
+            this.paginationConfig.currentPage = subjects.page;
+            this.paginationConfig.totalItems = subjects.totalDocs;
+            this.paginationConfig.itemsPerPage = subjects.limit;
+            this.dataSource.data = subjects.docs;
+    
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 1000);
+    
+          }, (error) => {
+            console.error(error);
+            this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+          });*/
+    };
+    MySubjectsComponent.prototype.didPageChange = function (page) {
+        this.paginationConfig.currentPage = page;
+        this.getAll();
+    };
+    /**
+     * toggleSearchBar
+     * Show or hide the search bar
+     *
+     */
+    MySubjectsComponent.prototype.toggleSearchBar = function () {
+        this.searchBar = !this.searchBar;
+    };
+    /**
+     * didFilterSubjects
+     * Triggered when user is trying to filter
+     * results by writing in the searching bar.
+     *
+     */
+    MySubjectsComponent.prototype.didFilterSubjects = function (event) {
+        this.searchBarInput.next(event);
+    };
+    MySubjectsComponent.prototype.didSortSubjects = function (event) {
+        this.sortValue = event;
+        this.getAll();
+    };
+    MySubjectsComponent.prototype.goToDetails = function (code) {
+        var _this = this;
+        this
+            .subjectService
+            .enrolled(code)
+            .subscribe(function (result) {
+            _this.router.navigateByUrl('/detail/' + code);
+        }, function (error) {
+            _this.toastr.warning('No estás matriculado en la asignatura. Utiliza el código de acceso.', 'Ups!');
+        });
+    };
+    MySubjectsComponent.prototype.openDialog = function (subjectCode, enrollCode) {
+        var dialogRef = this.dialog.open(_subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__["EnrollDialogComponent"], {
+            width: '400px',
+            data: { accesCode: this.accessCode, subjectCode: subjectCode, enrollCode: enrollCode }
+        });
+        /* dialogRef.afterClosed().subscribe(result => {
+          this.goToDetails(subjectCode);
+        }); */
+    };
+    MySubjectsComponent.prototype.checkEnrolled = function (code) {
+        this
+            .subjectService
+            .enrolled(code)
+            .subscribe(function (result) {
+            return true;
+        }, function (error) {
+            return false;
+        });
+    };
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
+        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
+    ], MySubjectsComponent.prototype, "sort", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        __metadata("design:type", String)
+    ], MySubjectsComponent.prototype, "searchValue", void 0);
+    MySubjectsComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-my-subjects',
+            template: __webpack_require__(/*! ./my-subjects.component.html */ "./src/app/my-subjects/my-subjects.component.html"),
+            styles: [__webpack_require__(/*! ./my-subjects.component.scss */ "./src/app/my-subjects/my-subjects.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_subjects_subject_service__WEBPACK_IMPORTED_MODULE_0__["SubjectService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialog"]])
+    ], MySubjectsComponent);
+    return MySubjectsComponent;
 }());
 
 
@@ -2248,6 +2456,21 @@ var SubjectService = /** @class */ (function () {
             headers: loading === 'no-loading-bar' ? new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ ignoreLoadingBar: '' }) : {}
         });
     };
+    /*getMySubjects(params?: any, loading?: string): Observable<string | any> {
+      const url = '/api/subject/mysubjects';
+  
+      return this.http
+        .get<any>(url, {
+          params: params,
+          headers: loading === 'no-loading-bar' ? new HttpHeaders({ ignoreLoadingBar: '' }) : {}
+        });
+    }*/
+    /* Enroll user */
+    SubjectService.prototype.getMySubjects = function () {
+        var url = '/api/subject/mysubjects';
+        return this.http
+            .post(url, { headers: {}, responseType: 'text' });
+    };
     SubjectService.prototype.getSubject = function (code) {
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpParams"]();
         params = params.set('code', code);
@@ -2288,7 +2511,7 @@ var SubjectService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <!-- TABLE -- All articles -->\n              <!-- SEARCH BAR -->\n              <!-- <div *ngIf=\"searchBar\" class=\"search-container\">\n                <mat-form-field>\n                  <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterUsers($event);\">\n                  <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterUsers($event)\">\n                    <mat-icon>close</mat-icon>\n                  </button>\n                </mat-form-field>\n              </div> -->\n    \n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Matricularme\" color=\"info\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Matricularme\">queue</mat-icon>\n                    </button>\n                    <button mat-icon-button matTooltip=\"Ver detalles\" color=\"primary\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Ver detalles\">visibility</mat-icon>\n                    </button>\n                  </td>\n                </ng-container>\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <!-- <h2> Asignaturas </h2>-->\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <mat-toolbar color=\"accent\">\n                <mat-toolbar-row>\n                  <div class=\"main-icon\"><mat-icon>class</mat-icon></div>\n                  <div><span class=\"title\">Asignaturas</span></div>\n                  <span class=\"spacer\"></span>\n                  <button (click)=\"toggleSearchBar();\" mat-icon-button matTooltip=\"Buscar\">\n                    <mat-icon>search</mat-icon>\n                  </button>\n                  <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                    <mat-icon>chevron_left</mat-icon>\n                  </button>\n                </mat-toolbar-row>\n            </mat-toolbar>\n            <!-- SEARCH BAR -->\n            <div *ngIf=\"searchBar\" class=\"search-container\">\n              <mat-form-field>\n                <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterSubjects($event);\">\n                <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterSubjects($event)\">\n                  <mat-icon>close</mat-icon>\n                </button>\n              </mat-form-field>\n            </div>\n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Matricularme\" color=\"info\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Matricularme\">queue</mat-icon>\n                    </button>\n                    <button mat-icon-button matTooltip=\"Ver detalles\" color=\"primary\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Ver detalles\">visibility</mat-icon>\n                    </button>\n                  </td>\n                </ng-container>\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
 
 /***/ }),
 
@@ -2299,7 +2522,7 @@ module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.subjects-table {\n  width: 100%; }\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n.subjects-table td {\n  padding: 40px 20px; }\n.subjects-table th {\n  padding: 20px 20px;\n  color: #002E67;\n  font-weight: bold; }\n.click {\n  transition: all .5s; }\n.click:hover {\n  color: #ff9a00; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.subjects-table {\n  max-width: 1024px;\n  width: 100%;\n  margin: 50px auto; }\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n.subjects-table td {\n  padding: 40px 20px; }\n.subjects-table th {\n  padding: 20px 20px;\n  color: #002E67;\n  font-weight: bold; }\n.click {\n  transition: all .5s; }\n.click:hover {\n  color: #ff9a00; }\n.search-container {\n  max-width: 1024px;\n  margin: 20px auto 0px; }\n.title {\n  font-weight: 900;\n  padding-left: 5px; }\n"
 
 /***/ }),
 
@@ -2320,6 +2543,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
 /* harmony import */ var _enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2329,6 +2554,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -2349,15 +2576,24 @@ var SubjectsComponent = /** @class */ (function () {
             currentPage: 1,
             totalItems: 0
         };
+        this.searchBar = false;
+        this.searchBarInput = new rxjs__WEBPACK_IMPORTED_MODULE_7__["Subject"]();
         this.isLoading = true;
         this.displayedColumns = ['codigo', 'nombre', 'duracion', 'curso', 'updated', 'actions'];
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.subjects);
     }
     SubjectsComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.dataSource.sort = this.sort;
         this.getAll();
+        this
+            .searchBarInput
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["debounceTime"])(300), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["distinctUntilChanged"])())
+            .subscribe(function (filterValue) {
+            _this.getAll();
+        });
     };
-    SubjectsComponent.prototype.getAll = function () {
+    SubjectsComponent.prototype.getAll = function (filterValue) {
         var _this = this;
         this.isLoading = true;
         this
@@ -2367,6 +2603,7 @@ var SubjectsComponent = /** @class */ (function () {
             pageSize: this.paginationConfig.itemsPerPage,
             sort: this.sortValue && this.sortValue.direction ? this.sortValue.direction : '',
             sortField: this.sortValue && this.sortValue.active ? this.sortValue.active : '',
+            filter: this.searchValue ? this.searchValue : ''
         }, 'no-loading-bar')
             .subscribe(function (subjects) {
             _this.paginationConfig.currentPage = subjects.page;
@@ -2384,6 +2621,23 @@ var SubjectsComponent = /** @class */ (function () {
     SubjectsComponent.prototype.didPageChange = function (page) {
         this.paginationConfig.currentPage = page;
         this.getAll();
+    };
+    /**
+     * toggleSearchBar
+     * Show or hide the search bar
+     *
+     */
+    SubjectsComponent.prototype.toggleSearchBar = function () {
+        this.searchBar = !this.searchBar;
+    };
+    /**
+     * didFilterSubjects
+     * Triggered when user is trying to filter
+     * results by writing in the searching bar.
+     *
+     */
+    SubjectsComponent.prototype.didFilterSubjects = function (event) {
+        this.searchBarInput.next(event);
     };
     SubjectsComponent.prototype.didSortSubjects = function (event) {
         this.sortValue = event;
@@ -2424,9 +2678,9 @@ var SubjectsComponent = /** @class */ (function () {
         __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
     ], SubjectsComponent.prototype, "sort", void 0);
     __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        __metadata("design:type", Boolean)
-    ], SubjectsComponent.prototype, "isEnrolled", void 0);
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        __metadata("design:type", String)
+    ], SubjectsComponent.prototype, "searchValue", void 0);
     SubjectsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-subjects',
