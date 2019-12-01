@@ -2121,6 +2121,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _subject_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subject.service */ "./src/app/subjects/subject.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2136,29 +2138,54 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 
+
+
 var EnrollDialogComponent = /** @class */ (function () {
-    function EnrollDialogComponent(dialogRef, data, fb) {
+    function EnrollDialogComponent(dialogRef, data, fb, toastr, subjectService) {
         this.dialogRef = dialogRef;
         this.data = data;
         this.fb = fb;
+        this.toastr = toastr;
+        this.subjectService = subjectService;
         this.enrollForm = this.fb.group({
             accessCode: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]]
         });
-        this.subjectCode = this.data.subjectCode;
-        this.accessSubjectCode = this.data.subjectAccessCode;
     }
     EnrollDialogComponent.prototype.ngOnInit = function () { };
     EnrollDialogComponent.prototype.onNoClick = function () {
         this.dialogRef.close();
     };
     EnrollDialogComponent.prototype.enrollUser = function () {
+        var _this = this;
         // Validation
-        console.log('Formulario: ' + this.enrollForm.value.accessCode + ' / Subject: ' + this.accessSubjectCode);
-        if (this.enrollForm.invalid)
+        var inputCode = this.enrollForm.value.accessCode;
+        var subjectCode = this.data.subjectCode;
+        var enrollCode = this.data.enrollCode;
+        if (this.enrollForm.invalid) {
             return;
-        if (this.enrollForm.value.accessCode !== this.accessSubjectCode)
+        }
+        if (inputCode.toString() !== enrollCode.toString()) {
+            this.toastr.error('El código de matriculación no es correcto. Inténtalo de nuevo o contacta con un administrador.', 'Error!');
             return;
-        alert('Coincide');
+        }
+        this
+            .subjectService
+            .enrolled(subjectCode)
+            .subscribe(function (res) {
+            _this.toastr.warning('Ya estás matriculado en esta asignatura.', 'Error!');
+        }, function (error) {
+            // Matriculación
+            _this
+                .subjectService
+                .enroll(subjectCode)
+                .subscribe(function (res) {
+                console.log(res);
+                _this.toastr.success('Has sido matriculado en ' + subjectCode + '. Tienes acceso a los contenidos de la asignatura.', '¡Bienvenido!');
+            }, function (er) {
+                _this.toastr.warning('Ha habido un error inesperado. Consulta con un administrador.', 'Ups!');
+                _this.dialogRef.close();
+            });
+        });
     };
     EnrollDialogComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2167,7 +2194,9 @@ var EnrollDialogComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./enroll-dialog.component.scss */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.scss")]
         }),
         __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"])),
-        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialogRef"], Object, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _subject_service__WEBPACK_IMPORTED_MODULE_4__["SubjectService"]])
     ], EnrollDialogComponent);
     return EnrollDialogComponent;
 }());
@@ -2225,9 +2254,17 @@ var SubjectService = /** @class */ (function () {
         var url = '/api/subject/get';
         return this.http.get(url, { params: params });
     };
+    /* Returns if an user is enrolled in a subject */
     SubjectService.prototype.enrolled = function (code) {
         var url = '/api/subject/enrolled';
         var data = { 'code': code };
+        return this.http
+            .post(url, data, { headers: {}, responseType: 'text' });
+    };
+    /* Enroll user */
+    SubjectService.prototype.enroll = function (code) {
+        var url = '/api/enroll/add';
+        var data = { 'codeSubject': code };
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });
     };
@@ -2251,7 +2288,7 @@ var SubjectService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <!-- TABLE -- All articles -->\n              <!-- SEARCH BAR -->\n              <!-- <div *ngIf=\"searchBar\" class=\"search-container\">\n                <mat-form-field>\n                  <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterUsers($event);\">\n                  <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterUsers($event)\">\n                    <mat-icon>close</mat-icon>\n                  </button>\n                </mat-form-field>\n              </div> -->\n    \n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"enrolled(subject.codigo)\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"enrolled(subject.codigo)\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Matricularme\" color=\"info\" (click)=\"openDialog(subject.codigo)\">\n                      <mat-icon aria-label=\"Matricularme\">queue</mat-icon>\n                    </button>\n                  </td>\n                </ng-container>\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <h2> Asignaturas </h2>\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <!-- TABLE -- All articles -->\n              <!-- SEARCH BAR -->\n              <!-- <div *ngIf=\"searchBar\" class=\"search-container\">\n                <mat-form-field>\n                  <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterUsers($event);\">\n                  <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterUsers($event)\">\n                    <mat-icon>close</mat-icon>\n                  </button>\n                </mat-form-field>\n              </div> -->\n    \n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Matricularme\" color=\"info\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Matricularme\">queue</mat-icon>\n                    </button>\n                    <button mat-icon-button matTooltip=\"Ver detalles\" color=\"primary\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Ver detalles\">visibility</mat-icon>\n                    </button>\n                  </td>\n                </ng-container>\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
 
 /***/ }),
 
@@ -2352,35 +2389,44 @@ var SubjectsComponent = /** @class */ (function () {
         this.sortValue = event;
         this.getAll();
     };
-    SubjectsComponent.prototype.enrolled = function (code) {
+    SubjectsComponent.prototype.goToDetails = function (code) {
         var _this = this;
         this
             .subjectService
             .enrolled(code)
-            .subscribe(function (subjectService) {
-            _this.toastr.success('Estás matriculado', 'Correcto');
+            .subscribe(function (result) {
             _this.router.navigateByUrl('/detail/' + code);
         }, function (error) {
             _this.toastr.warning('No estás matriculado en la asignatura. Utiliza el código de acceso.', 'Ups!');
-            return false;
         });
     };
-    SubjectsComponent.prototype.openDialog = function (subjectCode) {
-        var _this = this;
+    SubjectsComponent.prototype.openDialog = function (subjectCode, enrollCode) {
         var dialogRef = this.dialog.open(_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__["EnrollDialogComponent"], {
             width: '400px',
-            data: { accesCode: this.accessCode, subjectCode: subjectCode }
+            data: { accesCode: this.accessCode, subjectCode: subjectCode, enrollCode: enrollCode }
         });
-        dialogRef.afterClosed().subscribe(function (result) {
-            console.log('The dialog was closed');
-            _this.accessCode = result;
-            alert(_this.accessCode);
+        /* dialogRef.afterClosed().subscribe(result => {
+          this.goToDetails(subjectCode);
+        }); */
+    };
+    SubjectsComponent.prototype.checkEnrolled = function (code) {
+        this
+            .subjectService
+            .enrolled(code)
+            .subscribe(function (result) {
+            return true;
+        }, function (error) {
+            return false;
         });
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
         __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
     ], SubjectsComponent.prototype, "sort", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        __metadata("design:type", Boolean)
+    ], SubjectsComponent.prototype, "isEnrolled", void 0);
     SubjectsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-subjects',

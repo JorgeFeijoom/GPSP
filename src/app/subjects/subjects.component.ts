@@ -1,5 +1,5 @@
 import { SubjectService } from './subject.service';
-import { Component, OnInit, Output, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, Output, ViewChild, Inject, Input } from '@angular/core';
 import { Subject } from './subject';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
@@ -18,6 +18,7 @@ export interface DialogData {
 })
 export class SubjectsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
+  @Input() isEnrolled: Boolean;
   subjects: Subject[] = [];
 
   paginationConfig: any = {
@@ -84,29 +85,36 @@ export class SubjectsComponent implements OnInit {
     this.getAll();
   }
 
-  enrolled(code) {
+  goToDetails(code) {
     this
     .subjectService
     .enrolled(code)
-    .subscribe((subjectService) => {
-      this.toastr.success('Estás matriculado', 'Correcto');
+    .subscribe((result) => {
       this.router.navigateByUrl('/detail/' + code);
     }, (error) => {
       this.toastr.warning('No estás matriculado en la asignatura. Utiliza el código de acceso.', 'Ups!');
-      return false;
     });
   }
 
-  openDialog(subjectCode): void {
+  openDialog(subjectCode, enrollCode): void {
     const dialogRef = this.dialog.open(EnrollDialogComponent, {
       width: '400px',
-      data: {accesCode: this.accessCode, subjectCode: subjectCode}
+      data: {accesCode: this.accessCode, subjectCode: subjectCode, enrollCode: enrollCode}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.accessCode = result;
-      alert(this.accessCode);
+    /* dialogRef.afterClosed().subscribe(result => {
+      this.goToDetails(subjectCode);
+    }); */
+  }
+
+  checkEnrolled(code) {
+    this
+    .subjectService
+    .enrolled(code)
+    .subscribe((result) => {
+      return true;
+    }, (error) => {
+      return false;
     });
   }
 

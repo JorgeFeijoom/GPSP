@@ -4,6 +4,7 @@ const Joi = require('joi');
 // const slugify = require('slugify');
 const Subject = require('../models/subject.model');
 const Enrolled = require('../models/enrolled.model');
+var async = require('async');
 
 //
 // Validation schemas
@@ -75,7 +76,6 @@ function subject (req, res, next) {
  */
 
 function all (req, res, next) {
-
   const page = parseInt(req.query.page);
   const pageSize = parseInt(req.query.pageSize) || 5;
   const sort = req.query.sort;
@@ -113,7 +113,7 @@ function all (req, res, next) {
   //
 
   query.deletedAt = null;
-
+ 
   Subject
     .paginate(query, options, (err, subjects) => {
       
@@ -125,10 +125,8 @@ function all (req, res, next) {
         return next(error);
       }
 
-      // Success
-      return res.status(200).json(subjects);
-
-    });
+    return res.status(200).json(subjects);
+  });
 }
 
 /**
@@ -138,7 +136,12 @@ function all (req, res, next) {
  * @param {int} code
  */
 function enrolled (req, res, next) {
-  var userId = req.user._id;
+  var userId;
+  if(!req.user) {
+    userId = null;
+  } else {
+    userId = req.user._id;
+  }
   var code = req.body.code;
   console.log("UserId: " + userId + ' / Code: ' + code);
 
@@ -147,10 +150,10 @@ function enrolled (req, res, next) {
     .exec((err, result) => {
       // Error - 500
       if ( err || !result) {
-        console.log(err);
+        // console.log(err);
         let error = new Error('Cannot retrieve enrolled for the given ids');
         error.status = 400;
-        return next(error);
+        return res.sendStatus(404);
       }
 
       // Result
@@ -206,3 +209,27 @@ function enrolled (req, res, next) {
 }
 
 */
+function isEnrolled(idUser, codeSubject, callback) {
+  if(!idUser) {
+    return callback(false);
+  }
+  Enrolled
+    .find({'idUser': idUser, 'codeSubject': codeSubject})
+    .exec((err, enroll) => {
+      // Error - 500
+      if ( err ) {
+        console.log(err);
+        let error = new Error('Cannot retrieve fav for the given ids');
+        error.status = 400;
+        return next(error);
+      }
+      if (enroll.deletedAt != null) {
+        return callback(false);
+      }
+      // Result
+      if ( enroll.length === 0 ) {
+        return callback(false);
+      }
+      return callback(true);
+    });
+}

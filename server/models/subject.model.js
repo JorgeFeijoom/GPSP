@@ -59,6 +59,10 @@ const SubjectSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now 
     },
+    enrollCode: {
+        type: String,
+        default: 'acceso2019'
+    }
 });
     
 SubjectSchema.plugin(mongoosePaginate);

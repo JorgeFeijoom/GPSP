@@ -36,9 +36,21 @@ export class SubjectService {
     return this.http.get(url, { params });
   }
 
+
+  /* Returns if an user is enrolled in a subject */
   enrolled(code): Observable<any> {
     const url = '/api/subject/enrolled';
     const data = {'code': code };
+    return this.http
+      .post<any> (url, data,
+        { headers: {}, responseType: 'text' as 'json' }
+      );
+  }
+
+  /* Enroll user */
+  enroll(code): Observable<any> {
+    const url = '/api/enroll/add';
+    const data = {'codeSubject': code };
     return this.http
       .post<any> (url, data,
         { headers: {}, responseType: 'text' as 'json' }

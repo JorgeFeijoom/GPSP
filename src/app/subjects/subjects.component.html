@@ -24,13 +24,13 @@
                 <!-- Codigo Column -->
                 <ng-container matColumnDef="codigo">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
-                  <td class="click" mat-cell *matCellDef="let subject" (click)="enrolled(subject.codigo)"> <strong>{{ subject.codigo }}</strong> </td>
+                  <td class="click" mat-cell *matCellDef="let subject" (click)="goToDetails(subject.codigo)"> <strong>{{ subject.codigo }}</strong> </td>
                 </ng-container>
         
                 <!-- Nombre Column -->
                 <ng-container matColumnDef="nombre">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                  <td class="click" mat-cell *matCellDef="let subject" (click)="enrolled(subject.codigo)"> <strong>{{ subject.nombre }} </strong></td>
+                  <td class="click" mat-cell *matCellDef="let subject" (click)="goToDetails(subject.codigo)"> <strong>{{ subject.nombre }} </strong></td>
                 </ng-container>
     
                 <!--  Duracion Column -->
@@ -54,8 +54,11 @@
                 <ng-container matColumnDef="actions">
                   <th mat-header-cell *matHeaderCellDef> </th>
                   <td mat-cell *matCellDef="let subject" class="text-right">
-                    <button mat-icon-button matTooltip="Matricularme" color="info" (click)="openDialog(subject.codigo)">
+                    <button mat-icon-button matTooltip="Matricularme" color="info" (click)="openDialog(subject.codigo, subject.enrollCode)">
                       <mat-icon aria-label="Matricularme">queue</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Ver detalles" color="primary" (click)="openDialog(subject.codigo, subject.enrollCode)">
+                      <mat-icon aria-label="Ver detalles">visibility</mat-icon>
                     </button>
                   </td>
                 </ng-container>
