@@ -11,7 +11,7 @@
       <a [routerLink]="['/auth/login']"  class="menu-element">
         Iniciar sesión <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_3.svg"></span>
       </a>
-      <a class="menu-element">
+      <a class="menu-element" routerLink="/matricularme">
         Buscar <span> <mat-icon class="header-menu-icon-margin">search</mat-icon> </span>
       </a>
       <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
@@ -51,7 +51,7 @@
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
 
-      <a class="menu-element">
+      <a class="menu-element" routerLink="/matricularme">
         Buscar <span> <mat-icon class="header-menu-icon-margin">search</mat-icon> </span>
       </a>
     </div>

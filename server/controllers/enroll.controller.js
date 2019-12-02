@@ -34,6 +34,7 @@ function add(req, res, next) {
           enroll.idUser = idUser;
           console.log(enroll);
           enroll = new Enrolled(enroll);
+          return res.sendStatus(200);
         }
         // Save the document
         result.save((err) => {
