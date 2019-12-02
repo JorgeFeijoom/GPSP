@@ -148,7 +148,7 @@ function enrolled (req, res, next) {
   console.log("UserId: " + userId + ' / Code: ' + code);
 
   Enrolled
-    .findOne({'idUser': userId, 'codeSubject': code})
+    .findOne({'idUser': userId, 'codeSubject': code, 'deletedAt:': null})
     .exec((err, result) => {
       // Error - 500
       if ( err || !result) {
@@ -196,7 +196,7 @@ function mySubjects(req, res, next) {
   }
 
   Enrolled
-    .find({'idUser': idUser}, '-_id codeSubject')
+    .find({'idUser': idUser, 'deletedAt': null }, '-_id codeSubject')
     .exec((err, enroll) => {
       // Error - 500
       if ( err ) {

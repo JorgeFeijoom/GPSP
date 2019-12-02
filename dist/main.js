@@ -1620,7 +1620,7 @@ var MatricularmeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <!-- <h2> Asignaturas </h2>-->\n  <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <div fxFlex=\"100\">\n      <mat-toolbar color=\"accent\">\n          <mat-toolbar-row>\n            <div class=\"main-icon\"><mat-icon>class</mat-icon></div>\n            <div><span class=\"title\">Mis asignaturas</span></div>\n            <span class=\"spacer\"></span>\n            <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n              <mat-icon>chevron_left</mat-icon>\n            </button>\n          </mat-toolbar-row>\n      </mat-toolbar>\n    </div>\n  </div>\n  <!-- PROGRESS BAR  -->\n  <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n    <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n  </div>\n\n  <div *ngIf=\"subjects.length === 0 && !isLoading\" class=\"no-results-container\">\n    <h3> No estás matriculado/a en ninguna asignatura. </h3>\n  </div>\n\n  <div *ngIf=\"!isLoading\" class=\"subjects\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n    <div *ngFor=\"let subject of subjects\" fxFlex=\"32\" fxFlex.sm=\"49\">\n      <mat-card class=\"subject-card\">\n        <mat-card-header>\n          <mat-card-title class=\"title\">{{ subject.nombre }}</mat-card-title>\n          <mat-card-subtitle class=\"subtitle\">{{ subject.codigo }}</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content class=\"teacher\">\n          <p> <span> Coordinador: </span> Nombre Apellido Apellido</p>\n          <p> <span> Profesor: </span> Nombre Apellido Apellido </p>\n          <p> <span> Profesor: </span> Nombre Apellido Apellido</p>\n        </mat-card-content>\n        <mat-card-actions class=\"buttons\" fxLayoutAlign=\"end\">\n          <button (click)=\"goToDetails(subject.codigo)\" mat-button matTooltip=\"Ver detalles\" mat-mini-fab color=\"info\"><mat-icon aria-label=\"Ver detalles\">  visibility </mat-icon></button>\n          <button (click)=\"confirmDialog()\" mat-button matTooltip=\"Desmatricularme\" mat-mini-fab color=\"warn\"><mat-icon aria-label=\"Desmatricularme\"> remove_from_queue </mat-icon> </button>\n        </mat-card-actions>\n      </mat-card>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\n  <!-- <h2> Asignaturas </h2>-->\n  <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <div fxFlex=\"100\">\n      <mat-toolbar color=\"accent\">\n          <mat-toolbar-row>\n            <div class=\"main-icon\"><mat-icon>class</mat-icon></div>\n            <div><span class=\"title\">Mis asignaturas</span></div>\n            <span class=\"spacer\"></span>\n            <button routerLink=\"/matricularme\" mat-icon-button matTooltip=\"Matricularme\">\n              <mat-icon>add_to_queue</mat-icon>\n            </button>\n            <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n              <mat-icon>chevron_left</mat-icon>\n            </button>\n          </mat-toolbar-row>\n      </mat-toolbar>\n    </div>\n  </div>\n  <!-- PROGRESS BAR  -->\n  <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n    <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n  </div>\n\n  <div *ngIf=\"subjects.length === 0 && !isLoading\" class=\"no-results-container\">\n    <h3> No estás matriculado/a en ninguna asignatura. </h3>\n    <button routerLink=\"/matricularme\" mat-flat-button color=\"success\"><mat-icon> add_to_queue </mat-icon> Matricúlate </button>\n  </div>\n\n  <div *ngIf=\"!isLoading\" class=\"subjects\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n    <div *ngFor=\"let subject of subjects\" fxFlex=\"32\" fxFlex.sm=\"49\">\n      <mat-card class=\"subject-card\">\n        <mat-card-header>\n          <mat-card-title class=\"title\">{{ subject.nombre }}</mat-card-title>\n          <mat-card-subtitle class=\"subtitle\">{{ subject.codigo }}</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content class=\"teacher\">\n          <p> <span> Coordinador: </span> Nombre Apellido Apellido</p>\n          <p> <span> Profesor: </span> Nombre Apellido Apellido </p>\n          <p> <span> Profesor: </span> Nombre Apellido Apellido</p>\n        </mat-card-content>\n        <mat-card-actions class=\"buttons\" fxLayoutAlign=\"end\">\n          <button (click)=\"goToDetails(subject.codigo)\" mat-button matTooltip=\"Ver detalles\" mat-mini-fab color=\"info\"><mat-icon aria-label=\"Ver detalles\">  visibility </mat-icon></button>\n          <button (click)=\"confirmDialog(subject.codigo)\" mat-button matTooltip=\"Desmatricularme\" mat-mini-fab color=\"warn\"><mat-icon aria-label=\"Desmatricularme\"> remove_from_queue </mat-icon> </button>\n        </mat-card-actions>\n      </mat-card>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1631,7 +1631,7 @@ module.exports = "<div class=\"container\">\n  <!-- <h2> Asignaturas </h2>-->\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.title {\n  font-weight: 900;\n  font-size: 20px; }\n.subjects {\n  max-width: 1024px;\n  width: 100%;\n  margin: 20px auto; }\n.subject-card {\n  max-width: 400px;\n  margin-bottom: 20px; }\n.subject-card .teacher {\n    line-height: 0.8;\n    margin-top: 40px; }\n.subject-card .teacher span {\n      color: #002E67;\n      font-weight: 600px; }\n.subject-card .buttons {\n    margin-top: 20px;\n    margin-bottom: 0px;\n    margin-right: 0px; }\n.subject-card .buttons button {\n      margin-left: 10px;\n      border-radius: 50% !important; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.title {\n  font-weight: 900;\n  font-size: 20px; }\n.subjects, .no-results-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 20px auto; }\n.no-results-container h3 {\n  font-size: 24px; }\n.subject-card {\n  max-width: 400px;\n  margin-bottom: 20px; }\n.subject-card .teacher {\n    line-height: 0.8;\n    margin-top: 40px; }\n.subject-card .teacher span {\n      color: #002E67;\n      font-weight: 600px; }\n.subject-card .buttons {\n    margin-top: 20px;\n    margin-bottom: 0px;\n    margin-right: 0px; }\n.subject-card .buttons button {\n      margin-left: 10px;\n      border-radius: 50% !important; }\n"
 
 /***/ }),
 
@@ -1705,9 +1705,11 @@ var MySubjectsComponent = /** @class */ (function () {
                 _this.isLoading = false;
             }, function (error) {
                 console.log(error);
+                _this.isLoading = false;
             });
         }, function (error) {
             console.log(error);
+            _this.isLoading = false;
         });
     };
     MySubjectsComponent.prototype.goToDetails = function (code) {
@@ -1721,16 +1723,27 @@ var MySubjectsComponent = /** @class */ (function () {
             _this.toastr.warning('No estás matriculado en la asignatura. Utiliza el código de acceso.', 'Ups!');
         });
     };
-    MySubjectsComponent.prototype.confirmDialog = function () {
+    MySubjectsComponent.prototype.confirmDialog = function (code) {
         var _this = this;
-        var message = "Are you sure you want to do this?";
-        var dialogData = new _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialogModel"]("Confirm Action", message);
+        var message = "\u00BFEst\u00E1s segura/o que quieres desmatricularte?";
+        var dialogData = new _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialogModel"]('Desmatriculación', message);
         var dialogRef = this.dialog.open(_subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialogComponent"], {
-            maxWidth: "400px",
+            maxWidth: '800px',
             data: dialogData
         });
         dialogRef.afterClosed().subscribe(function (dialogResult) {
             _this.result = dialogResult;
+            if (_this.result) {
+                _this
+                    .subjectService
+                    .remove(code)
+                    .subscribe(function (result) {
+                    window.location.reload();
+                }, function (error) {
+                    console.error(error);
+                    _this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+                });
+            }
         });
     };
     MySubjectsComponent = __decorate([
@@ -2228,7 +2241,7 @@ var SubjectDetailComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>\n  {{title}}\n</h1>\n  \n<div mat-dialog-content>\n  <p>{{message}}</p>\n</div>\n  \n<div mat-dialog-actions>\n  <button mat-button (click)=\"onDismiss()\">No</button>\n  <button mat-raised-button color=\"primary\" (click)=\"onConfirm()\">Yes</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>\n  {{title}}\n</h1>\n  \n<div mat-dialog-content>\n  <p>{{message}}</p>\n</div>\n  \n<div mat-dialog-actions fxLayoutAlign=\"end\">\n  <button mat-button (click)=\"onDismiss()\">Cancelar</button>\n  <button mat-raised-button color=\"primary\" (click)=\"onConfirm()\">Desmatricular</button>\n</div>"
 
 /***/ }),
 
@@ -2239,7 +2252,7 @@ module.exports = "<h1 mat-dialog-title>\n  {{title}}\n</h1>\n  \n<div mat-dialog
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "h1 {\n  font-size: 24px;\n  font-weight: 900;\n  margin-bottom: 0px; }\n\n.mat-dialog-content {\n  font-family: 'Raleway' !important;\n  font-size: 16px !important;\n  margin-bottom: 30px; }\n"
 
 /***/ }),
 
@@ -2512,6 +2525,13 @@ var SubjectService = /** @class */ (function () {
     /* Enroll user */
     SubjectService.prototype.enroll = function (code) {
         var url = '/api/enroll/add';
+        var data = { 'codeSubject': code };
+        return this.http
+            .post(url, data, { headers: {}, responseType: 'text' });
+    };
+    /* Remove enroll user */
+    SubjectService.prototype.remove = function (code) {
+        var url = '/api/enroll/remove';
         var data = { 'codeSubject': code };
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });

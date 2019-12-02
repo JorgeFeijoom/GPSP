@@ -75,6 +75,16 @@ export class SubjectService {
       );
   }
 
+  /* Remove enroll user */
+  remove(code): Observable<any> {
+    const url = '/api/enroll/remove';
+    const data = {'codeSubject': code };
+    return this.http
+      .post<any> (url, data,
+        { headers: {}, responseType: 'text' as 'json' }
+      );
+  }
+
   getSubjectsFromIds(ids): Observable<any> {
     const url = '/api/subject/getfromids';
     const data = {'ids': ids};

@@ -52,9 +52,11 @@ export class MySubjectsComponent implements OnInit {
         this.isLoading = false;
       }, (error) => {
         console.log(error);
+        this.isLoading = false;
       });
     }, (error) => {
       console.log(error);
+      this.isLoading = false;
     });
   }
   goToDetails(code) {
@@ -68,18 +70,29 @@ export class MySubjectsComponent implements OnInit {
     });
   }
 
-  confirmDialog(): void {
-    const message = `Are you sure you want to do this?`;
+  confirmDialog(code): void {
+    const message = `¿Estás segura/o que quieres desmatricularte?`;
 
-    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+    const dialogData = new ConfirmDialogModel('Desmatriculación', message);
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      maxWidth: "400px",
+      maxWidth: '800px',
       data: dialogData
     });
 
     dialogRef.afterClosed().subscribe(dialogResult => {
       this.result = dialogResult;
+      if (this.result) {
+        this
+        .subjectService
+        .remove(code)
+        .subscribe((result) => {
+          window.location.reload();
+        }, (error) => {
+          console.error(error);
+          this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+        });
+      }
     });
   }
 }

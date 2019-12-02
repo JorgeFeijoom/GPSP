@@ -5,10 +5,13 @@
     font-size: 20px;
 }
 
-.subjects {
+.subjects, .no-results-container {
     max-width: 1024px;
     width: 100%;
     margin: 20px auto;
+}
+.no-results-container h3 {
+    font-size: 24px;
 }
 .subject-card {
     max-width: 400px;

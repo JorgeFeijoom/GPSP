@@ -7,45 +7,63 @@ module.exports = {
 };
 
 function add(req, res, next) {
-    var idUser;
-    if(!req.user) {
-        idUser = null;
-    } else {
-        idUser = req.user._id;
-    }
-    let error;
-    let enroll = req.body;
-    enroll.idUser = idUser;
-    console.log(enroll);
-    enroll = new Enrolled(enroll);
-    enroll
-        .save((err) => {
-        // Error - 500
-        if ( err ) {
-            console.error(err);
-            if(!req.user) {
-                error = new Error('Inicia sesión para matricularte.');
-            }
-            error = new Error('Error: No se ha podido matricular.');
-            error.status = 500;
-            return next(error);
+  var idUser;
+  if(!req.user) {
+      idUser = null;
+  } else {
+      idUser = req.user._id;
+  }
+  let enroll = req.body;
+  let codeSubject = req.body.codeSubject;
+
+  var query = {'idUser': idUser, 'codeSubject': codeSubject},
+  update = { deletedAt: null },
+  options = { upsert: true };
+
+  // Find the document
+  Enrolled.findOneAndUpdate(query, update, options, function(error, result) {
+    if (!error) {
+        // If the document doesn't exist
+        if (!result) {
+          enroll.idUser = idUser;
+          console.log(enroll);
+          enroll = new Enrolled(enroll);
         }
-        // Success
-        return res.sendStatus(200);
-
+        // Save the document
+        result.save((err) => {
+          // Error - 500
+          if ( err ) {
+              console.error(err);
+              if(!req.user) {
+                  error = new Error('Inicia sesión para matricularte.');
+              }
+              error = new Error('Error: No se ha podido matricular.');
+              error.status = 500;
+              return next(error);
+          }
+          // Success
+          return res.sendStatus(200);
         });
-
+     }
+  });
 }
 
 function remove(req, res, next) {
-  let enroll = req.body;
+  var idUser;
+  if(!req.user) {
+      idUser = null;
+  } else {
+      idUser = req.user._id;
+  }
+  let codeSubject = req.body.codeSubject;
+  console.log(codeSubject);
   Enrolled
-    .findOne({'idUser': enroll.idUser, 'codeSubject': enroll.codeSubject})
+    .findOne({'idUser': idUser, 'codeSubject': codeSubject})
     .exec((err, enrollSearch) => {
       // Error - 500
       if ( err ) {
         console.log(err);
-        let error = new Error('Cannot retrieve fav for the given ids');
+        let error = new Error('Cannot retrieve enroll for the given ids');
         error.status = 400;
         return next(error);
       }

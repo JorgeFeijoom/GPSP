@@ -7,6 +7,9 @@
             <div class="main-icon"><mat-icon>class</mat-icon></div>
             <div><span class="title">Mis asignaturas</span></div>
             <span class="spacer"></span>
+            <button routerLink="/matricularme" mat-icon-button matTooltip="Matricularme">
+              <mat-icon>add_to_queue</mat-icon>
+            </button>
             <button routerLink="/" mat-icon-button matTooltip="Volver al Inicio">
               <mat-icon>chevron_left</mat-icon>
             </button>
@@ -21,6 +24,7 @@
 
   <div *ngIf="subjects.length === 0 && !isLoading" class="no-results-container">
     <h3> No estás matriculado/a en ninguna asignatura. </h3>
+    <button routerLink="/matricularme" mat-flat-button color="success"><mat-icon> add_to_queue </mat-icon> Matricúlate </button>
   </div>
 
   <div *ngIf="!isLoading" class="subjects" fxLayout="row wrap" fxLayoutAlign="space-between start">
@@ -37,7 +41,7 @@
         </mat-card-content>
         <mat-card-actions class="buttons" fxLayoutAlign="end">
           <button (click)="goToDetails(subject.codigo)" mat-button matTooltip="Ver detalles" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles">  visibility </mat-icon></button>
-          <button (click)="confirmDialog()" mat-button matTooltip="Desmatricularme" mat-mini-fab color="warn"><mat-icon aria-label="Desmatricularme"> remove_from_queue </mat-icon> </button>
+          <button (click)="confirmDialog(subject.codigo)" mat-button matTooltip="Desmatricularme" mat-mini-fab color="warn"><mat-icon aria-label="Desmatricularme"> remove_from_queue </mat-icon> </button>
         </mat-card-actions>
       </mat-card>
     </div>
