@@ -1,38 +1,33 @@
 @import '_settings.scss';
 
-.subjects-table {
-    max-width: 1024px;
-    width: 100%;
-    margin: 50px auto;
-}
-
-.ngx-pagination {
-    padding: 0px;
-    text-align: center;
-}
-
-.subjects-table td {
-    padding: 40px 20px;
-}
-
-.subjects-table th {
-    padding: 20px 20px;
-    color: $blue;
-    font-weight: bold;
-}
-.click {
-    transition: all .5s;
-}
-.click:hover {
-    color: $orange;
-}
-
-.search-container {
-    max-width: 1024px;
-    margin: 20px auto 0px;
-}
-
 .title {
     font-weight: 900;
-    padding-left: 5px;
+    font-size: 20px;
+}
+
+.subjects {
+    max-width: 1024px;
+    width: 100%;
+    margin: 20px auto;
+}
+.subject-card {
+    max-width: 400px;
+    margin-bottom: 20px;
+    .teacher {
+        line-height: 0.8;
+        margin-top: 40px;
+        span { 
+            color: $blue;
+            font-weight: 600px;
+        }
+    }
+    .buttons {
+        margin-top: 20px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        button {
+            margin-left: 10px;
+            border-radius: 50% !important;
+        }
+    }
 }

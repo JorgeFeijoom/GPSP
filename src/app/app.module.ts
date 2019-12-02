@@ -34,7 +34,7 @@ import { SubjectDetailComponent } from './subject-detail/subject-detail.componen
 import { MatricularmeComponent } from './matricularme/matricularme.component';
 import { EnrollDialogComponent } from './subjects/enroll-dialog/enroll-dialog.component';
 import { MySubjectsComponent } from './my-subjects/my-subjects.component';
-
+import { ConfirmDialogComponent } from './subjects/confirm-dialog/confirm-dialog.component';
 registerLocaleData(localeEs, 'es-ES', localeEsExtra);
 
 @NgModule({
@@ -64,7 +64,8 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
     SubjectDetailComponent,
     MatricularmeComponent,
     EnrollDialogComponent,
-    MySubjectsComponent
+    MySubjectsComponent,
+    ConfirmDialogComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -77,7 +78,7 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
   }, {
     provide: LOCALE_ID, useValue: 'es-ES'
   }],
-  entryComponents: [EnrollDialogComponent],
+  entryComponents: [EnrollDialogComponent, ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

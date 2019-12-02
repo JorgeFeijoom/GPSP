@@ -1,5 +1,9 @@
 <div class="container">
-  <div *ngIf="subject && isEnrolled" class="subject-wrap">
+  <!-- PROGRESS BAR  -->
+  <div class="progress-bar-container" class="progress-bar-container">
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
+  </div>
+  <div *ngIf="subject && isEnrolled && !isLoading" class="subject-wrap">
     <h2> {{ subject.nombre }} </h2>
     <mat-grid-list cols="5" rowHeight="100px">
       <mat-grid-tile class="grid"
@@ -31,10 +35,10 @@
       </div>
     </mat-list>
   </div>
-  <div *ngIf="!subject" class="subject-wrap">
+  <div *ngIf="!subject && !isLoading" class="subject-wrap">
     <p> No existe esta asignatura </p>
   </div>
-  <div *ngIf="!isEnrolled" class="subject-wrap">
+  <div *ngIf="!isEnrolled && !isLoading" class="subject-wrap">
     <p> No estás matriculado en esta asignatura. </p>
     <p> Utiliza el código de acceso o contacta con el coordinador. </p>
   </div>

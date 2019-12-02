@@ -13,7 +13,7 @@ const routes: Routes = [{
   path: '',
   component: MainLayoutComponent,
   children: [
-    { path: '', component: SubjectsComponent, pathMatch: 'full' }
+    { path: '', component: MySubjectsComponent, pathMatch: 'full' }
   ]
 }, {
   path: 'admin',

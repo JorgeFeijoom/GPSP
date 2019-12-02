@@ -86,7 +86,7 @@ var routes = [{
         path: '',
         component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
         children: [
-            { path: '', component: _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__["SubjectsComponent"], pathMatch: 'full' }
+            { path: '', component: _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_8__["MySubjectsComponent"], pathMatch: 'full' }
         ]
     }, {
         path: 'admin',
@@ -311,12 +311,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./matricularme/matricularme.component */ "./src/app/matricularme/matricularme.component.ts");
 /* harmony import */ var _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./subjects/enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
 /* harmony import */ var _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./my-subjects/my-subjects.component */ "./src/app/my-subjects/my-subjects.component.ts");
+/* harmony import */ var _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./subjects/confirm-dialog/confirm-dialog.component */ "./src/app/subjects/confirm-dialog/confirm-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -380,7 +382,8 @@ var AppModule = /** @class */ (function () {
                 _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_26__["SubjectDetailComponent"],
                 _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__["MatricularmeComponent"],
                 _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"],
-                _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__["MySubjectsComponent"]
+                _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__["MySubjectsComponent"],
+                _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"]
             ],
             providers: [{
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
@@ -393,7 +396,7 @@ var AppModule = /** @class */ (function () {
                 }, {
                     provide: _angular_core__WEBPACK_IMPORTED_MODULE_3__["LOCALE_ID"], useValue: 'es-ES'
                 }],
-            entryComponents: [_subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"]],
+            entryComponents: [_subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"], _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]]
         })
     ], AppModule);
@@ -1617,7 +1620,7 @@ var MatricularmeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <!-- <h2> Asignaturas </h2>-->\n      <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <div fxFlex=\"100\">\n            <mat-toolbar color=\"accent\">\n                <mat-toolbar-row>\n                  <div class=\"main-icon\"><mat-icon>class</mat-icon></div>\n                  <div><span class=\"title\">Mis asignaturas</span></div>\n                  <span class=\"spacer\"></span>\n                  <button (click)=\"toggleSearchBar();\" mat-icon-button matTooltip=\"Buscar\">\n                    <mat-icon>search</mat-icon>\n                  </button>\n                  <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                    <mat-icon>chevron_left</mat-icon>\n                  </button>\n                </mat-toolbar-row>\n            </mat-toolbar>\n            <!-- SEARCH BAR -->\n            <div *ngIf=\"searchBar\" class=\"search-container\">\n              <mat-form-field>\n                <input matInput placeholder=\"Buscar\" [(ngModel)]=\"searchValue\" (ngModelChange)=\"didFilterSubjects($event);\">\n                <button mat-button *ngIf=\"searchValue\" matSuffix mat-icon-button aria-label=\"Borrar\" (click)=\"searchValue='';didFilterSubjects($event)\">\n                  <mat-icon>close</mat-icon>\n                </button>\n              </mat-form-field>\n            </div>\n\n              <!-- NO ITEMS FOR SHOWING -->\n              <div *ngIf=\"paginationConfig.totalItems === 0 && !isLoading\" class=\"no-results-container\">\n                <h3>No hay asignaturas para mostrar</h3>\n              </div>\n    \n              <table class=\"subjects-table\" mat-table [dataSource]=\"dataSource\" matSort (matSortChange)=\"didSortSubjects($event)\" *ngIf=\"paginationConfig.totalItems > 0\">\n        \n                <!-- Codigo Column -->\n                <ng-container matColumnDef=\"codigo\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.codigo }}</strong> </td>\n                </ng-container>\n        \n                <!-- Nombre Column -->\n                <ng-container matColumnDef=\"nombre\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>\n                  <td class=\"click\" mat-cell *matCellDef=\"let subject\" (click)=\"goToDetails(subject.codigo)\"> <strong>{{ subject.nombre }} </strong></td>\n                </ng-container>\n    \n                <!--  Duracion Column -->\n                <ng-container matColumnDef=\"duracion\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.duracion}} </td>\n                </ng-container>\n        \n                <!-- Curso At Column -->\n                <ng-container matColumnDef=\"curso\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.curso }} </td>\n                </ng-container>\n                <!--  Updated Column -->\n                <ng-container matColumnDef=\"updated\">\n                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>\n                  <td mat-cell *matCellDef=\"let subject\"> {{ subject.updated | date:'longDate' }} </td>\n                </ng-container>\n    \n                <!-- Actions At Column -->\n                <ng-container matColumnDef=\"actions\">\n                  <th mat-header-cell *matHeaderCellDef> </th>\n                  <td mat-cell *matCellDef=\"let subject\" class=\"text-right\">\n                    <button mat-icon-button matTooltip=\"Matricularme\" color=\"info\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Matricularme\">queue</mat-icon>\n                    </button>\n                    <button mat-icon-button matTooltip=\"Ver detalles\" color=\"primary\" (click)=\"openDialog(subject.codigo, subject.enrollCode)\">\n                      <mat-icon aria-label=\"Ver detalles\">visibility</mat-icon>\n                    </button>\n                  </td>\n                </ng-container>\n    \n                <!-- Footer -->\n                <ng-container matColumnDef=\"pagination\" class=\"pagination\">\n                  <td mat-footer-cell *matFooterCellDef colspan=\"5\">\n                    <div class=\"pagination-container\">\n                      <ul>\n                        <li *ngFor=\"let subject of subjects | paginate: paginationConfig\">Prueba</li>\n                      </ul>\n                      <pagination-controls [id]=\"paginationConfig.id\"\n                      (pageChange)=\"didPageChange($event)\"\n                      maxSize=\"7\"\n                      directionLinks=\"true\"\n                      autoHide=\"false\"\n                      responsive=\"true\"\n                      previousLabel=\"Anterior\"\n                      nextLabel=\"Siguiente\"\n                      screenReaderPaginationLabel=\"Paginación\"\n                      screenReaderPageLabel=\"página\"\n                      screenReaderCurrentLabel=\"Estás en la página\">\n                      </pagination-controls>\n                    </div>\n                  </td>\n                </ng-container>\n        \n                <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n                <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n                <tr mat-footer-row *matFooterRowDef=\"['pagination']\"></tr>\n              </table>\n            <!-- /TABLE - All subjects -->\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        </div>\n      \n      </div>\n</div>"
+module.exports = "<div class=\"container\">\n  <!-- <h2> Asignaturas </h2>-->\n  <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <div fxFlex=\"100\">\n      <mat-toolbar color=\"accent\">\n          <mat-toolbar-row>\n            <div class=\"main-icon\"><mat-icon>class</mat-icon></div>\n            <div><span class=\"title\">Mis asignaturas</span></div>\n            <span class=\"spacer\"></span>\n            <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n              <mat-icon>chevron_left</mat-icon>\n            </button>\n          </mat-toolbar-row>\n      </mat-toolbar>\n    </div>\n  </div>\n  <!-- PROGRESS BAR  -->\n  <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n    <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n  </div>\n\n  <div *ngIf=\"subjects.length === 0 && !isLoading\" class=\"no-results-container\">\n    <h3> No estás matriculado/a en ninguna asignatura. </h3>\n  </div>\n\n  <div *ngIf=\"!isLoading\" class=\"subjects\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n    <div *ngFor=\"let subject of subjects\" fxFlex=\"32\" fxFlex.sm=\"49\">\n      <mat-card class=\"subject-card\">\n        <mat-card-header>\n          <mat-card-title class=\"title\">{{ subject.nombre }}</mat-card-title>\n          <mat-card-subtitle class=\"subtitle\">{{ subject.codigo }}</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content class=\"teacher\">\n          <p> <span> Coordinador: </span> Nombre Apellido Apellido</p>\n          <p> <span> Profesor: </span> Nombre Apellido Apellido </p>\n          <p> <span> Profesor: </span> Nombre Apellido Apellido</p>\n        </mat-card-content>\n        <mat-card-actions class=\"buttons\" fxLayoutAlign=\"end\">\n          <button (click)=\"goToDetails(subject.codigo)\" mat-button matTooltip=\"Ver detalles\" mat-mini-fab color=\"info\"><mat-icon aria-label=\"Ver detalles\">  visibility </mat-icon></button>\n          <button (click)=\"confirmDialog()\" mat-button matTooltip=\"Desmatricularme\" mat-mini-fab color=\"warn\"><mat-icon aria-label=\"Desmatricularme\"> remove_from_queue </mat-icon> </button>\n        </mat-card-actions>\n      </mat-card>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1628,7 +1631,7 @@ module.exports = "<div class=\"container\">\n    <!-- <h2> Asignaturas </h2>-->\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.subjects-table {\n  max-width: 1024px;\n  width: 100%;\n  margin: 50px auto; }\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n.subjects-table td {\n  padding: 40px 20px; }\n.subjects-table th {\n  padding: 20px 20px;\n  color: #002E67;\n  font-weight: bold; }\n.click {\n  transition: all .5s; }\n.click:hover {\n  color: #ff9a00; }\n.search-container {\n  max-width: 1024px;\n  margin: 20px auto 0px; }\n.title {\n  font-weight: 900;\n  padding-left: 5px; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.title {\n  font-weight: 900;\n  font-size: 20px; }\n.subjects {\n  max-width: 1024px;\n  width: 100%;\n  margin: 20px auto; }\n.subject-card {\n  max-width: 400px;\n  margin-bottom: 20px; }\n.subject-card .teacher {\n    line-height: 0.8;\n    margin-top: 40px; }\n.subject-card .teacher span {\n      color: #002E67;\n      font-weight: 600px; }\n.subject-card .buttons {\n    margin-top: 20px;\n    margin-bottom: 0px;\n    margin-right: 0px; }\n.subject-card .buttons button {\n      margin-left: 10px;\n      border-radius: 50% !important; }\n"
 
 /***/ }),
 
@@ -1644,13 +1647,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MySubjectsComponent", function() { return MySubjectsComponent; });
 /* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../subjects/enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
+/* harmony import */ var _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../subjects/confirm-dialog/confirm-dialog.component */ "./src/app/subjects/confirm-dialog/confirm-dialog.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1666,9 +1666,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
-
-
 var MySubjectsComponent = /** @class */ (function () {
     function MySubjectsComponent(subjectService, toastr, router, dialog) {
         this.subjectService = subjectService;
@@ -1676,88 +1673,42 @@ var MySubjectsComponent = /** @class */ (function () {
         this.router = router;
         this.dialog = dialog;
         this.subjects = [];
-        this.paginationConfig = {
-            id: 'subjects_pagination',
-            itemsPerPage: 5,
-            currentPage: 1,
-            totalItems: 0
-        };
-        this.searchBar = false;
-        this.searchBarInput = new rxjs__WEBPACK_IMPORTED_MODULE_7__["Subject"]();
+        this.ids = [];
         this.isLoading = true;
-        this.displayedColumns = ['codigo', 'nombre', 'duracion', 'curso', 'updated', 'actions'];
-        this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"](this.subjects);
+        this.result = '';
     }
     MySubjectsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.dataSource.sort = this.sort;
         this.getAll();
-        this
-            .searchBarInput
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["debounceTime"])(300), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["distinctUntilChanged"])())
-            .subscribe(function (filterValue) {
-            _this.getAll();
-        });
     };
     MySubjectsComponent.prototype.getAll = function (filterValue) {
+        var _this = this;
         this.isLoading = true;
         this
             .subjectService
             .getMySubjects()
             .subscribe(function (result) {
-            console.log(result);
+            result.forEach(function (subject) {
+                _this.ids.push(subject.codeSubject);
+            });
+            console.log(_this.ids);
+            _this
+                .subjectService
+                .getSubjectsFromIds(_this.ids)
+                .subscribe(function (subjectsResult) {
+                // console.log(subjectsResult);
+                var aux;
+                aux = JSON.parse(subjectsResult);
+                aux.forEach(function (element) {
+                    _this.subjects.push(element);
+                });
+                // console.log(this.subjects);
+                _this.isLoading = false;
+            }, function (error) {
+                console.log(error);
+            });
         }, function (error) {
             console.log(error);
         });
-        /*this
-          .subjectService
-          .getMySubjects({
-            page: this.paginationConfig.currentPage,
-            pageSize: this.paginationConfig.itemsPerPage,
-            sort: this.sortValue && this.sortValue.direction ? this.sortValue.direction : '',
-            sortField: this.sortValue && this.sortValue.active ? this.sortValue.active : '',
-            filter: this.searchValue ? this.searchValue : ''
-          }, 'no-loading-bar')
-          .subscribe((subjects: any) => {
-    
-            this.paginationConfig.currentPage = subjects.page;
-            this.paginationConfig.totalItems = subjects.totalDocs;
-            this.paginationConfig.itemsPerPage = subjects.limit;
-            this.dataSource.data = subjects.docs;
-    
-            setTimeout(() => {
-              this.isLoading = false;
-            }, 1000);
-    
-          }, (error) => {
-            console.error(error);
-            this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
-          });*/
-    };
-    MySubjectsComponent.prototype.didPageChange = function (page) {
-        this.paginationConfig.currentPage = page;
-        this.getAll();
-    };
-    /**
-     * toggleSearchBar
-     * Show or hide the search bar
-     *
-     */
-    MySubjectsComponent.prototype.toggleSearchBar = function () {
-        this.searchBar = !this.searchBar;
-    };
-    /**
-     * didFilterSubjects
-     * Triggered when user is trying to filter
-     * results by writing in the searching bar.
-     *
-     */
-    MySubjectsComponent.prototype.didFilterSubjects = function (event) {
-        this.searchBarInput.next(event);
-    };
-    MySubjectsComponent.prototype.didSortSubjects = function (event) {
-        this.sortValue = event;
-        this.getAll();
     };
     MySubjectsComponent.prototype.goToDetails = function (code) {
         var _this = this;
@@ -1770,33 +1721,18 @@ var MySubjectsComponent = /** @class */ (function () {
             _this.toastr.warning('No estás matriculado en la asignatura. Utiliza el código de acceso.', 'Ups!');
         });
     };
-    MySubjectsComponent.prototype.openDialog = function (subjectCode, enrollCode) {
-        var dialogRef = this.dialog.open(_subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_6__["EnrollDialogComponent"], {
-            width: '400px',
-            data: { accesCode: this.accessCode, subjectCode: subjectCode, enrollCode: enrollCode }
+    MySubjectsComponent.prototype.confirmDialog = function () {
+        var _this = this;
+        var message = "Are you sure you want to do this?";
+        var dialogData = new _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialogModel"]("Confirm Action", message);
+        var dialogRef = this.dialog.open(_subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialogComponent"], {
+            maxWidth: "400px",
+            data: dialogData
         });
-        /* dialogRef.afterClosed().subscribe(result => {
-          this.goToDetails(subjectCode);
-        }); */
-    };
-    MySubjectsComponent.prototype.checkEnrolled = function (code) {
-        this
-            .subjectService
-            .enrolled(code)
-            .subscribe(function (result) {
-            return true;
-        }, function (error) {
-            return false;
+        dialogRef.afterClosed().subscribe(function (dialogResult) {
+            _this.result = dialogResult;
         });
     };
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"]),
-        __metadata("design:type", _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"])
-    ], MySubjectsComponent.prototype, "sort", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        __metadata("design:type", String)
-    ], MySubjectsComponent.prototype, "searchValue", void 0);
     MySubjectsComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-my-subjects',
@@ -1804,9 +1740,9 @@ var MySubjectsComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./my-subjects.component.scss */ "./src/app/my-subjects/my-subjects.component.scss")]
         }),
         __metadata("design:paramtypes", [_subjects_subject_service__WEBPACK_IMPORTED_MODULE_0__["SubjectService"],
-            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_5__["MatDialog"]])
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
     ], MySubjectsComponent);
     return MySubjectsComponent;
 }());
@@ -2113,7 +2049,7 @@ var MatriculateService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div *ngIf=\"subject && isEnrolled\" class=\"subject-wrap\">\n    <h2> {{ subject.nombre }} </h2>\n    <mat-grid-list cols=\"5\" rowHeight=\"100px\">\n      <mat-grid-tile class=\"grid\"\n          *ngFor=\"let detail of details\"\n          [colspan]=\"detail.cols\"\n          [rowspan]=\"detail.rows\"\n          [style.background]=\"detail.color\">\n        <h3> {{detail.title}} </h3>\n        <p>{{detail.text}} </p>\n      </mat-grid-tile>\n    </mat-grid-list>\n    <mat-list fxLayout=\"row wrap\" class=\"files-wrap\">\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Ficheros</h3>\n        <mat-list-item *ngFor=\"let doc of docs\">\n          <mat-icon mat-list-icon>{{ doc.icon }}</mat-icon>\n          <h4 mat-line>{{doc.name}}</h4>\n          <p mat-line> {{doc.updated | date}} </p>\n        </mat-list-item>\n      </div>\n      <mat-divider></mat-divider>\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Máquina Virtual</h3>\n        <mat-list-item *ngFor=\"let mvi of mv\">\n          <mat-icon mat-list-icon>{{ mvi.icon }} </mat-icon>\n          <h4 mat-line>{{ mvi.name}}</h4>\n          <p mat-line> {{ mvi.updated | date}} </p>\n        </mat-list-item>\n      </div>\n    </mat-list>\n  </div>\n  <div *ngIf=\"!subject\" class=\"subject-wrap\">\n    <p> No existe esta asignatura </p>\n  </div>\n  <div *ngIf=\"!isEnrolled\" class=\"subject-wrap\">\n    <p> No estás matriculado en esta asignatura. </p>\n    <p> Utiliza el código de acceso o contacta con el coordinador. </p>\n  </div>\n  <img (click)=\"goBack()\" id=\"return\" src=\"../../assets/icons/previous.svg\">\n</div>\n"
+module.exports = "<div class=\"container\">\n  <!-- PROGRESS BAR  -->\n  <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n    <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n  </div>\n  <div *ngIf=\"subject && isEnrolled && !isLoading\" class=\"subject-wrap\">\n    <h2> {{ subject.nombre }} </h2>\n    <mat-grid-list cols=\"5\" rowHeight=\"100px\">\n      <mat-grid-tile class=\"grid\"\n          *ngFor=\"let detail of details\"\n          [colspan]=\"detail.cols\"\n          [rowspan]=\"detail.rows\"\n          [style.background]=\"detail.color\">\n        <h3> {{detail.title}} </h3>\n        <p>{{detail.text}} </p>\n      </mat-grid-tile>\n    </mat-grid-list>\n    <mat-list fxLayout=\"row wrap\" class=\"files-wrap\">\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Ficheros</h3>\n        <mat-list-item *ngFor=\"let doc of docs\">\n          <mat-icon mat-list-icon>{{ doc.icon }}</mat-icon>\n          <h4 mat-line>{{doc.name}}</h4>\n          <p mat-line> {{doc.updated | date}} </p>\n        </mat-list-item>\n      </div>\n      <mat-divider></mat-divider>\n      <div fxFlex=\"50\">\n        <h3 mat-subheader>Máquina Virtual</h3>\n        <mat-list-item *ngFor=\"let mvi of mv\">\n          <mat-icon mat-list-icon>{{ mvi.icon }} </mat-icon>\n          <h4 mat-line>{{ mvi.name}}</h4>\n          <p mat-line> {{ mvi.updated | date}} </p>\n        </mat-list-item>\n      </div>\n    </mat-list>\n  </div>\n  <div *ngIf=\"!subject && !isLoading\" class=\"subject-wrap\">\n    <p> No existe esta asignatura </p>\n  </div>\n  <div *ngIf=\"!isEnrolled && !isLoading\" class=\"subject-wrap\">\n    <p> No estás matriculado en esta asignatura. </p>\n    <p> Utiliza el código de acceso o contacta con el coordinador. </p>\n  </div>\n  <img (click)=\"goBack()\" id=\"return\" src=\"../../assets/icons/previous.svg\">\n</div>\n"
 
 /***/ }),
 
@@ -2167,6 +2103,7 @@ var SubjectDetailComponent = /** @class */ (function () {
         this.toastr = toastr;
         this.location = location;
         this.router = router;
+        this.isLoading = true;
         this.docs = [
             {
                 icon: 'description',
@@ -2221,6 +2158,7 @@ var SubjectDetailComponent = /** @class */ (function () {
     };
     SubjectDetailComponent.prototype.getSubject = function () {
         var _this = this;
+        this.isLoading = true;
         this.code = +this.route.snapshot.paramMap.get('code');
         console.log(this.code);
         this.enrolled(this.code);
@@ -2238,20 +2176,9 @@ var SubjectDetailComponent = /** @class */ (function () {
                 { title: 'Créditos', text: _this.subject.creditos, cols: 1, rows: 1, color: 'lightblue' },
                 { title: 'Duración', text: _this.subject.duracion, cols: 1, rows: 1, color: '#DDBDF1' },
             ];
+            _this.isLoading = false;
         });
     };
-    /* matriculate(subject) {
-      console.log(subject);
-        this
-          .matriculateService
-          .matriculate(subject.code, 'acceso')
-          .subscribe((matriculateService) => {
-            this.toastr.success('Estás matriculado', 'Correcto');
-          }, (error) => {
-            console.log(error);
-            this.toastr.warning('Ha habido un error inesperado. Consulta con un administrador.', 'Ups!');
-          });
-    } */
     SubjectDetailComponent.prototype.enrolled = function (code) {
         var _this = this;
         this
@@ -2288,6 +2215,103 @@ var SubjectDetailComponent = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
     ], SubjectDetailComponent);
     return SubjectDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/subjects/confirm-dialog/confirm-dialog.component.html":
+/*!***********************************************************************!*\
+  !*** ./src/app/subjects/confirm-dialog/confirm-dialog.component.html ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>\n  {{title}}\n</h1>\n  \n<div mat-dialog-content>\n  <p>{{message}}</p>\n</div>\n  \n<div mat-dialog-actions>\n  <button mat-button (click)=\"onDismiss()\">No</button>\n  <button mat-raised-button color=\"primary\" (click)=\"onConfirm()\">Yes</button>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/subjects/confirm-dialog/confirm-dialog.component.scss":
+/*!***********************************************************************!*\
+  !*** ./src/app/subjects/confirm-dialog/confirm-dialog.component.scss ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/subjects/confirm-dialog/confirm-dialog.component.ts":
+/*!*********************************************************************!*\
+  !*** ./src/app/subjects/confirm-dialog/confirm-dialog.component.ts ***!
+  \*********************************************************************/
+/*! exports provided: ConfirmDialogComponent, ConfirmDialogModel */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmDialogComponent", function() { return ConfirmDialogComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmDialogModel", function() { return ConfirmDialogModel; });
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+var ConfirmDialogComponent = /** @class */ (function () {
+    function ConfirmDialogComponent(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+        // Update view with given values
+        this.title = data.title;
+        this.message = data.message;
+    }
+    ConfirmDialogComponent.prototype.ngOnInit = function () {
+    };
+    ConfirmDialogComponent.prototype.onConfirm = function () {
+        // Close the dialog, return true
+        this.dialogRef.close(true);
+    };
+    ConfirmDialogComponent.prototype.onDismiss = function () {
+        // Close the dialog, return false
+        this.dialogRef.close(false);
+    };
+    ConfirmDialogComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-confirm-dialog',
+            template: __webpack_require__(/*! ./confirm-dialog.component.html */ "./src/app/subjects/confirm-dialog/confirm-dialog.component.html"),
+            styles: [__webpack_require__(/*! ./confirm-dialog.component.scss */ "./src/app/subjects/confirm-dialog/confirm-dialog.component.scss")]
+        }),
+        __param(1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_0__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_0__["MatDialogRef"],
+            ConfirmDialogModel])
+    ], ConfirmDialogComponent);
+    return ConfirmDialogComponent;
+}());
+
+/**
+ * Class to represent confirm dialog model.
+ *
+ * It has been kept here to keep it as part of shared component.
+ */
+var ConfirmDialogModel = /** @class */ (function () {
+    function ConfirmDialogModel(title, message) {
+        this.title = title;
+        this.message = message;
+    }
+    return ConfirmDialogModel;
 }());
 
 
@@ -2389,6 +2413,7 @@ var EnrollDialogComponent = /** @class */ (function () {
                 .subscribe(function (res) {
                 console.log(res);
                 _this.toastr.success('Has sido matriculado en ' + subjectCode + '. Tienes acceso a los contenidos de la asignatura.', '¡Bienvenido!');
+                _this.dialogRef.close();
             }, function (er) {
                 _this.toastr.warning('Ha habido un error inesperado. Consulta con un administrador.', 'Ups!');
                 _this.dialogRef.close();
@@ -2488,6 +2513,12 @@ var SubjectService = /** @class */ (function () {
     SubjectService.prototype.enroll = function (code) {
         var url = '/api/enroll/add';
         var data = { 'codeSubject': code };
+        return this.http
+            .post(url, data, { headers: {}, responseType: 'text' });
+    };
+    SubjectService.prototype.getSubjectsFromIds = function (ids) {
+        var url = '/api/subject/getfromids';
+        var data = { 'ids': ids };
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });
     };

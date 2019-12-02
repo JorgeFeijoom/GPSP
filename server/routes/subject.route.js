@@ -16,3 +16,6 @@ router.route('/enrolled')
 
 router.route('/mysubjects')
   .post(subjectCtrl.mySubjects)
+
+router.route('/getfromids')
+  .post(subjectCtrl.getFromIds)

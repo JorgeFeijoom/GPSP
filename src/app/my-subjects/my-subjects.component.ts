@@ -1,13 +1,9 @@
 import { SubjectService } from '../subjects/subject.service';
-import { Component, OnInit, Output, ViewChild, Inject, Input } from '@angular/core';
-import { Subject } from '../subjects/subject';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { EnrollDialogComponent } from '../subjects/enroll-dialog/enroll-dialog.component';
-import { Subject as SubjectIn } from 'rxjs';
-import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import { ConfirmDialogModel, ConfirmDialogComponent } from '../subjects/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-my-subjects',
@@ -16,25 +12,10 @@ import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 })
 
 export class MySubjectsComponent implements OnInit {
-  @ViewChild(MatSort) sort: MatSort;
-  @Output() searchValue: String;
-  mySubject: Subject;
-  subjects: Subject[] = [];
-
-  paginationConfig: any = {
-    id: 'subjects_pagination',
-    itemsPerPage: 5,
-    currentPage: 1,
-    totalItems: 0
-  };
-
-  searchBar: boolean = false;
-  searchBarInput: SubjectIn<string> = new SubjectIn();
-  sortValue: any;
+  subjects = [];
+  ids = [];
   isLoading = true;
-  displayedColumns: string[] = ['codigo', 'nombre', 'duracion', 'curso', 'updated', 'actions'];
-  dataSource = new MatTableDataSource<Subject>(this.subjects);
-  accessCode: string;
+  result: string = '';
 
   constructor(
     private subjectService: SubjectService,
@@ -44,15 +25,7 @@ export class MySubjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
     this.getAll();
-
-        this
-      .searchBarInput
-      .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe(filterValue => {
-        this.getAll();
-      });
   }
 
   getAll(filterValue?: String) {
@@ -61,66 +34,29 @@ export class MySubjectsComponent implements OnInit {
     .subjectService
     .getMySubjects()
     .subscribe((result) => {
-      console.log(result);
+      result.forEach(subject => {
+        this.ids.push(subject.codeSubject);
+      });
+      console.log(this.ids);
+      this
+      .subjectService
+      .getSubjectsFromIds(this.ids)
+      .subscribe((subjectsResult: any) => {
+        // console.log(subjectsResult);
+        let aux: any;
+        aux = JSON.parse(subjectsResult);
+        aux.forEach(element => {
+          this.subjects.push(element);
+        });
+        // console.log(this.subjects);
+        this.isLoading = false;
+      }, (error) => {
+        console.log(error);
+      });
     }, (error) => {
       console.log(error);
     });
-    /*this
-      .subjectService
-      .getMySubjects({
-        page: this.paginationConfig.currentPage,
-        pageSize: this.paginationConfig.itemsPerPage,
-        sort: this.sortValue && this.sortValue.direction ? this.sortValue.direction : '',
-        sortField: this.sortValue && this.sortValue.active ? this.sortValue.active : '',
-        filter: this.searchValue ? this.searchValue : ''
-      }, 'no-loading-bar')
-      .subscribe((subjects: any) => {
-
-        this.paginationConfig.currentPage = subjects.page;
-        this.paginationConfig.totalItems = subjects.totalDocs;
-        this.paginationConfig.itemsPerPage = subjects.limit;
-        this.dataSource.data = subjects.docs;
-
-        setTimeout(() => {
-          this.isLoading = false;
-        }, 1000);
-
-      }, (error) => {
-        console.error(error);
-        this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
-      });*/
   }
-
-  didPageChange (page: number) {
-    this.paginationConfig.currentPage = page;
-    this.getAll();
-  }
-
-  /**
-   * toggleSearchBar
-   * Show or hide the search bar
-   *
-   */
-  toggleSearchBar () {
-    this.searchBar = !this.searchBar;
-  }
-
-  /**
-   * didFilterSubjects
-   * Triggered when user is trying to filter
-   * results by writing in the searching bar.
-   *
-   */
-
-  didFilterSubjects (event: any) {
-    this.searchBarInput.next(event);
-  }
-
-  didSortSubjects (event: any) {
-    this.sortValue = event;
-    this.getAll();
-  }
-
   goToDetails(code) {
     this
     .subjectService
@@ -132,26 +68,18 @@ export class MySubjectsComponent implements OnInit {
     });
   }
 
-  openDialog(subjectCode, enrollCode): void {
-    const dialogRef = this.dialog.open(EnrollDialogComponent, {
-      width: '400px',
-      data: {accesCode: this.accessCode, subjectCode: subjectCode, enrollCode: enrollCode}
+  confirmDialog(): void {
+    const message = `Are you sure you want to do this?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      maxWidth: "400px",
+      data: dialogData
     });
 
-    /* dialogRef.afterClosed().subscribe(result => {
-      this.goToDetails(subjectCode);
-    }); */
-  }
-
-  checkEnrolled(code) {
-    this
-    .subjectService
-    .enrolled(code)
-    .subscribe((result) => {
-      return true;
-    }, (error) => {
-      return false;
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
     });
   }
-
 }

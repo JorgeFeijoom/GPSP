@@ -29,6 +29,7 @@ export class SubjectDetailComponent implements OnInit {
   @Input() subject: any;
   code: any;
   details: Details[];
+  isLoading = true;
   @Input() isEnrolled: Boolean;
 
   docs: Section[] = [
@@ -94,6 +95,7 @@ export class SubjectDetailComponent implements OnInit {
   }
 
   getSubject(): void {
+    this.isLoading = true;
     this.code = +this.route.snapshot.paramMap.get('code');
     console.log(this.code);
     this.enrolled(this.code);
@@ -112,22 +114,10 @@ export class SubjectDetailComponent implements OnInit {
           {title: 'Créditos', text: this.subject.creditos, cols: 1, rows: 1, color: 'lightblue'},
           {title: 'Duración', text: this.subject.duracion, cols: 1, rows: 1, color: '#DDBDF1'},
         ];
+        this.isLoading = false;
       }
     );
   }
-
-  /* matriculate(subject) {
-    console.log(subject);
-      this
-        .matriculateService
-        .matriculate(subject.code, 'acceso')
-        .subscribe((matriculateService) => {
-          this.toastr.success('Estás matriculado', 'Correcto');
-        }, (error) => {
-          console.log(error);
-          this.toastr.warning('Ha habido un error inesperado. Consulta con un administrador.', 'Ups!');
-        });
-  } */
 
   enrolled(code) {
     this

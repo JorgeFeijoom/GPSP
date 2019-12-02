@@ -19,7 +19,8 @@ module.exports = {
   subject,
   all,
   enrolled,
-  mySubjects
+  mySubjects,
+  getFromIds
   //remove,
   //create,
   //update
@@ -154,16 +155,20 @@ function enrolled (req, res, next) {
         // console.log(err);
         let error = new Error('Cannot retrieve enrolled for the given ids');
         error.status = 400;
-        return res.sendStatus(404);
+        return next(error);
       }
 
       // Result
       if ( result.length === 0 ) {
-        return res.sendStatus(404);
+        let error = new Error('Cannot retrieve enrolled for the given ids');
+        error.status = 400;
+        return next(error);
       }
 
       if (result.deletedAt != null || result.expiresOn < new Date()) {
-        return res.sendStatus(404);
+        let error = new Error('Cannot retrieve enrolled for the given ids');
+        error.status = 400;
+        return next(error);
       }
 
       return res.sendStatus(200);
@@ -171,7 +176,7 @@ function enrolled (req, res, next) {
 }
 
 /**
- * all
+ * mySubjects
  * Returns all the subjects according to the
  * query required.
  * 
@@ -200,66 +205,46 @@ function mySubjects(req, res, next) {
         error.status = 400;
         return next(error);
       }
-      if (enroll.deletedAt != null) {
-        return res.sendStatus(404);
-      }
       // Result
       if ( enroll.length === 0 ) {
-        return res.sendStatus(404);
-      }
-      console.log(enroll);
-      // return res.sendStatus(202);
-    });
-
-  /* const page = parseInt(req.query.page);
-  const pageSize = parseInt(req.query.pageSize) || 5;
-  const sort = req.query.sort;
-  const sortField = req.query.sortField;
-  const filter = req.query.filter;
-
-  let query = {};
-  let options = {
-    limit: pageSize,
-    page: page ? page : 1,
-  };
-
-  //
-  // Filters
-  //
-
-  if ( filter !== '' && typeof filter !== 'undefined' )
-    query = { nombre: new RegExp(filter, 'gi') };
-
-
-  //
-  // Sorting
-  //
-
-  if ( (sort && typeof sort !== 'undefined') && (sortField && typeof sortField !== 'undefined') ) {
-    options.sort = {};
-    options.sort[sortField] = sort === 'asc' ? 1 : -1;
-  }
-  else
-    options.sort = { createdAt: -1 };
-
-
-  //
-  // No deleted subjects in results
-  //
-
-  query.deletedAt = null;
- 
-  Subject
-    .paginate(query, options, (err, subjects) => {
-      
-      // Error - 500
-      if ( err ) {
-        console.error(err);
-        let error = new Error('Subjects cannot be retrieved from database');
-        error.status = 500;
+        let error = new Error('Cannot retrieve fav for the given ids');
+        error.status = 400;
         return next(error);
       }
+      console.log(enroll);
+      return res.status(200).json(enroll);
+    });
+}
 
-    return res.status(200).json(subjects);
-  });*/
+
+/**
+ * all
+ * Returns all the subjects according to the
+ * query required.
+ * 
+ */
+
+function getFromIds(req, res, next) {
+  var ids = req.body.ids;
+  console.log(ids);
+  Subject
+    .find({'codigo': {$in: ids}})
+    .lean()
+    .exec((err, subjects) => {
+      // Error - 500
+      if ( err ) {
+        console.log(err);
+        let error = new Error('Cannot retrieve subjects for the given ids');
+        error.status = 400;
+        return next(error);
+      }
+      // Result
+      if ( subjects.length === 0 ) {
+        let error = new Error('Cannot retrieve subjects for the given ids');
+        error.status = 400;
+        return next(error);
+      }
+      console.log(subjects);
+      return res.status(200).json(subjects);
+    });
 }

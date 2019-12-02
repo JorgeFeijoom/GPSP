@@ -56,6 +56,7 @@ export class EnrollDialogComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.toastr.success('Has sido matriculado en ' + subjectCode + '. Tienes acceso a los contenidos de la asignatura.', '¡Bienvenido!');
+        this.dialogRef.close();
       }, (er) => {
         this.toastr.warning('Ha habido un error inesperado. Consulta con un administrador.', 'Ups!');
         this.dialogRef.close();

@@ -1,112 +1,45 @@
 <div class="container">
-    <!-- <h2> Asignaturas </h2>-->
-      <div class="main-container" fxLayout="row" fxLayoutAlign="center center">
-        <div fxFlex="100">
-            <mat-toolbar color="accent">
-                <mat-toolbar-row>
-                  <div class="main-icon"><mat-icon>class</mat-icon></div>
-                  <div><span class="title">Mis asignaturas</span></div>
-                  <span class="spacer"></span>
-                  <button (click)="toggleSearchBar();" mat-icon-button matTooltip="Buscar">
-                    <mat-icon>search</mat-icon>
-                  </button>
-                  <button routerLink="/" mat-icon-button matTooltip="Volver al Inicio">
-                    <mat-icon>chevron_left</mat-icon>
-                  </button>
-                </mat-toolbar-row>
-            </mat-toolbar>
-            <!-- SEARCH BAR -->
-            <div *ngIf="searchBar" class="search-container">
-              <mat-form-field>
-                <input matInput placeholder="Buscar" [(ngModel)]="searchValue" (ngModelChange)="didFilterSubjects($event);">
-                <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Borrar" (click)="searchValue='';didFilterSubjects($event)">
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
+  <!-- <h2> Asignaturas </h2>-->
+  <div class="main-container" fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="100">
+      <mat-toolbar color="accent">
+          <mat-toolbar-row>
+            <div class="main-icon"><mat-icon>class</mat-icon></div>
+            <div><span class="title">Mis asignaturas</span></div>
+            <span class="spacer"></span>
+            <button routerLink="/" mat-icon-button matTooltip="Volver al Inicio">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+          </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+  </div>
+  <!-- PROGRESS BAR  -->
+  <div class="progress-bar-container" class="progress-bar-container">
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
+  </div>
 
-              <!-- NO ITEMS FOR SHOWING -->
-              <div *ngIf="paginationConfig.totalItems === 0 && !isLoading" class="no-results-container">
-                <h3>No hay asignaturas para mostrar</h3>
-              </div>
-    
-              <table class="subjects-table" mat-table [dataSource]="dataSource" matSort (matSortChange)="didSortSubjects($event)" *ngIf="paginationConfig.totalItems > 0">
-        
-                <!-- Codigo Column -->
-                <ng-container matColumnDef="codigo">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
-                  <td class="click" mat-cell *matCellDef="let subject" (click)="goToDetails(subject.codigo)"> <strong>{{ subject.codigo }}</strong> </td>
-                </ng-container>
-        
-                <!-- Nombre Column -->
-                <ng-container matColumnDef="nombre">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-                  <td class="click" mat-cell *matCellDef="let subject" (click)="goToDetails(subject.codigo)"> <strong>{{ subject.nombre }} </strong></td>
-                </ng-container>
-    
-                <!--  Duracion Column -->
-                <ng-container matColumnDef="duracion">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Duración </th>
-                  <td mat-cell *matCellDef="let subject"> {{ subject.duracion}} </td>
-                </ng-container>
-        
-                <!-- Curso At Column -->
-                <ng-container matColumnDef="curso">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>
-                  <td mat-cell *matCellDef="let subject"> {{ subject.curso }} </td>
-                </ng-container>
-                <!--  Updated Column -->
-                <ng-container matColumnDef="updated">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Actualizado </th>
-                  <td mat-cell *matCellDef="let subject"> {{ subject.updated | date:'longDate' }} </td>
-                </ng-container>
-    
-                <!-- Actions At Column -->
-                <ng-container matColumnDef="actions">
-                  <th mat-header-cell *matHeaderCellDef> </th>
-                  <td mat-cell *matCellDef="let subject" class="text-right">
-                    <button mat-icon-button matTooltip="Matricularme" color="info" (click)="openDialog(subject.codigo, subject.enrollCode)">
-                      <mat-icon aria-label="Matricularme">queue</mat-icon>
-                    </button>
-                    <button mat-icon-button matTooltip="Ver detalles" color="primary" (click)="openDialog(subject.codigo, subject.enrollCode)">
-                      <mat-icon aria-label="Ver detalles">visibility</mat-icon>
-                    </button>
-                  </td>
-                </ng-container>
-    
-                <!-- Footer -->
-                <ng-container matColumnDef="pagination" class="pagination">
-                  <td mat-footer-cell *matFooterCellDef colspan="5">
-                    <div class="pagination-container">
-                      <ul>
-                        <li *ngFor="let subject of subjects | paginate: paginationConfig">Prueba</li>
-                      </ul>
-                      <pagination-controls [id]="paginationConfig.id"
-                      (pageChange)="didPageChange($event)"
-                      maxSize="7"
-                      directionLinks="true"
-                      autoHide="false"
-                      responsive="true"
-                      previousLabel="Anterior"
-                      nextLabel="Siguiente"
-                      screenReaderPaginationLabel="Paginación"
-                      screenReaderPageLabel="página"
-                      screenReaderCurrentLabel="Estás en la página">
-                      </pagination-controls>
-                    </div>
-                  </td>
-                </ng-container>
-        
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                <tr mat-footer-row *matFooterRowDef="['pagination']"></tr>
-              </table>
-            <!-- /TABLE - All subjects -->
-          <!-- PROGRESS BAR  -->
-          <div class="progress-bar-container" class="progress-bar-container">
-            <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
-          </div>
-        </div>
-      
-      </div>
+  <div *ngIf="subjects.length === 0 && !isLoading" class="no-results-container">
+    <h3> No estás matriculado/a en ninguna asignatura. </h3>
+  </div>
+
+  <div *ngIf="!isLoading" class="subjects" fxLayout="row wrap" fxLayoutAlign="space-between start">
+    <div *ngFor="let subject of subjects" fxFlex="32" fxFlex.sm="49">
+      <mat-card class="subject-card">
+        <mat-card-header>
+          <mat-card-title class="title">{{ subject.nombre }}</mat-card-title>
+          <mat-card-subtitle class="subtitle">{{ subject.codigo }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="teacher">
+          <p> <span> Coordinador: </span> Nombre Apellido Apellido</p>
+          <p> <span> Profesor: </span> Nombre Apellido Apellido </p>
+          <p> <span> Profesor: </span> Nombre Apellido Apellido</p>
+        </mat-card-content>
+        <mat-card-actions class="buttons" fxLayoutAlign="end">
+          <button (click)="goToDetails(subject.codigo)" mat-button matTooltip="Ver detalles" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles">  visibility </mat-icon></button>
+          <button (click)="confirmDialog()" mat-button matTooltip="Desmatricularme" mat-mini-fab color="warn"><mat-icon aria-label="Desmatricularme"> remove_from_queue </mat-icon> </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
