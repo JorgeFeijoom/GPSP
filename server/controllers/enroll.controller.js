@@ -13,6 +13,12 @@ function add(req, res, next) {
   } else {
       idUser = req.user._id;
   }
+
+  if(!idUser) {
+    let error = new Error('Not logged user');
+    return next(error);
+  }
+
   let enroll = req.body;
   let codeSubject = req.body.codeSubject;
 
@@ -55,6 +61,12 @@ function remove(req, res, next) {
   } else {
       idUser = req.user._id;
   }
+
+  if(!idUser) {
+    let error = new Error('Not logged user');
+    return next(error);
+  }
+
   let codeSubject = req.body.codeSubject;
   console.log(codeSubject);
   Enrolled

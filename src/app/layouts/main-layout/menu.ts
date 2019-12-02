@@ -16,7 +16,7 @@ export class Menu {
     this.middle = [{
       url: '/subjects',
       icon: 'class',
-      name: 'Asignaturas',
+      name: 'Mis Asignaturas',
       pos: 'middle'
     }, {
       url: '/matricularme',

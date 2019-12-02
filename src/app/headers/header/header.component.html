@@ -12,15 +12,16 @@
         Iniciar sesión <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_3.svg"></span>
       </a>
       <a class="menu-element">
-        Asignaturas  <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_1.svg"> </span>
+        Buscar <span> <mat-icon class="header-menu-icon-margin">search</mat-icon> </span>
       </a>
       <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
-        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Lorem Ipsum</button>
-        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Inicio</button>
+        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/profile']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">face</mat-icon>Mi Perfil</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item [routerLink]="['/subjects']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">class</mat-icon>Mis asignaturas</button>
+        <button mat-menu-item [routerLink]="['/matricularme']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">queue</mat-icon>Matricularme</button>
+        <button mat-menu-item [routerLink]="['/mv']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">dns</mat-icon>Máquinas virtuales</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
     </div>
@@ -40,17 +41,18 @@
       </mat-menu>
 
       <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
-        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Lorem Ipsum</button>
-        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Inicio</button>
+        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/profile']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">face</mat-icon>Mi Perfil</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item [routerLink]="['/subjects']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">class</mat-icon>Mis asignaturas</button>
+        <button mat-menu-item [routerLink]="['/matricularme']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">queue</mat-icon>Matricularme</button>
+        <button mat-menu-item [routerLink]="['/mv']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">dns</mat-icon>Máquinas virtuales</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
 
       <a class="menu-element">
-        Asignaturas  <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_1.svg"> </span>
+        Buscar <span> <mat-icon class="header-menu-icon-margin">search</mat-icon> </span>
       </a>
     </div>
     <!-- /DROPDOWN LOGGED USER -->
@@ -64,19 +66,20 @@
         {{ user.fullname }} <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_3.svg"></span>
       </a>
       <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
-        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Lorem Ipsum</button>
-        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Inicio</button>
+        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/profile']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">face</mat-icon>Mi Perfil</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
+        <button mat-menu-item [routerLink]="['/subjects']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">class</mat-icon>Mis asignaturas</button>
+        <button mat-menu-item [routerLink]="['/matricularme']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">queue</mat-icon>Matricularme</button>
+        <button mat-menu-item [routerLink]="['/mv']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">dns</mat-icon>Máquinas virtuales</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="['/']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">star_border</mat-icon>Lorem Ipsum</button>
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
 
       <mat-menu #userMenu="matMenu" yPosition="below" [overlapTrigger]="false">
         <button mat-menu-item [routerLink]="['/profile']"><mat-icon class="header-menu-icon-margin">person</mat-icon>Perfil</button>
         <mat-divider></mat-divider>
-        <button mat-menu-item [routerLink]="['/admin']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Dashboard</button>
+        <button mat-menu-item [routerLink]="['/admin']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Admin</button>
         <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
         <mat-divider></mat-divider>
         <button mat-menu-item *ngFor="let section of dropdown.middle" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
@@ -84,8 +87,8 @@
         <button mat-menu-item *ngFor="let section of dropdown.bottom" [routerLink]="[section.url]" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">{{ section.icon }}</mat-icon>{{ section.name }}</button>
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
-      <a class="menu-element">
-        Asignaturas  <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_1.svg"> </span>
+      <a class="menu-element" routerLink="/matricularme">
+        Buscar  <span> <mat-icon class="header-menu-icon-margin">search</mat-icon> </span>
       </a>
     </div>
     <!-- /DROPDOWN ADMIN USER -->

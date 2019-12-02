@@ -144,11 +144,15 @@ function enrolled (req, res, next) {
   } else {
     userId = req.user._id;
   }
+  if(!userId) {
+    let error = new Error('Not logged user');
+    return next(error);
+  }
   var code = req.body.code;
   console.log("UserId: " + userId + ' / Code: ' + code);
 
   Enrolled
-    .findOne({'idUser': userId, 'codeSubject': code, 'deletedAt:': null})
+    .findOne({'idUser': userId, 'codeSubject': code})
     .exec((err, result) => {
       // Error - 500
       if ( err || !result) {
@@ -183,7 +187,6 @@ function enrolled (req, res, next) {
  */
 
 function mySubjects(req, res, next) {
-  var result = [];
   var idUser;
   if(!req.user) {
     idUser = null;
@@ -192,7 +195,8 @@ function mySubjects(req, res, next) {
   }
 
   if(!idUser) {
-    return callback(false);
+    let error = new Error('Not logged user');
+    return next(error);
   }
 
   Enrolled
@@ -218,7 +222,7 @@ function mySubjects(req, res, next) {
 
 
 /**
- * all
+ * getfromids
  * Returns all the subjects according to the
  * query required.
  * 
