@@ -5,10 +5,14 @@
     font-size: 20px;
 }
 
+h3 {
+    font-size: 18px;
+}
+
 .subjects, .no-results-container {
     max-width: 1024px;
     width: 100%;
-    margin: 20px auto;
+    margin: 0px auto;
 }
 .no-results-container h3 {
     font-size: 24px;
@@ -33,4 +37,16 @@
             border-radius: 50% !important;
         }
     }
+}
+
+.main-container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0px auto;
+    padding: 20px 0px;
+}
+.progress-bar-container {
+    max-width: 1024px;
+    width: 100%; 
+    margin: 0px auto;
 }

@@ -87,6 +87,7 @@ export class MySubjectsComponent implements OnInit {
         .subjectService
         .remove(code)
         .subscribe((result) => {
+          this.toastr.success('Se ha desmatriculado de: ' + code + ' correctamente.', 'Correcto!');
           window.location.reload();
         }, (error) => {
           console.error(error);

@@ -10,6 +10,7 @@ import { SubjectsEditComponent } from './subjects-edit/subjects-edit.component';
 
 import { SubjectService } from './subject.service';
 import { SharedModule } from '../../shared/shared.module';
+import { SubjectsFilesEditComponent } from './subjects-files-edit/subjects-files-edit.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { SharedModule } from '../../shared/shared.module';
     }),
     NgxPaginationModule,
   ],
-  declarations: [SubjectsListComponent, SubjectsEditComponent],
+  declarations: [SubjectsListComponent, SubjectsEditComponent, SubjectsFilesEditComponent],
   providers: [SubjectService],
   entryComponents: [
     SubjectsEditComponent
