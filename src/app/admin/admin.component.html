@@ -1,48 +1,52 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-
-  <div fxFlex="90">
-    <mat-toolbar color="accent">
-      <mat-toolbar-row>
-        <span>Panel de administración</span>
-        <span class="example-spacer"></span>
-      </mat-toolbar-row>
-    </mat-toolbar>
+<div class="container">
+  <!-- <h2> Asignaturas </h2>-->
+  <div class="main-container" fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="100">
+      <mat-toolbar color="accent">
+          <mat-toolbar-row>
+            <div class="main-icon"><mat-icon>class</mat-icon></div>
+            <div><span class="title">Panel de administración </span></div>
+            <span class="spacer"></span>
+            <button mat-icon-button>
+              <mat-icon>assessment</mat-icon>
+            </button>
+            <button routerLink="/" mat-icon-button matTooltip="Volver al Inicio">
+              <mat-icon>chevron_left</mat-icon>
+            </button>
+          </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
   </div>
-
-</div>
-
-<div class="main-container" fxLayout="row" fxLayoutAlign="center start">
-
-  <mat-grid-list cols="2" rowHeight="2:1">
-   
-    <mat-grid-tile>
-      <mat-card>
-        <mat-card-title>Box 1</mat-card-title>
-        <mat-card-subtitle>Descripción box 1</mat-card-subtitle>
+  <div class="subjects" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="2%">
+    <div fxFlex="32" fxFlex.sm="49">
+      <mat-card class="subject-card">
+        <mat-card-header>
+          <mat-card-title class="title"> Alumnos </mat-card-title>
+          <mat-card-subtitle class="subtitle">Ver usuarios matriculados en las asignaturas.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="teacher">
+          <p> Listar <span>usuarios</span> matriculados. </p>
+          <p> Editar <span>usuarios</span> matriculados. </p>
+          <p> Añadir <span>usuarios</span> matriculados. </p>
+          <p> Eliminar <span>usuarios</span> matriculados. </p>
+        </mat-card-content>
+        <mat-card-actions class="buttons" fxLayoutAlign="end">
+          <button routerLink="/admin/users" mat-button matTooltip="Ver detalles" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles">  person_pin </mat-icon></button> </mat-card-actions>
       </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <mat-card>
-        <mat-card-title>Box 2</mat-card-title>
-        <mat-card-subtitle>Descripción box 2</mat-card-subtitle>
+    </div>
+    <div fxFlex="32" fxFlex.sm="49">
+      <mat-card class="subject-card">
+        <mat-card-header>
+          <mat-card-title class="title"> Asignaturas </mat-card-title>
+          <mat-card-subtitle class="subtitle">Información de las asignaturas de la plataforma.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="teacher">
+          <p> Listar <span>asignaturas</span> disponibles </p>
+          <p> Editar <span>asignaturas</span> disponibles. </p>
+        </mat-card-content>
+        <mat-card-actions class="buttons" fxLayoutAlign="end">
+          <button routerLink="/admin/subjects" mat-button matTooltip="Ver detalles" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles">  bookmarks </mat-icon></button> </mat-card-actions>
       </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <mat-card>
-        <mat-card-title>Box 3</mat-card-title>
-        <mat-card-subtitle>Descripción box 3</mat-card-subtitle>
-      </mat-card>
-    </mat-grid-tile>
-    
-    <mat-grid-tile>
-      <mat-card>
-        <mat-card-title>Box 4</mat-card-title>
-        <mat-card-subtitle>Descripción box 4</mat-card-subtitle>
-      </mat-card>
-    </mat-grid-tile>
-
-  </mat-grid-list>
-
+    </div>
+  </div>
 </div>

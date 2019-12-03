@@ -1,15 +1,69 @@
 <div class="container">
-  <h2> Perfil </h2>
-  <div *ngIf="user" class="profile-wrap">
-      <h4> {{ user.fullname }} </h4>
-      <h4> {{ user.dni }} </h4>
-      <h4> {{ user.email }} </h4>
-      <h4> {{ user.telefono }} </h4>
-      <h4> {{ user.bio }} </h4>
-      <h4> {{ user.ciudad }} </h4>
-      <h4> {{ user.direccion }} </h4>
+    <!-- <h2> Asignaturas </h2>-->
+    <div class="main-container" fxLayout="row" fxLayoutAlign="center center">
+      <div fxFlex="100">
+        <mat-toolbar color="accent">
+            <mat-toolbar-row>
+              <div class="main-icon"><mat-icon>face</mat-icon></div>
+              <div><span class="title"> Perfil </span></div>
+              <span class="spacer"></span>
+              <button mat-icon-button>
+                <mat-icon>notifications</mat-icon>
+              </button>
+              <button routerLink="/" mat-icon-button matTooltip="Volver al Inicio">
+                <mat-icon>chevron_left</mat-icon>
+              </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+      </div>
+    </div>
+    <div *ngIf="!user" class="profile-wrap">
+        <a href="/auth/login"> Iniciar sesión </a>
+    </div>
+    <div *ngIf="user" class="subjects" fxLayout="row wrap" fxLayoutAlign="space-between start">
+      <div fxFlex="49" fxFlex.sm="49">
+        <mat-card class="subject-card">
+          <mat-card-header>
+            <mat-card-title class="title"> Información </mat-card-title>
+            <mat-card-subtitle class="subtitle">Estos son tus datos de usuario</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="teacher">
+            <p> <span> Nombre: </span>{{ user.fullname }} </p>
+            <p> <span> Dni: </span>{{ user.dni }} </p>
+            <p> <span> Email: </span>{{ user.email }} </p>
+            <p> <span> Teléfono: </span>{{ user.telefono }} </p>
+            <p> <span> Bio: </span>{{ user.bio }} </p>
+            <p> <span> Ciudad: </span>{{ user.ciudad }} </p>
+            <p> <span> Dirección: </span>{{ user.direccion }} </p>
+          </mat-card-content>
+          <mat-card-actions class="buttons" fxLayoutAlign="end">
+            <button mat-button matTooltip="Editar información" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles"> edit </mat-icon></button> </mat-card-actions>
+        </mat-card>
+      </div>
+      <div fxFlex="49" fxFlex.sm="49">
+        <mat-card class="subject-card">
+          <mat-card-header>
+            <mat-card-title class="title"> Asignaturas </mat-card-title>
+            <mat-card-subtitle class="subtitle">Estas son las asignaturas a las que estás matriculado/a.</mat-card-subtitle>
+          </mat-card-header>
+
+          <!-- PROGRESS BAR  -->
+          <div class="progress-bar-container" class="progress-bar-container">
+            <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
+          </div>
+        
+          <mat-card-content *ngIf="subjects.length === 0 && !isLoading" class="no-results-container">
+            <h3> No estás matriculado/a en ninguna asignatura. </h3>
+          </mat-card-content>
+
+          <mat-card-content class="teacher" *ngIf="subjects && !isLoading">
+            <p *ngFor="let subject of subjects"> <span>{{ subject.codigo }} </span> {{ subject.nombre }} </p>
+          </mat-card-content>
+          <mat-card-actions class="buttons" fxLayoutAlign="end">
+            <button *ngIf="subjects.length === 0 && !isLoading" routerLink="/matricularme" matTooltip="MAtricularme" mat-mini-fab color="info"><mat-icon> add_to_queue </mat-icon></button>
+            <button *ngIf="subjects && !isLoading" routerLink="/subjects" matTooltip="Listar asignaturas" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles"> sort </mat-icon></button> 
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </div>
-  <div *ngIf="!user" class="profile-wrap">
-    <a href="/auth/login"> Iniciar sesión </a>
-  </div>
-</div>

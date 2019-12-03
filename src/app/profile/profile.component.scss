@@ -1,3 +1,42 @@
-h2 {
-
-}
+@import '_settings.scss';
+.main-container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0px auto;
+  }
+  
+  .title {
+      font-weight: 900;
+      font-size: 20px;
+  }
+  
+  .subjects, .no-results-container {
+      max-width: 1024px;
+      width: 100%;
+      margin: 0px auto;
+      padding: 20px 0;
+  }
+  .no-results-container h3 {
+      font-size: 24px;
+  }
+  .subject-card {
+      margin-bottom: 20px;
+      .teacher {
+          line-height: 0.8;
+          margin-top: 40px;
+          span { 
+              color: $blue;
+              font-weight: 600px;
+          }
+      }
+      .buttons {
+          margin-top: 20px;
+          margin-bottom: 0px;
+          margin-right: 0px;
+          button {
+              margin-left: 10px;
+              border-radius: 50% !important;
+          }
+      }
+  }
+  

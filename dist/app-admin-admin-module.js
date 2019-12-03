@@ -1,5 +1,42 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["app-admin-admin-module"],{
 
+/***/ "./node_modules/rxjs-compat/_esm5/add/operator/map.js":
+/*!************************************************************!*\
+  !*** ./node_modules/rxjs-compat/_esm5/add/operator/map.js ***!
+  \************************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _operator_map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../operator/map */ "./node_modules/rxjs-compat/_esm5/operator/map.js");
+
+
+rxjs__WEBPACK_IMPORTED_MODULE_0__["Observable"].prototype.map = _operator_map__WEBPACK_IMPORTED_MODULE_1__["map"];
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+
+/***/ "./node_modules/rxjs-compat/_esm5/operator/map.js":
+/*!********************************************************!*\
+  !*** ./node_modules/rxjs-compat/_esm5/operator/map.js ***!
+  \********************************************************/
+/*! exports provided: map */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "map", function() { return map; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+function map(project, thisArg) {
+    return Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(project, thisArg)(this);
+}
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+
 /***/ "./src/app/admin/admin-routing.module.ts":
 /*!***********************************************!*\
   !*** ./src/app/admin/admin-routing.module.ts ***!
@@ -32,7 +69,8 @@ var routes = [{
         component: _layouts_admin_layout_admin_layout_component__WEBPACK_IMPORTED_MODULE_3__["AdminLayoutComponent"],
         children: [
             { path: '', component: _admin_component__WEBPACK_IMPORTED_MODULE_2__["AdminComponent"], pathMatch: 'full' },
-            { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' }
+            { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' },
+            { path: 'subjects', loadChildren: 'app/admin/subjects/subjects.module#SubjectsModule' }
         ]
     }, {
         path: '**', redirectTo: 'admin'
@@ -53,6 +91,65 @@ var AdminRoutingModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/admin/admin-user-guard.ts":
+/*!*******************************************!*\
+  !*** ./src/app/admin/admin-user-guard.ts ***!
+  \*******************************************/
+/*! exports provided: OnlyAdminUsersGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OnlyAdminUsersGuard", function() { return OnlyAdminUsersGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var OnlyAdminUsersGuard = /** @class */ (function () {
+    function OnlyAdminUsersGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    OnlyAdminUsersGuard.prototype.canActivate = function () {
+        /*
+         * Only authenticated users with admin role are allowed to pass.
+         *
+         * If user is not allowed, is redirected to home
+         *
+         */
+        var _this = this;
+        return this.authService.isLoggedIn().map(function (logged) {
+            var user = window.user;
+            if (logged && user && user.isAdmin)
+                return true;
+            else
+                _this.router.navigate(['']);
+        });
+    };
+    OnlyAdminUsersGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], OnlyAdminUsersGuard);
+    return OnlyAdminUsersGuard;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/admin/admin.component.html":
 /*!********************************************!*\
   !*** ./src/app/admin/admin.component.html ***!
@@ -60,7 +157,7 @@ var AdminRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n\n  <div fxFlex=\"90\">\n    <mat-toolbar color=\"accent\">\n      <mat-toolbar-row>\n        <span>Panel de administración</span>\n        <span class=\"example-spacer\"></span>\n      </mat-toolbar-row>\n    </mat-toolbar>\n  </div>\n\n</div>\n\n<div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center start\">\n\n  <mat-grid-list cols=\"2\" rowHeight=\"2:1\">\n   \n    <mat-grid-tile>\n      <mat-card>\n        <mat-card-title>Box 1</mat-card-title>\n        <mat-card-subtitle>Descripción box 1</mat-card-subtitle>\n      </mat-card>\n    </mat-grid-tile>\n\n    <mat-grid-tile>\n      <mat-card>\n        <mat-card-title>Box 2</mat-card-title>\n        <mat-card-subtitle>Descripción box 2</mat-card-subtitle>\n      </mat-card>\n    </mat-grid-tile>\n\n    <mat-grid-tile>\n      <mat-card>\n        <mat-card-title>Box 3</mat-card-title>\n        <mat-card-subtitle>Descripción box 3</mat-card-subtitle>\n      </mat-card>\n    </mat-grid-tile>\n    \n    <mat-grid-tile>\n      <mat-card>\n        <mat-card-title>Box 4</mat-card-title>\n        <mat-card-subtitle>Descripción box 4</mat-card-subtitle>\n      </mat-card>\n    </mat-grid-tile>\n\n  </mat-grid-list>\n\n</div>"
+module.exports = "<div class=\"container\">\n  <!-- <h2> Asignaturas </h2>-->\n  <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <div fxFlex=\"100\">\n      <mat-toolbar color=\"accent\">\n          <mat-toolbar-row>\n            <div class=\"main-icon\"><mat-icon>class</mat-icon></div>\n            <div><span class=\"title\">Panel de administración </span></div>\n            <span class=\"spacer\"></span>\n            <button mat-icon-button>\n              <mat-icon>assessment</mat-icon>\n            </button>\n            <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n              <mat-icon>chevron_left</mat-icon>\n            </button>\n          </mat-toolbar-row>\n      </mat-toolbar>\n    </div>\n  </div>\n  <div class=\"subjects\" fxLayout=\"row wrap\" fxLayoutAlign=\"start start\" fxLayoutGap=\"2%\">\n    <div fxFlex=\"32\" fxFlex.sm=\"49\">\n      <mat-card class=\"subject-card\">\n        <mat-card-header>\n          <mat-card-title class=\"title\"> Alumnos </mat-card-title>\n          <mat-card-subtitle class=\"subtitle\">Ver usuarios matriculados en las asignaturas.</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content class=\"teacher\">\n          <p> Listar <span>usuarios</span> matriculados. </p>\n          <p> Editar <span>usuarios</span> matriculados. </p>\n          <p> Añadir <span>usuarios</span> matriculados. </p>\n          <p> Eliminar <span>usuarios</span> matriculados. </p>\n        </mat-card-content>\n        <mat-card-actions class=\"buttons\" fxLayoutAlign=\"end\">\n          <button routerLink=\"/admin/users\" mat-button matTooltip=\"Ver detalles\" mat-mini-fab color=\"info\"><mat-icon aria-label=\"Ver detalles\">  person_pin </mat-icon></button> </mat-card-actions>\n      </mat-card>\n    </div>\n    <div fxFlex=\"32\" fxFlex.sm=\"49\">\n      <mat-card class=\"subject-card\">\n        <mat-card-header>\n          <mat-card-title class=\"title\"> Asignaturas </mat-card-title>\n          <mat-card-subtitle class=\"subtitle\">Información de las asignaturas de la plataforma.</mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content class=\"teacher\">\n          <p> Listar <span>asignaturas</span> disponibles </p>\n          <p> Editar <span>asignaturas</span> disponibles. </p>\n        </mat-card-content>\n        <mat-card-actions class=\"buttons\" fxLayoutAlign=\"end\">\n          <button routerLink=\"/admin/subjects\" mat-button matTooltip=\"Ver detalles\" mat-mini-fab color=\"info\"><mat-icon aria-label=\"Ver detalles\">  bookmarks </mat-icon></button> </mat-card-actions>\n      </mat-card>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -71,7 +168,7 @@ module.exports = "<div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n\n  <d
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".main-container {\n  padding: 10px; }\n  .main-container mat-grid-list {\n    width: 100%; }\n  .main-container mat-grid-list mat-grid-tile mat-card {\n      width: 100%;\n      margin: 5px; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n::ng-deep body .dashboard .container {\n  max-width: 1200px;\n  width: 90%;\n  margin: 0px auto;\n  min-height: calc(100vh - 85px); }\n::ng-deep .dashboard.sidenav-main-content {\n  padding-top: 0px !important; }\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\n.title {\n  font-weight: 900;\n  font-size: 20px; }\n.subjects, .no-results-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto; }\n.no-results-container h3 {\n  font-size: 24px; }\n.subject-card {\n  max-width: 400px;\n  margin-bottom: 20px; }\n.subject-card .teacher {\n    line-height: 0.8;\n    margin-top: 40px; }\n.subject-card .teacher span {\n      color: #002E67;\n      font-weight: 600px; }\n.subject-card .buttons {\n    margin-top: 20px;\n    margin-bottom: 0px;\n    margin-right: 0px; }\n.subject-card .buttons button {\n      margin-left: 10px;\n      border-radius: 50% !important; }\n"
 
 /***/ }),
 
@@ -345,7 +442,7 @@ module.exports = "<header-admin [user]=\"user\"></header-admin>\n<div class=\"wr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".dashboard {\n  overflow: visible !important; }\n  .dashboard .sidenav {\n    background-color: #414141;\n    color: #fff;\n    overflow-y: scroll;\n    overflow-x: hidden; }\n  .dashboard .sidenav mat-list-item {\n      color: #fff; }\n  .dashboard .sidenav mat-divider {\n      border-color: rgba(255, 255, 255, 0.17); }\n  .dashboard .sidenav mat-divider.margin-top {\n      margin-top: 20px; }\n  .dashboard .sidenav mat-divider.margin-bottom {\n      margin-bottom: 20px; }\n  .dashboard .sidenav mat-list-item.active {\n      color: #ffd740; }\n  .dashboard .sidenav mat-list-item.active p {\n        font-weight: 800; }\n  .dashboard .sidenav-main-content {\n    display: flex;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n    background-color: #f4f3f3;\n    width: 100%;\n    padding-top: 20px; }\n  :host ::ng-deep router-outlet + *:not(nav) {\n  width: 100%; }\n  :host ::ng-deep router-outlet + *:not(nav) mat-toolbar {\n    max-width: 1024px;\n    margin: 20px auto; }\n  :host ::ng-deep router-outlet + *:not(nav) mat-toolbar .main-icon {\n      margin-top: 5px;\n      margin-right: 5px; }\n  :host ::ng-deep router-outlet + *:not(nav) mat-toolbar a {\n      text-decoration: none;\n      color: #118fe8; }\n  :host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-fill::after {\n    background-color: #118fe8; }\n  :host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-buffer {\n    background-color: #8ed5f1; }\n  :host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar {\n    height: 3px; }\n"
+module.exports = ".dashboard {\n  overflow: visible !important; }\n  .dashboard .sidenav {\n    background-color: #414141;\n    color: #fff;\n    overflow-y: scroll;\n    overflow-x: hidden; }\n  .dashboard .sidenav mat-list-item {\n      color: #fff; }\n  .dashboard .sidenav mat-divider {\n      border-color: rgba(255, 255, 255, 0.17); }\n  .dashboard .sidenav mat-divider.margin-top {\n      margin-top: 20px; }\n  .dashboard .sidenav mat-divider.margin-bottom {\n      margin-bottom: 20px; }\n  .dashboard .sidenav mat-list-item.active {\n      color: #ffd740; }\n  .dashboard .sidenav mat-list-item.active p {\n        font-weight: 800; }\n  .dashboard .sidenav-main-content {\n    display: flex;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n    background-color: #f4f3f3;\n    width: 100%; }\n  :host ::ng-deep router-outlet + *:not(nav) {\n  width: 100%; }\n  :host ::ng-deep router-outlet + *:not(nav) mat-toolbar {\n    max-width: 1024px;\n    margin: 20px auto; }\n  :host ::ng-deep router-outlet + *:not(nav) mat-toolbar .main-icon {\n      margin-top: 5px;\n      margin-right: 5px; }\n  :host ::ng-deep router-outlet + *:not(nav) mat-toolbar a {\n      text-decoration: none;\n      color: #118fe8; }\n  :host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-fill::after {\n    background-color: #118fe8; }\n  :host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-buffer {\n    background-color: #8ed5f1; }\n  :host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar {\n    height: 3px; }\n"
 
 /***/ }),
 

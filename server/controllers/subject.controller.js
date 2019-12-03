@@ -11,21 +11,53 @@ var async = require('async');
 //
 
 const subjectIdSchema = Joi.string().alphanum().regex(/^[0-9a-fA-F]{24}$/);
-/* const subjectSchema = Joi.object({
-  name: Joi.string().required()
-}); */
 
 module.exports = {
+  subjectId,
   subject,
   all,
   enrolled,
   mySubjects,
-  getFromIds
-  //remove,
-  //create,
-  //update
+  getFromIds,
+  update
 };
 
+
+
+/**
+ * subjectId
+ * Returns the user by the given id
+ * 
+ * @param {ObjectId} id
+ */
+
+function subjectId (req, res, next, id) {
+
+  Subject
+    .findOne({ _id: id })
+    .exec((err, subject) => {
+
+      // Error - 500
+      if ( err ) {
+        console.log(err);
+        let error = new Error('Cannot retrieve subject for the given id');
+        error.status = 400;
+        return next(error);
+      }
+
+      // Error - 404
+      if ( !subject ) {
+        let error = new Error('Not found');
+        error.status = 404;
+        return next(error);
+      }
+
+      // Success
+      req.profile = subject;
+      next();
+      
+    });
+}
 
 /**
  * subject
@@ -251,4 +283,36 @@ function getFromIds(req, res, next) {
       console.log(subjects);
       return res.status(200).json(subjects);
     });
+}
+
+
+/**
+ * update
+ * Updates the given subjecy. Cannot update password from here.
+ *
+ * @param  {Subject} subject Subject data
+ */
+
+function update (req, res, next) {
+
+  let subject = req.profile;
+
+  // Validation OK
+  subject = _.extend(subject, req.body);
+  subject
+    .save((err) => {
+
+      // Error - 500
+      if ( err ) {
+        console.error(err);
+        let error = new Error('Subject cannot be updated');
+        error.status = 500;
+        return next(error);
+      }
+
+      // Success
+      return res.sendStatus(200);
+
+    });
+
 }

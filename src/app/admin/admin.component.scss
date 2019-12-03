@@ -1,16 +1,53 @@
+@import '../../_settings.scss';
+
+::ng-deep body .dashboard .container {
+  max-width: 1200px;
+  width: 90%;
+  margin: 0px auto;
+  min-height: calc(100vh - 85px);
+}
+::ng-deep .dashboard.sidenav-main-content {
+  padding-top: 0px !important;
+}
+
 .main-container {
-  padding: 10px;
+  max-width: 1024px;
+  width: 100%;
+  margin: 0px auto;
+  padding: 20px 0px;
+}
 
-  mat-grid-list {
+.title {
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.subjects, .no-results-container {
+    max-width: 1024px;
     width: 100%;
-
-    mat-grid-tile {
-
-      mat-card {
-        width: 100%;
-        margin: 5px;
-      }
+    margin: 0px auto;
+}
+.no-results-container h3 {
+    font-size: 24px;
+}
+.subject-card {
+    max-width: 400px;
+    margin-bottom: 20px;
+    .teacher {
+        line-height: 0.8;
+        margin-top: 40px;
+        span { 
+            color: $blue;
+            font-weight: 600px;
+        }
     }
-  }
-
+    .buttons {
+        margin-top: 20px;
+        margin-bottom: 0px;
+        margin-right: 0px;
+        button {
+            margin-left: 10px;
+            border-radius: 50% !important;
+        }
+    }
 }

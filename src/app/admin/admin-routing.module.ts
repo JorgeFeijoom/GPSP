@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { AdminComponent } from './admin.component';
 import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
 import { OnlyAdminUsersGuard } from './admin-user-guard';
@@ -11,7 +10,8 @@ const routes: Routes = [{
   component: AdminLayoutComponent,
   children: [
     { path: '', component: AdminComponent, pathMatch: 'full' },
-    { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' }
+    { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' },
+    { path: 'subjects', loadChildren: 'app/admin/subjects/subjects.module#SubjectsModule' }
   ]
 }, {
   path: '**', redirectTo: 'admin'

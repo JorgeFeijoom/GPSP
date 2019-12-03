@@ -10,12 +10,16 @@
 var map = {
 	"app/admin/admin.module": [
 		"./src/app/admin/admin.module.ts",
-		"common",
 		"app-admin-admin-module"
+	],
+	"app/admin/subjects/subjects.module": [
+		"./src/app/admin/subjects/subjects.module.ts",
+		"app-admin-subjects-subjects-module~app-admin-users-users-module",
+		"app-admin-subjects-subjects-module"
 	],
 	"app/admin/users/users.module": [
 		"./src/app/admin/users/users.module.ts",
-		"common",
+		"app-admin-subjects-subjects-module~app-admin-users-users-module",
 		"app-admin-users-users-module"
 	],
 	"app/auth/auth.module": [
@@ -1349,7 +1353,7 @@ var AuthLayoutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header [user]=\"user\"></app-header>\n<div class=\"wrapper-app\">\n  <mat-sidenav-container class=\"dashboard\" autosize>\n    <mat-sidenav #sidenav class=\"sidenav\" mode=\"side\" opened=\"true\" [fixedInViewport]=\"'true'\" [fixedTopGap]=\"'83'\">\n  \n      <mat-nav-list>\n        <mat-list-item>\n          <button mat-icon-button matTooltip=\"{{ !isExpanded ? 'Expandir menú' : 'Ocultar menú' }}\" [matTooltipPosition]=\"'right'\"  (click)=\"isExpanded = !isExpanded\">\n            <mat-icon *ngIf=\"!isExpanded\">chevron_right</mat-icon>\n            <mat-icon *ngIf=\"isExpanded\">chevron_left</mat-icon>\n          </button>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-top\"></mat-divider>\n\n        <mat-list-item routerLink=\"/\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{ exact: true }\">\n          <mat-icon mat-list-icon matTooltip=\"{{ !isExpanded ? 'Dashboard' : '' }}\" [matTooltipPosition]=\"'right'\">home</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">Dashboard</p>\n        </mat-list-item>\n        <mat-list-item *ngFor=\"let section of menu.top\" routerLink=\"{{ section.url }}\" matTooltip=\"{{ !isExpanded ? section.name : '' }}\"  [matTooltipPosition]=\"'right'\"  routerLinkActive=\"active\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-bottom\"></mat-divider>\n\n        <mat-list-item *ngFor=\"let section of menu.middle\" routerLink=\"{{ section.url }}\" routerLinkActive=\"active\" matTooltip=\"{{ !isExpanded ? section.name : '' }}\"  [matTooltipPosition]=\"'right'\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-top\"></mat-divider>\n\n        <mat-list-item *ngFor=\"let section of menu.bottom\" routerLink=\"{{ section.url }}\" routerLinkActive=\"active\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-list-item (click)=\"logout()\">\n          <mat-icon mat-list-icon matTooltip=\"{{ !isExpanded ? 'Salir' : '' }}\" [matTooltipPosition]=\"'right'\">power_settings_new</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">Salir</p>\n        </mat-list-item>\n\n      </mat-nav-list>\n\n    </mat-sidenav>\n  \n    <div class=\"sidenav-main-content\">\n      <router-outlet></router-outlet>\n    </div>\n  \n  </mat-sidenav-container>\n\n</div>"
+module.exports = "<app-header [user]=\"user\"></app-header>\n<div class=\"wrapper-app\">\n  <mat-sidenav-container autosize>\n    <mat-sidenav #sidenav class=\"sidenav\" mode=\"side\" opened=\"true\" [fixedInViewport]=\"'true'\" [fixedTopGap]=\"'83'\">\n  \n      <mat-nav-list>\n        <mat-list-item>\n          <button mat-icon-button matTooltip=\"{{ !isExpanded ? 'Expandir menú' : 'Ocultar menú' }}\" [matTooltipPosition]=\"'right'\"  (click)=\"isExpanded = !isExpanded\">\n            <mat-icon *ngIf=\"!isExpanded\">chevron_right</mat-icon>\n            <mat-icon *ngIf=\"isExpanded\">chevron_left</mat-icon>\n          </button>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-top\"></mat-divider>\n\n        <mat-list-item routerLink=\"/\" routerLinkActive=\"active\" [routerLinkActiveOptions]=\"{ exact: true }\">\n          <mat-icon mat-list-icon matTooltip=\"{{ !isExpanded ? 'Dashboard' : '' }}\" [matTooltipPosition]=\"'right'\">home</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">Dashboard</p>\n        </mat-list-item>\n        <mat-list-item *ngFor=\"let section of menu.top\" routerLink=\"{{ section.url }}\" matTooltip=\"{{ !isExpanded ? section.name : '' }}\"  [matTooltipPosition]=\"'right'\"  routerLinkActive=\"active\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-bottom\"></mat-divider>\n\n        <mat-list-item *ngFor=\"let section of menu.middle\" routerLink=\"{{ section.url }}\" routerLinkActive=\"active\" matTooltip=\"{{ !isExpanded ? section.name : '' }}\"  [matTooltipPosition]=\"'right'\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-divider class=\"margin-top\"></mat-divider>\n\n        <mat-list-item *ngFor=\"let section of menu.bottom\" routerLink=\"{{ section.url }}\" routerLinkActive=\"active\">\n          <mat-icon mat-list-icon>{{ section.icon }}</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">{{ section.name }}</p>\n        </mat-list-item>\n\n        <mat-list-item (click)=\"logout()\">\n          <mat-icon mat-list-icon matTooltip=\"{{ !isExpanded ? 'Salir' : '' }}\" [matTooltipPosition]=\"'right'\">power_settings_new</mat-icon>\n          <p matLine *ngIf=\"isExpanded\">Salir</p>\n        </mat-list-item>\n\n      </mat-nav-list>\n\n    </mat-sidenav>\n  \n    <div class=\"sidenav-main-content\">\n      <router-outlet></router-outlet>\n    </div>\n  \n  </mat-sidenav-container>\n\n</div>"
 
 /***/ }),
 
@@ -1360,7 +1364,7 @@ module.exports = "<app-header [user]=\"user\"></app-header>\n<div class=\"wrappe
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.dashboard {\n  overflow: visible !important; }\n.dashboard .sidenav {\n    background-color: #42648e;\n    color: #fff;\n    overflow-y: auto;\n    overflow-x: hidden; }\n.dashboard .sidenav mat-list-item {\n      color: #fff; }\n.dashboard .sidenav mat-divider {\n      border-color: rgba(255, 255, 255, 0.17); }\n.dashboard .sidenav mat-divider.margin-top {\n      margin-top: 20px; }\n.dashboard .sidenav mat-divider.margin-bottom {\n      margin-bottom: 20px; }\n.dashboard .sidenav mat-list-item.active {\n      color: #ff9a00; }\n.dashboard .sidenav mat-list-item.active p {\n        font-weight: 800; }\n.dashboard .sidenav-main-content {\n    display: flex;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n    width: 100%;\n    padding-top: 20px; }\n:host ::ng-deep router-outlet + *:not(nav) {\n  width: 100%; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar {\n    max-width: 1024px;\n    margin: 20px auto; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar .main-icon {\n      margin-top: 5px;\n      margin-right: 5px; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar a {\n      text-decoration: none;\n      color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-fill::after {\n    background-color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-buffer {\n    background-color: #8ed5f1; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar {\n    height: 3px; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.sidenav {\n  background-color: #42648e;\n  color: #fff;\n  overflow-y: auto;\n  overflow-x: hidden; }\n.sidenav mat-list-item {\n    color: #fff; }\n.sidenav mat-divider {\n    border-color: rgba(255, 255, 255, 0.17); }\n.sidenav mat-divider.margin-top {\n    margin-top: 20px; }\n.sidenav mat-divider.margin-bottom {\n    margin-bottom: 20px; }\n.sidenav mat-list-item.active {\n    color: #ff9a00; }\n.sidenav mat-list-item.active p {\n      font-weight: 800; }\n.sidenav-main-content {\n  display: flex;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  width: 100%; }\n:host ::ng-deep router-outlet + *:not(nav) {\n  width: 100%; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar {\n    max-width: 1024px;\n    margin: 20px auto; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar .main-icon {\n      margin-top: 5px;\n      margin-right: 5px; }\n:host ::ng-deep router-outlet + *:not(nav) mat-toolbar a {\n      text-decoration: none;\n      color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-fill::after {\n    background-color: #118fe8; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar-buffer {\n    background-color: #8ed5f1; }\n:host ::ng-deep router-outlet + *:not(nav) .mat-progress-bar {\n    height: 3px; }\n"
 
 /***/ }),
 
@@ -1830,7 +1834,7 @@ var PageNotFoundComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h2> Perfil </h2>\n  <div *ngIf=\"user\" class=\"profile-wrap\">\n      <h4> {{ user.fullname }} </h4>\n      <h4> {{ user.dni }} </h4>\n      <h4> {{ user.email }} </h4>\n      <h4> {{ user.telefono }} </h4>\n      <h4> {{ user.bio }} </h4>\n      <h4> {{ user.ciudad }} </h4>\n      <h4> {{ user.direccion }} </h4>\n  </div>\n  <div *ngIf=\"!user\" class=\"profile-wrap\">\n    <a href=\"/auth/login\"> Iniciar sesión </a>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <!-- <h2> Asignaturas </h2>-->\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n        <mat-toolbar color=\"accent\">\n            <mat-toolbar-row>\n              <div class=\"main-icon\"><mat-icon>face</mat-icon></div>\n              <div><span class=\"title\"> Perfil </span></div>\n              <span class=\"spacer\"></span>\n              <button mat-icon-button>\n                <mat-icon>notifications</mat-icon>\n              </button>\n              <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                <mat-icon>chevron_left</mat-icon>\n              </button>\n            </mat-toolbar-row>\n        </mat-toolbar>\n      </div>\n    </div>\n    <div *ngIf=\"!user\" class=\"profile-wrap\">\n        <a href=\"/auth/login\"> Iniciar sesión </a>\n    </div>\n    <div *ngIf=\"user\" class=\"subjects\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n      <div fxFlex=\"49\" fxFlex.sm=\"49\">\n        <mat-card class=\"subject-card\">\n          <mat-card-header>\n            <mat-card-title class=\"title\"> Información </mat-card-title>\n            <mat-card-subtitle class=\"subtitle\">Estos son tus datos de usuario</mat-card-subtitle>\n          </mat-card-header>\n          <mat-card-content class=\"teacher\">\n            <p> <span> Nombre: </span>{{ user.fullname }} </p>\n            <p> <span> Dni: </span>{{ user.dni }} </p>\n            <p> <span> Email: </span>{{ user.email }} </p>\n            <p> <span> Teléfono: </span>{{ user.telefono }} </p>\n            <p> <span> Bio: </span>{{ user.bio }} </p>\n            <p> <span> Ciudad: </span>{{ user.ciudad }} </p>\n            <p> <span> Dirección: </span>{{ user.direccion }} </p>\n          </mat-card-content>\n          <mat-card-actions class=\"buttons\" fxLayoutAlign=\"end\">\n            <button mat-button matTooltip=\"Editar información\" mat-mini-fab color=\"info\"><mat-icon aria-label=\"Ver detalles\"> edit </mat-icon></button> </mat-card-actions>\n        </mat-card>\n      </div>\n      <div fxFlex=\"49\" fxFlex.sm=\"49\">\n        <mat-card class=\"subject-card\">\n          <mat-card-header>\n            <mat-card-title class=\"title\"> Asignaturas </mat-card-title>\n            <mat-card-subtitle class=\"subtitle\">Estas son las asignaturas a las que estás matriculado/a.</mat-card-subtitle>\n          </mat-card-header>\n\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n        \n          <mat-card-content *ngIf=\"subjects.length === 0 && !isLoading\" class=\"no-results-container\">\n            <h3> No estás matriculado/a en ninguna asignatura. </h3>\n          </mat-card-content>\n\n          <mat-card-content class=\"teacher\" *ngIf=\"subjects && !isLoading\">\n            <p *ngFor=\"let subject of subjects\"> <span>{{ subject.codigo }} </span> {{ subject.nombre }} </p>\n          </mat-card-content>\n          <mat-card-actions class=\"buttons\" fxLayoutAlign=\"end\">\n            <button *ngIf=\"subjects.length === 0 && !isLoading\" routerLink=\"/matricularme\" matTooltip=\"MAtricularme\" mat-mini-fab color=\"info\"><mat-icon> add_to_queue </mat-icon></button>\n            <button *ngIf=\"subjects && !isLoading\" routerLink=\"/subjects\" matTooltip=\"Listar asignaturas\" mat-mini-fab color=\"info\"><mat-icon aria-label=\"Ver detalles\"> sort </mat-icon></button> \n          </mat-card-actions>\n        </mat-card>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -1841,7 +1845,7 @@ module.exports = "<div class=\"container\">\n  <h2> Perfil </h2>\n  <div *ngIf=\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto; }\n.title {\n  font-weight: 900;\n  font-size: 20px; }\n.subjects, .no-results-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0; }\n.no-results-container h3 {\n  font-size: 24px; }\n.subject-card {\n  margin-bottom: 20px; }\n.subject-card .teacher {\n    line-height: 0.8;\n    margin-top: 40px; }\n.subject-card .teacher span {\n      color: #002E67;\n      font-weight: 600px; }\n.subject-card .buttons {\n    margin-top: 20px;\n    margin-bottom: 0px;\n    margin-right: 0px; }\n.subject-card .buttons button {\n      margin-left: 10px;\n      border-radius: 50% !important; }\n"
 
 /***/ }),
 
@@ -1857,6 +1861,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileComponent", function() { return ProfileComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1868,17 +1875,62 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
+
+
 var ProfileComponent = /** @class */ (function () {
-    function ProfileComponent(authService) {
+    function ProfileComponent(subjectService, toastr, router, authService) {
+        this.subjectService = subjectService;
+        this.toastr = toastr;
+        this.router = router;
         this.authService = authService;
+        this.subjects = [];
+        this.ids = [];
+        this.isLoading = true;
+        this.result = '';
     }
     ProfileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.authService.me().subscribe(function (data) {
-            if (!data)
+            if (!data) {
                 _this.user = null;
-            else
+            }
+            else {
                 _this.user = data.user;
+            }
+        });
+        this.getAll();
+    };
+    ProfileComponent.prototype.getAll = function (filterValue) {
+        var _this = this;
+        this.isLoading = true;
+        this
+            .subjectService
+            .getMySubjects()
+            .subscribe(function (result) {
+            result.forEach(function (subject) {
+                _this.ids.push(subject.codeSubject);
+            });
+            console.log(_this.ids);
+            _this
+                .subjectService
+                .getSubjectsFromIds(_this.ids)
+                .subscribe(function (subjectsResult) {
+                // console.log(subjectsResult);
+                var aux;
+                aux = JSON.parse(subjectsResult);
+                aux.forEach(function (element) {
+                    _this.subjects.push(element);
+                });
+                // console.log(this.subjects);
+                _this.isLoading = false;
+            }, function (error) {
+                console.log(error);
+                _this.isLoading = false;
+            });
+        }, function (error) {
+            console.log(error);
+            _this.isLoading = false;
         });
     };
     ProfileComponent = __decorate([
@@ -1887,7 +1939,10 @@ var ProfileComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./profile.component.html */ "./src/app/profile/profile.component.html"),
             styles: [__webpack_require__(/*! ./profile.component.scss */ "./src/app/profile/profile.component.scss")]
         }),
-        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
+        __metadata("design:paramtypes", [_subjects_subject_service__WEBPACK_IMPORTED_MODULE_2__["SubjectService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
     ], ProfileComponent);
     return ProfileComponent;
 }());
@@ -2069,7 +2124,7 @@ module.exports = "<div class=\"container\">\n  <!-- PROGRESS BAR  -->\n  <div cl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n#return {\n  position: absolute;\n  top: 110px;\n  right: 45px;\n  width: 60px;\n  height: 60px;\n  cursor: pointer;\n  transition: all .5s; }\n#return:hover {\n  filter: hue-rotate(145deg);\n  -webkit-filter: hue-rotate(145deg);\n  -moz-filter: hue-rotate(145deg);\n  -o-filter: hue-rotate(145deg);\n  -ms-filter: hue-rotate(145deg); }\n::ng-deep .mat-grid-tile .mat-figure {\n  display: block !important;\n  padding: 10px !important; }\n::ng-deep .mat-grid-tile .mat-figure h3 {\n    font-size: 20px;\n    margin: 0px; }\ntextarea {\n  width: 90%;\n  min-height: 15rem;\n  font-family: \"Lucida Console\", Monaco, monospace;\n  font-size: 0.8rem;\n  line-height: 1.2;\n  padding: 50px 6%; }\n.files-wrap {\n  margin-top: 10px; }\n::ng-deep .mat-list-item-content {\n  max-width: 230px;\n  cursor: pointer;\n  transition: all .5s; }\n::ng-deep .mat-list-item-content:hover h4 {\n  color: #ff9a00;\n  font-weight: bold; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n#return {\n  position: absolute;\n  top: 110px;\n  right: 45px;\n  width: 60px;\n  height: 60px;\n  cursor: pointer;\n  transition: all .5s; }\n#return:hover {\n  filter: hue-rotate(145deg);\n  -webkit-filter: hue-rotate(145deg);\n  -moz-filter: hue-rotate(145deg);\n  -o-filter: hue-rotate(145deg);\n  -ms-filter: hue-rotate(145deg); }\n::ng-deep .mat-grid-tile .mat-figure {\n  display: block !important;\n  padding: 10px !important; }\n::ng-deep .mat-grid-tile .mat-figure h3 {\n    font-size: 20px;\n    margin: 0px; }\ntextarea {\n  width: 90%;\n  min-height: 15rem;\n  font-family: \"Lucida Console\", Monaco, monospace;\n  font-size: 0.8rem;\n  line-height: 1.2;\n  padding: 50px 6%; }\n.files-wrap {\n  margin-top: 10px; }\n::ng-deep .mat-list-item-content {\n  max-width: 230px;\n  cursor: pointer;\n  transition: all .5s; }\n::ng-deep .mat-list-item-content:hover h4 {\n  color: #ff9a00;\n  font-weight: bold; }\nh2 {\n  padding-top: 30px; }\n"
 
 /***/ }),
 
@@ -2569,7 +2624,7 @@ module.exports = "<div class=\"container\">\n    <!-- <h2> Asignaturas </h2>-->\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.subjects-table {\n  max-width: 1024px;\n  width: 100%;\n  margin: 50px auto; }\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n.subjects-table td {\n  padding: 40px 20px; }\n.subjects-table th {\n  padding: 20px 20px;\n  color: #002E67;\n  font-weight: bold; }\n.click {\n  transition: all .5s; }\n.click:hover {\n  color: #ff9a00; }\n.search-container {\n  max-width: 1024px;\n  margin: 20px auto 0px; }\n.title {\n  font-weight: 900;\n  padding-left: 5px; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\nh3 {\n  font-size: 18px; }\n.subjects-table {\n  max-width: 1024px;\n  width: 100%;\n  margin: 50px auto; }\n.ngx-pagination {\n  padding: 0px;\n  text-align: center; }\n.subjects-table td {\n  padding: 40px 20px; }\n.subjects-table th {\n  padding: 20px 20px;\n  color: #002E67;\n  font-weight: bold; }\n.click {\n  transition: all .5s; }\n.click:hover {\n  color: #ff9a00; }\n.search-container {\n  max-width: 1024px;\n  margin: 20px auto 0px; }\n.title {\n  font-weight: 900;\n  padding-left: 5px; }\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\n"
 
 /***/ }),
 
