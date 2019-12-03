@@ -12,16 +12,16 @@ export class Menu {
       name: 'Mi Perfil',
       pos: 'top'
     }];
-    
+
     this.middle = [{
       url: '/admin/users',
       icon: 'personal',
       name: 'Usuarios',
       pos: 'middle'
     }, {
-      url: '/admin/blog',
-      icon: 'create',
-      name: 'Blog',
+      url: '/admin/subjects',
+      icon: 'book',
+      name: 'Asignaturas',
       pos: 'middle'
     }];
 
@@ -32,8 +32,8 @@ export class Menu {
 }
 
 export interface Section {
-  url: string,
-  icon: string,
-  name: string,
-  pos: string
+  url: string;
+  icon: string;
+  name: string;
+  pos: string;
 }

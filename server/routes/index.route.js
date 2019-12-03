@@ -1,8 +1,6 @@
 const express = require('express');
 const userRoutes = require('./user.route');
 const authRoutes = require('./auth.route');
-const blogRoutes = require('./blog.route');
-const mediaRoutes = require('./media.route');
 const subjectRoutes = require('./subject.route');
 const enrollRoutes = require('./enroll.route');
 
@@ -15,8 +13,6 @@ router.get('/health-check', (req, res) =>
 
 router.use('/auth', authRoutes);
 router.use('/user', userRoutes);
-router.use('/post', blogRoutes);
-router.use('/media', mediaRoutes);
 router.use('/subject', subjectRoutes);
 router.use('/enroll', enrollRoutes);
 

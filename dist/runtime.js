@@ -61,7 +61,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"app-admin-admin-module":"app-admin-admin-module","app-admin-blog-blog-module~app-admin-users-users-module":"app-admin-blog-blog-module~app-admin-users-users-module","app-admin-blog-blog-module":"app-admin-blog-blog-module","app-admin-users-users-module":"app-admin-users-users-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"common":"common","app-admin-admin-module":"app-admin-admin-module","app-admin-users-users-module":"app-admin-users-users-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

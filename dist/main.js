@@ -10,16 +10,12 @@
 var map = {
 	"app/admin/admin.module": [
 		"./src/app/admin/admin.module.ts",
+		"common",
 		"app-admin-admin-module"
-	],
-	"app/admin/blog/blog.module": [
-		"./src/app/admin/blog/blog.module.ts",
-		"app-admin-blog-blog-module~app-admin-users-users-module",
-		"app-admin-blog-blog-module"
 	],
 	"app/admin/users/users.module": [
 		"./src/app/admin/users/users.module.ts",
-		"app-admin-blog-blog-module~app-admin-users-users-module",
+		"common",
 		"app-admin-users-users-module"
 	],
 	"app/auth/auth.module": [
@@ -1261,9 +1257,9 @@ var Menu = /** @class */ (function () {
                 name: 'Usuarios',
                 pos: 'middle'
             }, {
-                url: '/admin/blog',
-                icon: 'create',
-                name: 'Blog',
+                url: '/admin/subjects',
+                icon: 'book',
+                name: 'Asignaturas',
                 pos: 'middle'
             }];
         this.bottom = [];

@@ -11,8 +11,7 @@ const routes: Routes = [{
   component: AdminLayoutComponent,
   children: [
     { path: '', component: AdminComponent, pathMatch: 'full' },
-    { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' },
-    { path: 'blog', loadChildren: 'app/admin/blog/blog.module#BlogModule' }
+    { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' }
   ]
 }, {
   path: '**', redirectTo: 'admin'
