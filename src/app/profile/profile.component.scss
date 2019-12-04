@@ -3,19 +3,22 @@
     max-width: 1024px;
     width: 100%;
     margin: 0px auto;
-  }
+}
   
-  .title {
-      font-weight: 900;
-      font-size: 20px;
-  }
+h3 {
+    font-size: 18px;
+}
+.title {
+    font-weight: 900;
+    font-size: 20px;
+}
   
-  .subjects, .no-results-container {
-      max-width: 1024px;
-      width: 100%;
-      margin: 0px auto;
-      padding: 20px 0;
-  }
+.subjects, .no-results-container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0px auto;
+    padding: 20px 0;
+}
   .no-results-container h3 {
       font-size: 24px;
   }

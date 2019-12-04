@@ -17,8 +17,9 @@
         </mat-toolbar>
       </div>
     </div>
-    <div *ngIf="!user" class="profile-wrap">
-        <a href="/auth/login"> Iniciar sesión </a>
+    <div *ngIf="!user" class="profile-wrap main-container">
+      <h3> No has iniciado sesión en la plataforma </h3>
+      <button routerLink="/auth/login" mat-flat-button color="success"><mat-icon> person </mat-icon> Iniciar sesión </button>
     </div>
     <div *ngIf="user" class="subjects" fxLayout="row wrap" fxLayoutAlign="space-between start">
       <div fxFlex="49" fxFlex.sm="49">
