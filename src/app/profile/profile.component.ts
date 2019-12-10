@@ -52,14 +52,20 @@ export class ProfileComponent implements OnInit {
           this.subjects.push(element);
         });
         // console.log(this.subjects);
-        this.isLoading = false;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       }, (error) => {
         console.log(error);
-        this.isLoading = false;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       });
     }, (error) => {
       console.log(error);
-      this.isLoading = false;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
     });
   }
 

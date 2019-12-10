@@ -14,6 +14,8 @@ import { Subject } from '../subject';
 
 export class SubjectsEditComponent implements OnInit {
 
+  disable = true;
+
   //
   // Permits
   //
@@ -26,25 +28,21 @@ export class SubjectsEditComponent implements OnInit {
 
   subjectForm = this.fb.group({
     _id: [''],
-    fullname: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    roles: ['']
+    codigo: [''],
+    nombre: [''],
+    descripcion: [''],
+    curso: [''],
+    semestre: [''],
+    creditos: [''],
+    titulacion: [''],
+    centro: [''],
+    departamento: [''],
+    tipo: [''],
+    caracter: [''],
+    especialidad: [''],
+    enrollCode: ['']
   });
 
-  //
-  // Main password object
-  //
-
-  /* passwordForm = this.fb.group({
-    password: ['', [Validators.required]],
-    send_email: [false]
-  }); */
-
-  //
-  // Must show password?
-  //
-
-  /*isPasswordHidden: boolean = true; */
 
   constructor(private fb: FormBuilder,
               private toastr: ToastrService,
@@ -55,13 +53,16 @@ export class SubjectsEditComponent implements OnInit {
 
   ngOnInit() {
 
-    if ( this.data && this.data.subject ) {
+    console.log(this.data.subject);
+    this.disableForm();
+    /* if ( this.data && this.data.subject ) {
       this.subjectForm.addControl('_id', this.fb.control(''));
-      this.subjectForm.reset(this.data.user);
+      this.subjectForm.reset(this.data.subject);
       this.subjectForm.get('roles').setValue(this.data.user.roles[0]);
     } else {
       this.dialog.close();
-    }
+    }*/
+
   }
 
   /**
@@ -69,6 +70,17 @@ export class SubjectsEditComponent implements OnInit {
    * Saves the new author to database.
    *
    */
+  disableForm() {
+    this.toastr.warning('Se ha activado el modo lectura.', 'Modo lectura');
+    this.disable = true;
+    this.subjectForm.disable();
+  }
+
+  enableForm() {
+    this.toastr.success('Se ha activado el modo edición, puede editar la información.', 'Modo edición');
+    this.disable = false;
+    this.subjectForm.enable();
+  }
 
   saveSubject (): void {
 

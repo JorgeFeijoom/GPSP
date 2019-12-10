@@ -73,17 +73,17 @@ var admin = new User ({
 });
 
 /* alumno.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("+ Alumno creado");
 });
 
 profesor.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("+ Profesor creado");
 });
 
 admin.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("+ Admin creado");
 });
 */
@@ -283,102 +283,102 @@ var daw1 = new Subject ({
 
 // Save Subject instances, passing a callback  
 /* algebra.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return rr;
   console.log("Algebra creado");
 });
 
 ii.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("II creado");
 });
 
 fp.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("FP creado");
 });
 
 fc.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("FC creado");
 });
 
 ffi.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("FFI creado");
 });
 
 mc.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("MC creado");
 });
 
 p1.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("P1 creado");
 });
 
 bd1.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("BD1 creado");
 });
 
 is1.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("IS1 creado");
 });
 
 p2.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("P2 creado");
 });
 
 fso.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("FSO creado");
 });
 
 aso.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("ASO creado");
 });
 
 bd2.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("BD2 creado");
 });
 
 p3.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("P3 creado");
 });
 
 p4.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("P4 creado");
 });
 
 ssr.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("SSR creado");
 });
 
 daw2.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("DAW2 creado");
 });
 
 daw1.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("DAW1 creado");
 });
 
 mda.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("MDA creado");
 });
 
 as.save(function (err) {
-  if (err) return handleError(err);
+  if (err) return err;
   console.log("AS creado");
 }); 
 */

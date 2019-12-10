@@ -1,95 +1,180 @@
 <h1 mat-dialog-title>Modificar asignatura</h1>
-<div mat-dialog-content class="user-edit-dialog">
+<div mat-dialog-content class="subject-edit-dialog">
+  <form [formGroup]="subjectForm" (ngSubmit)="saveSubject()">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Información básica</mat-card-title>
+          <mat-card-subtitle>Modifica los datos básicos de la asignatura </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <!-- CODIGO -->
+          <mat-form-field appearance="outline">
+            <mat-label>Código</mat-label>
+            <input matInput #codigo name="codigo" formControlName="nombre" maxlength="120" placeholder="Codigo" value='{{data.subject.codigo}}'>
+            <mat-error *ngIf="subjectForm.get('codigo').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /CODIGO -->
 
-  <mat-card>
-    <form [formGroup]="subjectForm" (ngSubmit)="saveSubject()">
-      <mat-card-header>
-        <mat-card-title>Información básica</mat-card-title>
-        <mat-card-subtitle>Modifica los datos básicos de la asignatura </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
+          <!-- NOMBRE -->
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput #nombre name="nombre" formControlName="nombre" maxlength="120" placeholder="Nombre" value='{{data.subject.nombre}}'>
+            <mat-error *ngIf="subjectForm.get('nombre').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /NOMBRE -->
+            
+          <!-- DESCRIPCIÓN -->
+          <mat-form-field appearance="outline">
+            <mat-label> Descripción </mat-label>
+            <textarea matInput #descripcion name="descripcion" formControlName="descripcion" maxlength="120" placeholder="Descripción" value='{{data.subject.descripcion}}'> </textarea>
+            <mat-error *ngIf="subjectForm.get('descripcion').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /DESCRIPCIÓN -->
 
-        <!-- NOMBRE -->
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre</mat-label>
-          <input matInput #nombre name="nombre" formControlName="nombre" maxlength="120" placeholder="Nombre">
-          <mat-error *ngIf="subjectForm.get('nombre').hasError('required')">
-            Este campo es obligatorio
-          </mat-error>
-        </mat-form-field>
-        <!-- /NOMBRE -->
-          
-        <!-- TITULACIÓN -->
-        <mat-form-field appearance="outline">
-          <mat-label>Titulación</mat-label>
-          <input matInput #titulacion name="titulacion" formControlName="titulacion" maxlength="120" placeholder="Titulación">
-          <mat-error *ngIf="subjectForm.get('titulacion').hasError('required')">
-            Este campo es obligatorio
-          </mat-error>
-        </mat-form-field>
-        <!-- /TITULACIÓN -->
+        </mat-card-content>
+    </mat-card>
 
-        <mat-form-field class="permits-container">
-          <mat-label>Curso</mat-label>
-          <mat-select formControlName="curso">
-            <mat-option *ngFor="let curso of cursos" [value]="curso">
-              {{ curso }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title> Duración </mat-card-title>
+          <mat-card-subtitle> Modifica la información referida a la duración de la asignatura </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
 
-      </mat-card-content>
-      <mat-card-actions mat-dialog-actions align="end">
-        <button type="submit" mat-button cdkFocusInitial color="success">GUARDAR</button>
-      </mat-card-actions>
-    </form>
-  </mat-card>
+          <!-- CRÉDITOS -->
+          <mat-form-field appearance="outline">
+            <mat-label>Créditos</mat-label>
+            <input matInput #creditos name="creditos" formControlName="creditos" maxlength="120" placeholder="Créditos" value='{{data.subject.creditos}}'>
+            <mat-error *ngIf="subjectForm.get('creditos').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /CREDITOS -->
+            
+          <!-- SEMESTRE -->
+          <mat-form-field appearance="outline">
+            <mat-label>Semestre</mat-label>
+            <input matInput #semestre name="semestre" formControlName="semestre" maxlength="120" placeholder="Semestre" value='{{data.subject.duracion}}'>
+            <mat-error *ngIf="subjectForm.get('semestre').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /SEMESTRE -->
 
-  <mat-card>
-    <form [formGroup]="subjectForm" (ngSubmit)="saveSubject()">
-      <mat-card-header>
-        <mat-card-title> Ficheros y Software</mat-card-title>
-        <mat-card-subtitle> Modifica los ficheros y el software necesario de la asignatura </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
+          <!-- CURSO -->
+          <mat-form-field class="permits-container">
+            <mat-label>Curso</mat-label>
+            <mat-select formControlName="curso">
+              <mat-option *ngFor="let curso of cursos" value='{{data.subject.curso}}'>
+                {{ curso }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- /CURSO -->
+        </mat-card-content>
+    </mat-card>
 
-        <!-- NOMBRE -->
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre</mat-label>
-          <input matInput #nombre name="nombre" formControlName="nombre" maxlength="120" placeholder="Nombre">
-          <mat-error *ngIf="subjectForm.get('nombre').hasError('required')">
-            Este campo es obligatorio
-          </mat-error>
-        </mat-form-field>
-        <!-- /NOMBRE -->
-          
-        <!-- TITULACIÓN -->
-        <mat-form-field appearance="outline">
-          <mat-label>Titulación</mat-label>
-          <input matInput #titulacion name="titulacion" formControlName="titulacion" maxlength="120" placeholder="Titulación">
-          <mat-error *ngIf="subjectForm.get('titulacion').hasError('required')">
-            Este campo es obligatorio
-          </mat-error>
-        </mat-form-field>
-        <!-- /TITULACIÓN -->
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title> Información Institucional </mat-card-title>
+          <mat-card-subtitle> Modifica la información institucional de la asignatura </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
 
-        <mat-form-field class="permits-container">
-          <mat-label>Curso</mat-label>
-          <mat-select formControlName="curso">
-            <mat-option *ngFor="let curso of cursos" [value]="curso">
-              {{ curso }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <!-- TITULACION -->
+          <mat-form-field appearance="outline">
+            <mat-label> Titulación </mat-label>
+            <input matInput #titulacion name="titulacion" formControlName="titulacion" maxlength="120" placeholder="Titulación" value='{{data.subject.titulacion}}'>
+            <mat-error *ngIf="subjectForm.get('titulacion').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /TITULACION -->
+            
+          <!-- CENTRO -->
+          <mat-form-field appearance="outline">
+            <mat-label>Centro</mat-label>
+            <input matInput #titulacion name="centro" formControlName="centro" maxlength="120" placeholder="Centro" value='{{data.subject.centro}}'>
+            <mat-error *ngIf="subjectForm.get('centro').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /CENTRO -->
 
-      </mat-card-content>
-      <mat-card-actions mat-dialog-actions align="end">
-        <button type="submit" mat-button cdkFocusInitial color="success">GUARDAR</button>
-      </mat-card-actions>
-    </form>
-  </mat-card>
+          <!-- DEPARTAMENTO -->
+          <mat-form-field appearance="outline">
+            <mat-label>Departamento</mat-label>
+            <input matInput #departamento name="departamento" formControlName="departamento" maxlength="120" placeholder="Departamento" value='{{data.subject.departamento}}'>
+            <mat-error *ngIf="subjectForm.get('departamento').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /DEPARTAMENTO -->
 
+        </mat-card-content>
+
+    </mat-card>
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title> Información adicional </mat-card-title>
+          <mat-card-subtitle> Modifica la información adicional y la clave de matriculación </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+
+          <!-- TIPO -->
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <input matInput #tipo name="tipo" formControlName="tipo" maxlength="120" placeholder="Tipo" value='{{data.subject.tipo}}'>
+            <mat-error *ngIf="subjectForm.get('tipo').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /TIPO -->
+            
+          <!-- CARACTER -->
+          <mat-form-field appearance="outline">
+            <mat-label>Carácter</mat-label>
+            <input matInput #caracter name="caracter" formControlName="caracter" maxlength="120" placeholder="Carácter" value='{{data.subject.caracter}}'>
+            <mat-error *ngIf="subjectForm.get('caracter').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /CARACTER -->
+
+          <!-- ESPECIALIDAD -->
+          <mat-form-field appearance="outline">
+            <mat-label>Especialidad</mat-label>
+            <input matInput #especialidad name="especialidad" formControlName="especialidad" maxlength="120" placeholder="Especialidad" value='{{data.subject.especialidad}}'>
+            <mat-error *ngIf="subjectForm.get('especialidad').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /ESPECIALIDAD -->
+
+          <!-- CODIGO MATRICULACION -->
+          <mat-form-field appearance="outline">
+            <mat-label>Código de matriculación</mat-label>
+            <input matInput #enrollCode name="enrollCode" formControlName="enrollCode" maxlength="120" placeholder="Código de matriculación" value='{{data.subject.enrollCode}}'>
+            <mat-error *ngIf="subjectForm.get('enrollCode').hasError('required')">
+              Este campo es obligatorio
+            </mat-error>
+          </mat-form-field>
+          <!-- /CODIGO MATRICULACION -->
+        </mat-card-content>
+    </mat-card>
+  </form>
 </div>
-<div mat-dialog-actions align="end">
-  <button type="button" mat-button mat-dialog-close color="warn">CANCELAR</button>
+<div *ngIf="!disable" mat-dialog-actions align="end">
+  <button type="button" mat-button (click)="disableForm()" color="warn">CANCELAR</button>
+  <button type="button" mat-button mat-dialog-close color="success"> GUARDAR </button>
+</div>
+<div *ngIf="disable" mat-dialog-actions align="end">
+  <button type="button" mat-button mat-dialog-close color="warn">Volver</button>
+  <button type="button" mat-button cdkFocusInitial (click)="enableForm()" color="primary">Editar</button>
 </div>

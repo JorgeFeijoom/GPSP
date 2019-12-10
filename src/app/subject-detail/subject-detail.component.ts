@@ -114,7 +114,9 @@ export class SubjectDetailComponent implements OnInit {
           {title: 'Créditos', text: this.subject.creditos, cols: 1, rows: 1, color: 'lightblue'},
           {title: 'Duración', text: this.subject.duracion, cols: 1, rows: 1, color: '#DDBDF1'},
         ];
-        this.isLoading = false;
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       }
     );
   }

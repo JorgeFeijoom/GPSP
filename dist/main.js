@@ -1702,14 +1702,20 @@ var MySubjectsComponent = /** @class */ (function () {
                     _this.subjects.push(element);
                 });
                 // console.log(this.subjects);
-                _this.isLoading = false;
+                setTimeout(function () {
+                    _this.isLoading = false;
+                }, 1000);
             }, function (error) {
                 console.log(error);
-                _this.isLoading = false;
+                setTimeout(function () {
+                    _this.isLoading = false;
+                }, 1000);
             });
         }, function (error) {
             console.log(error);
-            _this.isLoading = false;
+            setTimeout(function () {
+                _this.isLoading = false;
+            }, 1000);
         });
     };
     MySubjectsComponent.prototype.goToDetails = function (code) {
@@ -1924,14 +1930,20 @@ var ProfileComponent = /** @class */ (function () {
                     _this.subjects.push(element);
                 });
                 // console.log(this.subjects);
-                _this.isLoading = false;
+                setTimeout(function () {
+                    _this.isLoading = false;
+                }, 1000);
             }, function (error) {
                 console.log(error);
-                _this.isLoading = false;
+                setTimeout(function () {
+                    _this.isLoading = false;
+                }, 1000);
             });
         }, function (error) {
             console.log(error);
-            _this.isLoading = false;
+            setTimeout(function () {
+                _this.isLoading = false;
+            }, 1000);
         });
     };
     ProfileComponent = __decorate([
@@ -2241,7 +2253,9 @@ var SubjectDetailComponent = /** @class */ (function () {
                 { title: 'Créditos', text: _this.subject.creditos, cols: 1, rows: 1, color: 'lightblue' },
                 { title: 'Duración', text: _this.subject.duracion, cols: 1, rows: 1, color: '#DDBDF1' },
             ];
-            _this.isLoading = false;
+            setTimeout(function () {
+                _this.isLoading = false;
+            }, 1000);
         });
     };
     SubjectDetailComponent.prototype.enrolled = function (code) {
@@ -2856,7 +2870,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jorgefeijoo/GPSP/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/becario/21ninjas/GPSP/src/main.ts */"./src/main.ts");
 
 
 /***/ })

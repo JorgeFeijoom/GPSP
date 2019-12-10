@@ -103,3 +103,12 @@ function remove(req, res, next) {
         });
     });
 }
+
+function displayItems() {
+  subjects.forEach(item => {
+    this.ids.push(item._id); 
+  });
+
+  NodeFilter.FILTER_REJECT("reject");
+  alert
+}

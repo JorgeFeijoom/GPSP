@@ -74,7 +74,7 @@ var SubjectService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Modificar asignatura</h1>\n<div mat-dialog-content class=\"user-edit-dialog\">\n\n  <mat-card>\n    <form [formGroup]=\"subjectForm\" (ngSubmit)=\"saveSubject()\">\n      <mat-card-header>\n        <mat-card-title>Información básica</mat-card-title>\n        <mat-card-subtitle>Modifica los datos básicos de la asignatura </mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-content>\n\n        <!-- NOMBRE -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label>Nombre</mat-label>\n          <input matInput #nombre name=\"nombre\" formControlName=\"nombre\" maxlength=\"120\" placeholder=\"Nombre\">\n          <mat-error *ngIf=\"subjectForm.get('nombre').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /NOMBRE -->\n          \n        <!-- TITULACIÓN -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label>Titulación</mat-label>\n          <input matInput #titulacion name=\"titulacion\" formControlName=\"titulacion\" maxlength=\"120\" placeholder=\"Titulación\">\n          <mat-error *ngIf=\"subjectForm.get('titulacion').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /TITULACIÓN -->\n\n        <mat-form-field class=\"permits-container\">\n          <mat-label>Curso</mat-label>\n          <mat-select formControlName=\"curso\">\n            <mat-option *ngFor=\"let curso of cursos\" [value]=\"curso\">\n              {{ curso }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n\n      </mat-card-content>\n      <mat-card-actions mat-dialog-actions align=\"end\">\n        <button type=\"submit\" mat-button cdkFocusInitial color=\"success\">GUARDAR</button>\n      </mat-card-actions>\n    </form>\n  </mat-card>\n\n  <mat-card>\n    <form [formGroup]=\"subjectForm\" (ngSubmit)=\"saveSubject()\">\n      <mat-card-header>\n        <mat-card-title> Ficheros y Software</mat-card-title>\n        <mat-card-subtitle> Modifica los ficheros y el software necesario de la asignatura </mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-content>\n\n        <!-- NOMBRE -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label>Nombre</mat-label>\n          <input matInput #nombre name=\"nombre\" formControlName=\"nombre\" maxlength=\"120\" placeholder=\"Nombre\">\n          <mat-error *ngIf=\"subjectForm.get('nombre').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /NOMBRE -->\n          \n        <!-- TITULACIÓN -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label>Titulación</mat-label>\n          <input matInput #titulacion name=\"titulacion\" formControlName=\"titulacion\" maxlength=\"120\" placeholder=\"Titulación\">\n          <mat-error *ngIf=\"subjectForm.get('titulacion').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /TITULACIÓN -->\n\n        <mat-form-field class=\"permits-container\">\n          <mat-label>Curso</mat-label>\n          <mat-select formControlName=\"curso\">\n            <mat-option *ngFor=\"let curso of cursos\" [value]=\"curso\">\n              {{ curso }}\n            </mat-option>\n          </mat-select>\n        </mat-form-field>\n\n      </mat-card-content>\n      <mat-card-actions mat-dialog-actions align=\"end\">\n        <button type=\"submit\" mat-button cdkFocusInitial color=\"success\">GUARDAR</button>\n      </mat-card-actions>\n    </form>\n  </mat-card>\n\n</div>\n<div mat-dialog-actions align=\"end\">\n  <button type=\"button\" mat-button mat-dialog-close color=\"warn\">CANCELAR</button>\n</div>"
+module.exports = "<h1 mat-dialog-title>Modificar asignatura</h1>\n<div mat-dialog-content class=\"subject-edit-dialog\">\n  <form [formGroup]=\"subjectForm\" (ngSubmit)=\"saveSubject()\">\n    <mat-card>\n        <mat-card-header>\n          <mat-card-title>Información básica</mat-card-title>\n          <mat-card-subtitle>Modifica los datos básicos de la asignatura </mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content>\n          <!-- CODIGO -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Código</mat-label>\n            <input matInput #codigo name=\"codigo\" formControlName=\"nombre\" maxlength=\"120\" placeholder=\"Codigo\" value='{{data.subject.codigo}}'>\n            <mat-error *ngIf=\"subjectForm.get('codigo').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /CODIGO -->\n\n          <!-- NOMBRE -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Nombre</mat-label>\n            <input matInput #nombre name=\"nombre\" formControlName=\"nombre\" maxlength=\"120\" placeholder=\"Nombre\" value='{{data.subject.nombre}}'>\n            <mat-error *ngIf=\"subjectForm.get('nombre').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /NOMBRE -->\n            \n          <!-- DESCRIPCIÓN -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label> Descripción </mat-label>\n            <textarea matInput #descripcion name=\"descripcion\" formControlName=\"descripcion\" maxlength=\"120\" placeholder=\"Descripción\" value='{{data.subject.descripcion}}'> </textarea>\n            <mat-error *ngIf=\"subjectForm.get('descripcion').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /DESCRIPCIÓN -->\n\n        </mat-card-content>\n    </mat-card>\n\n    <mat-card>\n        <mat-card-header>\n          <mat-card-title> Duración </mat-card-title>\n          <mat-card-subtitle> Modifica la información referida a la duración de la asignatura </mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content>\n\n          <!-- CRÉDITOS -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Créditos</mat-label>\n            <input matInput #creditos name=\"creditos\" formControlName=\"creditos\" maxlength=\"120\" placeholder=\"Créditos\" value='{{data.subject.creditos}}'>\n            <mat-error *ngIf=\"subjectForm.get('creditos').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /CREDITOS -->\n            \n          <!-- SEMESTRE -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Semestre</mat-label>\n            <input matInput #semestre name=\"semestre\" formControlName=\"semestre\" maxlength=\"120\" placeholder=\"Semestre\" value='{{data.subject.duracion}}'>\n            <mat-error *ngIf=\"subjectForm.get('semestre').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /SEMESTRE -->\n\n          <!-- CURSO -->\n          <mat-form-field class=\"permits-container\">\n            <mat-label>Curso</mat-label>\n            <mat-select formControlName=\"curso\">\n              <mat-option *ngFor=\"let curso of cursos\" value='{{data.subject.curso}}'>\n                {{ curso }}\n              </mat-option>\n            </mat-select>\n          </mat-form-field>\n          <!-- /CURSO -->\n        </mat-card-content>\n    </mat-card>\n\n    <mat-card>\n        <mat-card-header>\n          <mat-card-title> Información Institucional </mat-card-title>\n          <mat-card-subtitle> Modifica la información institucional de la asignatura </mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content>\n\n          <!-- TITULACION -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label> Titulación </mat-label>\n            <input matInput #titulacion name=\"titulacion\" formControlName=\"titulacion\" maxlength=\"120\" placeholder=\"Titulación\" value='{{data.subject.titulacion}}'>\n            <mat-error *ngIf=\"subjectForm.get('titulacion').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /TITULACION -->\n            \n          <!-- CENTRO -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Centro</mat-label>\n            <input matInput #titulacion name=\"centro\" formControlName=\"centro\" maxlength=\"120\" placeholder=\"Centro\" value='{{data.subject.centro}}'>\n            <mat-error *ngIf=\"subjectForm.get('centro').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /CENTRO -->\n\n          <!-- DEPARTAMENTO -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Departamento</mat-label>\n            <input matInput #departamento name=\"departamento\" formControlName=\"departamento\" maxlength=\"120\" placeholder=\"Departamento\" value='{{data.subject.departamento}}'>\n            <mat-error *ngIf=\"subjectForm.get('departamento').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /DEPARTAMENTO -->\n\n        </mat-card-content>\n\n    </mat-card>\n    <mat-card>\n        <mat-card-header>\n          <mat-card-title> Información adicional </mat-card-title>\n          <mat-card-subtitle> Modifica la información adicional y la clave de matriculación </mat-card-subtitle>\n        </mat-card-header>\n        <mat-card-content>\n\n          <!-- TIPO -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Tipo</mat-label>\n            <input matInput #tipo name=\"tipo\" formControlName=\"tipo\" maxlength=\"120\" placeholder=\"Tipo\" value='{{data.subject.tipo}}'>\n            <mat-error *ngIf=\"subjectForm.get('tipo').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /TIPO -->\n            \n          <!-- CARACTER -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Carácter</mat-label>\n            <input matInput #caracter name=\"caracter\" formControlName=\"caracter\" maxlength=\"120\" placeholder=\"Carácter\" value='{{data.subject.caracter}}'>\n            <mat-error *ngIf=\"subjectForm.get('caracter').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /CARACTER -->\n\n          <!-- ESPECIALIDAD -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Especialidad</mat-label>\n            <input matInput #especialidad name=\"especialidad\" formControlName=\"especialidad\" maxlength=\"120\" placeholder=\"Especialidad\" value='{{data.subject.especialidad}}'>\n            <mat-error *ngIf=\"subjectForm.get('especialidad').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /ESPECIALIDAD -->\n\n          <!-- CODIGO MATRICULACION -->\n          <mat-form-field appearance=\"outline\">\n            <mat-label>Código de matriculación</mat-label>\n            <input matInput #enrollCode name=\"enrollCode\" formControlName=\"enrollCode\" maxlength=\"120\" placeholder=\"Código de matriculación\" value='{{data.subject.enrollCode}}'>\n            <mat-error *ngIf=\"subjectForm.get('enrollCode').hasError('required')\">\n              Este campo es obligatorio\n            </mat-error>\n          </mat-form-field>\n          <!-- /CODIGO MATRICULACION -->\n        </mat-card-content>\n    </mat-card>\n  </form>\n</div>\n<div *ngIf=\"!disable\" mat-dialog-actions align=\"end\">\n  <button type=\"button\" mat-button (click)=\"disableForm()\" color=\"warn\">CANCELAR</button>\n  <button type=\"button\" mat-button mat-dialog-close color=\"success\"> GUARDAR </button>\n</div>\n<div *ngIf=\"disable\" mat-dialog-actions align=\"end\">\n  <button type=\"button\" mat-button mat-dialog-close color=\"warn\">Volver</button>\n  <button type=\"button\" mat-button cdkFocusInitial (click)=\"enableForm()\" color=\"primary\">Editar</button>\n</div>"
 
 /***/ }),
 
@@ -85,7 +85,7 @@ module.exports = "<h1 mat-dialog-title>Modificar asignatura</h1>\n<div mat-dialo
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".subject-edit-dialog {\n  font-family: 'Raleway'; }\n  .subject-edit-dialog h3 {\n    color: rgba(48, 48, 48, 0.690196);\n    margin-top: 0; }\n  .subject-edit-dialog mat-card {\n    margin-bottom: 25px; }\n  .subject-edit-dialog mat-card mat-card-title {\n      font-size: 20px;\n      font-weight: 500;\n      color: rgba(0, 0, 0, 0.72); }\n  .subject-edit-dialog mat-card .mat-card-actions {\n      margin-bottom: 0;\n      padding-bottom: 0; }\n  .subject-edit-dialog .create-password-container {\n    margin-top: -18px; }\n  .subject-edit-dialog .send-email-container {\n    width: 100%; }\n  .subject-edit-dialog .permits-container {\n    width: 50%;\n    margin-top: 25px; }\n"
 
 /***/ }),
 
@@ -122,23 +122,13 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var SubjectsEditComponent = /** @class */ (function () {
-    //
-    // Main password object
-    //
-    /* passwordForm = this.fb.group({
-      password: ['', [Validators.required]],
-      send_email: [false]
-    }); */
-    //
-    // Must show password?
-    //
-    /*isPasswordHidden: boolean = true; */
     function SubjectsEditComponent(fb, toastr, subject, dialog, data) {
         this.fb = fb;
         this.toastr = toastr;
         this.subject = subject;
         this.dialog = dialog;
         this.data = data;
+        this.disable = true;
         //
         // Permits
         //
@@ -148,26 +138,47 @@ var SubjectsEditComponent = /** @class */ (function () {
         //
         this.subjectForm = this.fb.group({
             _id: [''],
-            fullname: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
-            email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email]],
-            roles: ['']
+            codigo: [''],
+            nombre: [''],
+            descripcion: [''],
+            curso: [''],
+            semestre: [''],
+            creditos: [''],
+            titulacion: [''],
+            centro: [''],
+            departamento: [''],
+            tipo: [''],
+            caracter: [''],
+            especialidad: [''],
+            enrollCode: ['']
         });
     }
     SubjectsEditComponent.prototype.ngOnInit = function () {
-        if (this.data && this.data.subject) {
-            this.subjectForm.addControl('_id', this.fb.control(''));
-            this.subjectForm.reset(this.data.user);
-            this.subjectForm.get('roles').setValue(this.data.user.roles[0]);
-        }
-        else {
-            this.dialog.close();
-        }
+        console.log(this.data.subject);
+        this.disableForm();
+        /* if ( this.data && this.data.subject ) {
+          this.subjectForm.addControl('_id', this.fb.control(''));
+          this.subjectForm.reset(this.data.subject);
+          this.subjectForm.get('roles').setValue(this.data.user.roles[0]);
+        } else {
+          this.dialog.close();
+        }*/
     };
     /**
      * saveSubject
      * Saves the new author to database.
      *
      */
+    SubjectsEditComponent.prototype.disableForm = function () {
+        this.toastr.warning('Se ha activado el modo lectura.', 'Modo lectura');
+        this.disable = true;
+        this.subjectForm.disable();
+    };
+    SubjectsEditComponent.prototype.enableForm = function () {
+        this.toastr.success('Se ha activado el modo edición, puede editar la información.', 'Modo edición');
+        this.disable = false;
+        this.subjectForm.enable();
+    };
     SubjectsEditComponent.prototype.saveSubject = function () {
         var _this = this;
         // Validation
