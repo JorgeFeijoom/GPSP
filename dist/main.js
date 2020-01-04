@@ -71,12 +71,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subjects_subjects_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../subjects/subjects.component */ "./src/app/subjects/subjects.component.ts");
 /* harmony import */ var _subject_detail_subject_detail_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../subject-detail/subject-detail.component */ "./src/app/subject-detail/subject-detail.component.ts");
 /* harmony import */ var _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../my-subjects/my-subjects.component */ "./src/app/my-subjects/my-subjects.component.ts");
+/* harmony import */ var _request_request_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../request/request.component */ "./src/app/request/request.component.ts");
+/* harmony import */ var _teacher_user_guard__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./teacher-user-guard */ "./src/app/app-routing/teacher-user-guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -111,6 +115,13 @@ var routes = [{
             { path: '', component: _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_8__["MySubjectsComponent"] }
         ]
     }, {
+        canActivate: [_teacher_user_guard__WEBPACK_IMPORTED_MODULE_10__["OnlyTeacherUsersGuard"]],
+        path: 'request',
+        component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
+        children: [
+            { path: '', component: _request_request_component__WEBPACK_IMPORTED_MODULE_9__["RequestComponent"] }
+        ]
+    }, {
         path: 'detail/:code',
         component: _layouts_main_layout_main_layout_component__WEBPACK_IMPORTED_MODULE_3__["MainLayoutComponent"],
         children: [
@@ -138,6 +149,67 @@ var AppRoutingModule = /** @class */ (function () {
         })
     ], AppRoutingModule);
     return AppRoutingModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/app-routing/teacher-user-guard.ts":
+/*!***************************************************!*\
+  !*** ./src/app/app-routing/teacher-user-guard.ts ***!
+  \***************************************************/
+/*! exports provided: OnlyTeacherUsersGuard */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OnlyTeacherUsersGuard", function() { return OnlyTeacherUsersGuard; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var rxjs_add_operator_map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/add/operator/map */ "./node_modules/rxjs-compat/_esm5/add/operator/map.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var OnlyTeacherUsersGuard = /** @class */ (function () {
+    function OnlyTeacherUsersGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    OnlyTeacherUsersGuard.prototype.canActivate = function () {
+        /*
+         * Only authenticated users with teacher role are allowed to pass.
+         *
+         * If user is not allowed, is redirected to home
+         *
+         */
+        var _this = this;
+        return this.authService.isLoggedIn().map(function (logged) {
+            var user = window.user;
+            if (logged && user && user.isTeacher) {
+                return true;
+            }
+            else {
+                _this.router.navigate(['']);
+            }
+        });
+    };
+    OnlyTeacherUsersGuard = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], OnlyTeacherUsersGuard);
+    return OnlyTeacherUsersGuard;
 }());
 
 
@@ -316,12 +388,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./subjects/enroll-dialog/enroll-dialog.component */ "./src/app/subjects/enroll-dialog/enroll-dialog.component.ts");
 /* harmony import */ var _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./my-subjects/my-subjects.component */ "./src/app/my-subjects/my-subjects.component.ts");
 /* harmony import */ var _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./subjects/confirm-dialog/confirm-dialog.component */ "./src/app/subjects/confirm-dialog/confirm-dialog.component.ts");
+/* harmony import */ var _request_request_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./request/request.component */ "./src/app/request/request.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -387,7 +461,8 @@ var AppModule = /** @class */ (function () {
                 _matricularme_matricularme_component__WEBPACK_IMPORTED_MODULE_27__["MatricularmeComponent"],
                 _subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"],
                 _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__["MySubjectsComponent"],
-                _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"]
+                _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"],
+                _request_request_component__WEBPACK_IMPORTED_MODULE_31__["RequestComponent"]
             ],
             providers: [{
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
@@ -1033,7 +1108,7 @@ var FooterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<header>\n  <mat-toolbar>\n    <a [routerLink]=\"['/']\" id=\"logo\">\n      <!-- <img class=\"logo\" src=\"../../assets/img/logo-text.gif\" alt=\"GPSP\" /> -->\n    </a>\n    <!-- NOT LOGGED USER -->\n    <div *ngIf=\"!user\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\" >\n       <span> <img class=\"mat-icon\" src=\".../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [routerLink]=\"['/auth/login']\"  class=\"menu-element\">\n        Iniciar sesión <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n    </div>\n    <!-- /NOT LOGGED USER -->\n\n    <!-- DROPDOWN LOGGED USER -->\n    <div *ngIf=\"user && !user.isAdmin\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span><img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN LOGGED USER -->\n\n    <!-- DROPDOWN TEACHER USER -->\n    <div *ngIf=\"user && !user.isAdmin && user.isTeacher\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span><img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN TEACHER USER -->\n\n    <!-- DROPDOWN ADMIN USER -->\n    <div *ngIf=\"user && user.isAdmin\" class=\"menu user\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/admin']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Admin</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.middle\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.bottom\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar  <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN ADMIN USER -->\n  </mat-toolbar>\n</header>\n"
+module.exports = "<header>\n  <mat-toolbar>\n    <a [routerLink]=\"['/']\" id=\"logo\">\n      <!-- <img class=\"logo\" src=\"../../assets/img/logo-text.gif\" alt=\"GPSP\" /> -->\n    </a>\n    <!-- NOT LOGGED USER -->\n    <div *ngIf=\"!user\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\" >\n       <span> <img class=\"mat-icon\" src=\".../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [routerLink]=\"['/auth/login']\"  class=\"menu-element\">\n        Iniciar sesión <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n    </div>\n    <!-- /NOT LOGGED USER -->\n\n    <!-- DROPDOWN LOGGED USER -->\n    <div *ngIf=\"user && !user.isAdmin && !user.isTeacher\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span><img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN LOGGED USER -->\n\n    <!-- DROPDOWN TEACHER USER -->\n    <div *ngIf=\"user && !user.isAdmin && user.isTeacher\" class=\"menu\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span><img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <button mat-menu-item [routerLink]=\"['/request']\"><mat-icon class=\"header-menu-icon-margin\">notification_important</mat-icon>Mis peticiones</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item [routerLink]=\"['/request']\"><mat-icon class=\"header-menu-icon-margin\">add_alert</mat-icon>Mis peticiones</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN TEACHER USER -->\n\n    <!-- DROPDOWN ADMIN USER -->\n    <div *ngIf=\"user && user.isAdmin\" class=\"menu user\">\n      <a [matMenuTriggerFor]=\"menu\" class=\"menu-element hamb\">\n        <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_2.svg\"> </span>\n      </a>\n      <a [matMenuTriggerFor]=\"userMenu\" class=\"menu-element\">\n        {{ user.fullname }} <span> <img class=\"mat-icon\" src=\"../../../assets/img/icons/Recurso_3.svg\"></span>\n      </a>\n      <mat-menu #menu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Inicio</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"['/profile']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">face</mat-icon>Mi Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/subjects']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">class</mat-icon>Mis asignaturas</button>\n        <button mat-menu-item [routerLink]=\"['/matricularme']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">queue</mat-icon>Matricularme</button>\n        <button mat-menu-item [routerLink]=\"['/mv']\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">dns</mat-icon>Máquinas virtuales</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n\n      <mat-menu #userMenu=\"matMenu\" yPosition=\"below\" [overlapTrigger]=\"false\">\n        <button mat-menu-item [routerLink]=\"['/profile']\"><mat-icon class=\"header-menu-icon-margin\">person</mat-icon>Perfil</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item [routerLink]=\"['/admin']\" [routerLinkActive]=\"'header-button-active'\" [routerLinkActiveOptions]=\"{ exact: true }\"><mat-icon class=\"header-menu-icon-margin\">home</mat-icon>Admin</button>\n        <button mat-menu-item *ngFor=\"let section of dropdown.top\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.middle\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <mat-divider></mat-divider>\n        <button mat-menu-item *ngFor=\"let section of dropdown.bottom\" [routerLink]=\"[section.url]\" [routerLinkActive]=\"'header-button-active'\"><mat-icon class=\"header-menu-icon-margin\">{{ section.icon }}</mat-icon>{{ section.name }}</button>\n        <button mat-menu-item (click)=\"logout()\"><mat-icon class=\"header-menu-icon-margin\">power_settings_news</mat-icon>Salir</button>\n      </mat-menu>\n      <a class=\"menu-element\" routerLink=\"/matricularme\">\n        Buscar  <span> <mat-icon class=\"header-menu-icon-margin\">search</mat-icon> </span>\n      </a>\n    </div>\n    <!-- /DROPDOWN ADMIN USER -->\n  </mat-toolbar>\n</header>\n"
 
 /***/ }),
 
@@ -1967,6 +2042,69 @@ var ProfileComponent = /** @class */ (function () {
             _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
     ], ProfileComponent);
     return ProfileComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/request/request.component.html":
+/*!************************************************!*\
+  !*** ./src/app/request/request.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  request works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/request/request.component.scss":
+/*!************************************************!*\
+  !*** ./src/app/request/request.component.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/request/request.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/request/request.component.ts ***!
+  \**********************************************/
+/*! exports provided: RequestComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestComponent", function() { return RequestComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var RequestComponent = /** @class */ (function () {
+    function RequestComponent() {
+    }
+    RequestComponent.prototype.ngOnInit = function () {
+    };
+    RequestComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-request',
+            template: __webpack_require__(/*! ./request.component.html */ "./src/app/request/request.component.html"),
+            styles: [__webpack_require__(/*! ./request.component.scss */ "./src/app/request/request.component.scss")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], RequestComponent);
+    return RequestComponent;
 }());
 
 

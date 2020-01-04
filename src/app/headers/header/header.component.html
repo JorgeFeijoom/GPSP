@@ -28,7 +28,7 @@
     <!-- /NOT LOGGED USER -->
 
     <!-- DROPDOWN LOGGED USER -->
-    <div *ngIf="user && !user.isAdmin" class="menu">
+    <div *ngIf="user && !user.isAdmin && !user.isTeacher" class="menu">
       <a [matMenuTriggerFor]="menu" class="menu-element hamb">
         <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_2.svg"> </span>
       </a>
@@ -67,11 +67,13 @@
       </a>
       <mat-menu #userMenu="matMenu" yPosition="below" [overlapTrigger]="false">
         <button mat-menu-item [routerLink]="['/profile']"><mat-icon class="header-menu-icon-margin">person</mat-icon>Perfil</button>
+        <button mat-menu-item [routerLink]="['/request']"><mat-icon class="header-menu-icon-margin">notification_important</mat-icon>Mis peticiones</button>
         <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
       </mat-menu>
 
       <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
         <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Inicio</button>
+        <button mat-menu-item [routerLink]="['/request']"><mat-icon class="header-menu-icon-margin">add_alert</mat-icon>Mis peticiones</button>
         <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/profile']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">face</mat-icon>Mi Perfil</button>
         <mat-divider></mat-divider>
         <button mat-menu-item [routerLink]="['/subjects']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">class</mat-icon>Mis asignaturas</button>

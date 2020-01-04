@@ -8,6 +8,8 @@ import { ProfileComponent } from '../profile/profile.component';
 import { SubjectsComponent } from '../subjects/subjects.component';
 import { SubjectDetailComponent } from '../subject-detail/subject-detail.component';
 import { MySubjectsComponent } from '../my-subjects/my-subjects.component';
+import { RequestComponent } from '../request/request.component';
+import { OnlyTeacherUsersGuard } from './teacher-user-guard';
 
 const routes: Routes = [{
   path: '',
@@ -32,6 +34,13 @@ const routes: Routes = [{
   component: MainLayoutComponent,
   children: [
     { path: '', component: MySubjectsComponent }
+  ]
+}, {
+  canActivate: [OnlyTeacherUsersGuard],
+  path: 'request',
+  component: MainLayoutComponent,
+  children: [
+    { path: '', component: RequestComponent }
   ]
 }, {
   path: 'detail/:code',
