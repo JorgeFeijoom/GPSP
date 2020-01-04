@@ -201,7 +201,7 @@ var OnlyTeacherUsersGuard = /** @class */ (function () {
                 return true;
             }
             else {
-                _this.router.navigate(['']);
+                _this.router.navigateByUrl('/404');
             }
         });
     };
@@ -389,12 +389,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./my-subjects/my-subjects.component */ "./src/app/my-subjects/my-subjects.component.ts");
 /* harmony import */ var _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./subjects/confirm-dialog/confirm-dialog.component */ "./src/app/subjects/confirm-dialog/confirm-dialog.component.ts");
 /* harmony import */ var _request_request_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./request/request.component */ "./src/app/request/request.component.ts");
+/* harmony import */ var _app_routing_teacher_user_guard__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./app-routing/teacher-user-guard */ "./src/app/app-routing/teacher-user-guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -464,7 +466,8 @@ var AppModule = /** @class */ (function () {
                 _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"],
                 _request_request_component__WEBPACK_IMPORTED_MODULE_31__["RequestComponent"]
             ],
-            providers: [{
+            providers: [_app_routing_teacher_user_guard__WEBPACK_IMPORTED_MODULE_32__["OnlyTeacherUsersGuard"],
+                {
                     provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HTTP_INTERCEPTORS"],
                     useClass: _interceptors_header_interceptor__WEBPACK_IMPORTED_MODULE_14__["AuthHeaderInterceptor"],
                     multi: true,
@@ -1862,7 +1865,7 @@ var MySubjectsComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  page-not-found works!\n</p>\n"
+module.exports = "<div class=\"screen gradient\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n  <div>\n    <div class=\"not-found-container\">\n      <a [routerLink]=\"['/']\" id=\"logo\">\n        <!-- <img class=\"logo\" src=\"../../assets/img/logo-text.gif\" alt=\"GPSP\" /> -->\n      </a>      \n      <p class=\"not-found\">404</p>\n      <p class=\"not-found-text\">Página no encontrada</p>\n      <br /><br />\n      <button mat-raised-button routerLink=\"/\" color=\"alert\" class=\"mat-elevation-z8\">VOLVER</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1873,7 +1876,7 @@ module.exports = "<p>\n  page-not-found works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.screen {\n  width: 100%;\n  height: 100%; }\n.screen #logo {\n    background: url('ulpgc_graficos_v14.svg') -641px -2128px no-repeat;\n    background-size: 1900px;\n    width: 330px;\n    height: 70px;\n    display: block; }\n.screen.gradient {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-color: #002e67;\n    /* Old browsers */\n    /* FF3.6-15 */\n    /* Chrome10-25,Safari5.1-6 */\n    background: linear-gradient(to bottom, #002e67 0%, #42648e 100%);\n    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002e67', endColorstr='#42648e',GradientType=1 );\n    /* IE6-9 fallback on horizontal gradient */ }\n.screen .not-found-container {\n    text-align: center; }\n.screen .not-found-container .logo {\n      width: 400px;\n      max-width: 400px; }\n.screen .not-found-container .not-found {\n      font-size: 120px;\n      margin-top: 10px;\n      margin-bottom: 10px;\n      color: #fff; }\n.screen .not-found-container .not-found-text {\n      font-size: 20px;\n      color: #fff; }\n"
 
 /***/ }),
 

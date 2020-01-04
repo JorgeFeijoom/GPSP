@@ -1,3 +1,13 @@
-<p>
-  page-not-found works!
-</p>
+<div class="screen gradient" fxLayout="column" fxLayoutAlign="center center">
+  <div>
+    <div class="not-found-container">
+      <a [routerLink]="['/']" id="logo">
+        <!-- <img class="logo" src="../../assets/img/logo-text.gif" alt="GPSP" /> -->
+      </a>      
+      <p class="not-found">404</p>
+      <p class="not-found-text">Página no encontrada</p>
+      <br /><br />
+      <button mat-raised-button routerLink="/" color="alert" class="mat-elevation-z8">VOLVER</button>
+    </div>
+  </div>
+</div>

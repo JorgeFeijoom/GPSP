@@ -22,6 +22,6 @@ export class OnlyTeacherUsersGuard implements CanActivate {
       const user = (<any>window).user;
       if ( logged && user && user.isTeacher ) {
         return true;
-    } else { this.router.navigate(['']); } });
+    } else { this.router.navigateByUrl('/404'); } });
   }
 }

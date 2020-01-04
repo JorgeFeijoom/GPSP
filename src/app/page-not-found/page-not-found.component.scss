@@ -1,0 +1,45 @@
+@import '_settings.scss';
+
+.screen {
+  width: 100%;
+  height: 100%;
+
+  #logo {
+    background: url('../../assets/img/ulpgc_graficos_v14.svg') -641px -2128px no-repeat;
+    background-size: 1900px;
+    width: 330px;
+    height: 70px;
+    display: block;
+  }
+
+  &.gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #002e67; /* Old browsers */
+    background: -moz-linear-gradient(to bottom, #002e67 0%, #42648e 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(to bottom, #002e67 0%, #42648e 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #002e67 0%, #42648e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002e67', endColorstr='#42648e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  }
+
+  .not-found-container {
+    //width: 500px;
+    //margin: 20% auto;
+    text-align: center;
+    .logo {
+      width: 400px;
+      max-width: 400px;
+    }
+    .not-found {
+      font-size: 120px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .not-found-text {
+      font-size: 20px;
+      color: #fff;
+    }
+  }
+}

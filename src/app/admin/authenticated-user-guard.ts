@@ -6,13 +6,13 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class OnlyAuthenticatedUsersGuard implements CanActivate {
-  
+
   constructor(private authService: AuthService, private router: Router) {}
 
   /*
    * Only authenticated users are allowed to pass.
    * We don't check roles, only state.
-   * 
+   *
    * If user is not allowed, is redirected to home
    *
    */
@@ -23,7 +23,7 @@ export class OnlyAuthenticatedUsersGuard implements CanActivate {
       const user = (<any>window).user;
 
       if ( logged ) return logged;
-      else this.router.navigate(['']);
+      else this.router.navigate(['/404']);
     });
 
   }

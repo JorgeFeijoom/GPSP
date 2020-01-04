@@ -286,7 +286,7 @@ var OnlyAuthenticatedUsersGuard = /** @class */ (function () {
             if (logged)
                 return logged;
             else
-                _this.router.navigate(['']);
+                _this.router.navigate(['/404']);
         });
     };
     OnlyAuthenticatedUsersGuard = __decorate([

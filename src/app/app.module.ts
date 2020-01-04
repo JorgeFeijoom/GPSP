@@ -36,6 +36,8 @@ import { EnrollDialogComponent } from './subjects/enroll-dialog/enroll-dialog.co
 import { MySubjectsComponent } from './my-subjects/my-subjects.component';
 import { ConfirmDialogComponent } from './subjects/confirm-dialog/confirm-dialog.component';
 import { RequestComponent } from './request/request.component';
+import { OnlyTeacherUsersGuard } from './app-routing/teacher-user-guard';
+
 registerLocaleData(localeEs, 'es-ES', localeEsExtra);
 
 @NgModule({
@@ -69,7 +71,8 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
     ConfirmDialogComponent,
     RequestComponent
   ],
-  providers: [{
+  providers: [OnlyTeacherUsersGuard,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthHeaderInterceptor,
     multi: true,
