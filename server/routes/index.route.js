@@ -3,7 +3,7 @@ const userRoutes = require('./user.route');
 const authRoutes = require('./auth.route');
 const subjectRoutes = require('./subject.route');
 const enrollRoutes = require('./enroll.route');
-
+const requestRoutes = require('./request.route');
 const router = express.Router(); // eslint-disable-line new-cap
 
 /** GET /health-check - Check service health */
