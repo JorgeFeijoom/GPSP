@@ -1,3 +1,24 @@
-<p>
-  request works!
-</p>
+<div class="container">
+    <div class="main-container" fxLayout="row" fxLayoutAlign="center center">
+      <div fxFlex="100">
+          <mat-toolbar color="accent">
+              <mat-toolbar-row>
+                <div class="main-icon"><mat-icon>notification_important</mat-icon></div>
+                <div><span class="title">Mis Peticiones</span></div>
+                <span class="spacer"></span>
+                <button (click)="openCreateRequestDialog()" mat-icon-button matTooltip="Crear">
+                  <mat-icon>add_alert</mat-icon>
+                </button>
+                <button routerLink="/" mat-icon-button matTooltip="Volver al Inicio">
+                  <mat-icon>chevron_left</mat-icon>
+                </button>
+              </mat-toolbar-row>
+          </mat-toolbar>
+
+          <!-- NO ITEMS FOR SHOWING -->
+          <div class="no-results-container">
+            <h3> No has creado ninguna petición </h3>
+          </div>
+      </div>
+    </div>
+</div>

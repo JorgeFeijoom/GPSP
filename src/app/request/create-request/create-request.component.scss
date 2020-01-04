@@ -1,0 +1,35 @@
+h1 {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.create-request-dialog {
+  font-family: 'Raleway';
+  h3 {
+    color: rgba(48, 48, 48, 0.6901960784313725);
+    margin-top: 0;
+  }
+  mat-card {
+    margin-bottom: 25px;
+    mat-card-title {
+      font-size: 20px;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.72);
+    }
+    .mat-card-actions {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .create-password-container {
+    margin-top: -18px;
+  }
+  .send-email-container {
+    width: 100%;
+  }
+  .permits-container {
+    width: 50%;
+    margin-top: 25px;
+  }
+}

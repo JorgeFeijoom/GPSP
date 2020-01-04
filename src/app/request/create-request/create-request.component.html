@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Crear petición </h1>
+<div mat-dialog-content class="create-request-dialog">
+  <form [formGroup]="createRequestForm" (ngSubmit)="createRequest()">
+    <mat-card>
+      <mat-card-header>
+        <!-- CODIGO -->
+        <mat-form-field appearance="outline">
+          <mat-label> Código </mat-label>
+          <input matInput #subject name="codigo" formControlName="codigo" placeholder="Código">
+          <mat-error *ngIf="createRequestForm.get('codigo').hasError('required')">
+            Este campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+        <!-- /CODIGO -->
+        <!-- NOMBRE -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput #nombre name="nombre" formControlName="nombre" maxlength="120" placeholder="Nombre" value='{{data.subject.nombre}}'>
+          <mat-error *ngIf="createRequestForm.get('nombre').hasError('required')">
+            Este campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+        <!-- /NOMBRE -->
+      </mat-card-header>
+      <mat-card-content>
+        <!-- SOFTWARE -->
+        <mat-form-field appearance="outline">
+          <mat-label> Software </mat-label>
+          <textarea matInput #software name="software" formControlName="software" placeholder="Software"> </textarea>
+          <mat-error *ngIf="createRequestForm.get('software').hasError('required')">
+            Este campo es obligatorio
+          </mat-error>
+        </mat-form-field>
+        <!-- /SOFTWARE -->
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button type="button" mat-button color="warn">CANCELAR</button>
+  <button type="button" mat-button mat-dialog-close color="success"> ENVIAR </button>
+</div>

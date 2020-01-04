@@ -44,7 +44,6 @@ export class AuthService {
   }
 
   setUser(user: any): void {
-    console.log('ROLES: ' + user.roles);
     if (user) { user.isAdmin = (user.roles.indexOf('admin') > -1); }
     if (user) { user.isTeacher = (user.roles.indexOf('profesor') > -1); }
     this.loggedIn = true;

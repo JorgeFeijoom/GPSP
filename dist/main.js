@@ -52,69 +52,6 @@ module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ "./src/app/access/access.component.html":
-/*!**********************************************!*\
-  !*** ./src/app/access/access.component.html ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"screen gradient\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n  <div>\n    <div class=\"not-found-container\">\n      <a [routerLink]=\"['/']\" id=\"logo\">\n        <!-- <img class=\"logo\" src=\"../../assets/img/logo-text.gif\" alt=\"GPSP\" /> -->\n      </a>      \n      <p class=\"not-found\">Bienvenid@!</p>\n      <p class=\"not-found-text\">Acceder a la plataforma</p>\n      <br /><br />\n      <button mat-raised-button routerLink=\"/auth/login\" color=\"alert\" class=\"mat-elevation-z8\">ACCEDER</button>\n    </div>\n  </div>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/access/access.component.scss":
-/*!**********************************************!*\
-  !*** ./src/app/access/access.component.scss ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.screen {\n  width: 100%;\n  height: 100%; }\n.screen #logo {\n    background: url('ulpgc_graficos_v14.svg') -641px -2128px no-repeat;\n    background-size: 1900px;\n    width: 330px;\n    height: 70px;\n    display: block; }\n.screen.gradient {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-color: #002e67;\n    /* Old browsers */\n    /* FF3.6-15 */\n    /* Chrome10-25,Safari5.1-6 */\n    background: linear-gradient(to bottom, #002e67 0%, #42648e 100%);\n    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#002e67', endColorstr='#42648e',GradientType=1 );\n    /* IE6-9 fallback on horizontal gradient */ }\n.screen .not-found-container {\n    text-align: center; }\n.screen .not-found-container .logo {\n      width: 400px;\n      max-width: 400px; }\n.screen .not-found-container .not-found {\n      font-size: 120px;\n      margin-top: 10px;\n      margin-bottom: 10px;\n      color: #fff; }\n.screen .not-found-container .not-found-text {\n      font-size: 20px;\n      color: #fff; }\n"
-
-/***/ }),
-
-/***/ "./src/app/access/access.component.ts":
-/*!********************************************!*\
-  !*** ./src/app/access/access.component.ts ***!
-  \********************************************/
-/*! exports provided: AccessComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AccessComponent", function() { return AccessComponent; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (undefined && undefined.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-var AccessComponent = /** @class */ (function () {
-    function AccessComponent() {
-    }
-    AccessComponent.prototype.ngOnInit = function () {
-    };
-    AccessComponent = __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
-            selector: 'app-access',
-            template: __webpack_require__(/*! ./access.component.html */ "./src/app/access/access.component.html"),
-            styles: [__webpack_require__(/*! ./access.component.scss */ "./src/app/access/access.component.scss")]
-        }),
-        __metadata("design:paramtypes", [])
-    ], AccessComponent);
-    return AccessComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/app-routing/app-routing.module.ts":
 /*!***************************************************!*\
   !*** ./src/app/app-routing/app-routing.module.ts ***!
@@ -453,7 +390,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./subjects/confirm-dialog/confirm-dialog.component */ "./src/app/subjects/confirm-dialog/confirm-dialog.component.ts");
 /* harmony import */ var _request_request_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./request/request.component */ "./src/app/request/request.component.ts");
 /* harmony import */ var _app_routing_teacher_user_guard__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./app-routing/teacher-user-guard */ "./src/app/app-routing/teacher-user-guard.ts");
-/* harmony import */ var _access_access_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./access/access.component */ "./src/app/access/access.component.ts");
+/* harmony import */ var _request_create_request_create_request_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./request/create-request/create-request.component */ "./src/app/request/create-request/create-request.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -530,7 +467,7 @@ var AppModule = /** @class */ (function () {
                 _my_subjects_my_subjects_component__WEBPACK_IMPORTED_MODULE_29__["MySubjectsComponent"],
                 _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"],
                 _request_request_component__WEBPACK_IMPORTED_MODULE_31__["RequestComponent"],
-                _access_access_component__WEBPACK_IMPORTED_MODULE_33__["AccessComponent"]
+                _request_create_request_create_request_component__WEBPACK_IMPORTED_MODULE_33__["CreateRequestComponent"]
             ],
             providers: [_app_routing_teacher_user_guard__WEBPACK_IMPORTED_MODULE_32__["OnlyTeacherUsersGuard"],
                 {
@@ -544,7 +481,7 @@ var AppModule = /** @class */ (function () {
                 }, {
                     provide: _angular_core__WEBPACK_IMPORTED_MODULE_3__["LOCALE_ID"], useValue: 'es-ES'
                 }],
-            entryComponents: [_subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"], _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"]],
+            entryComponents: [_subjects_enroll_dialog_enroll_dialog_component__WEBPACK_IMPORTED_MODULE_28__["EnrollDialogComponent"], _subjects_confirm_dialog_confirm_dialog_component__WEBPACK_IMPORTED_MODULE_30__["ConfirmDialogComponent"], _request_create_request_create_request_component__WEBPACK_IMPORTED_MODULE_33__["CreateRequestComponent"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]]
         })
     ], AppModule);
@@ -792,7 +729,6 @@ var AuthService = /** @class */ (function () {
         });
     };
     AuthService.prototype.setUser = function (user) {
-        console.log('ROLES: ' + user.roles);
         if (user) {
             user.isAdmin = (user.roles.indexOf('admin') > -1);
         }
@@ -1233,7 +1169,7 @@ var HeaderComponent = /** @class */ (function () {
     };
     HeaderComponent.prototype.logout = function () {
         this.authService.signOut();
-        this.navigate('/auth/login');
+        this.navigate('');
     };
     HeaderComponent.prototype.navigate = function (link) {
         this.router.navigate([link]);
@@ -2117,6 +2053,133 @@ var ProfileComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/request/create-request/create-request.component.html":
+/*!**********************************************************************!*\
+  !*** ./src/app/request/create-request/create-request.component.html ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h1 mat-dialog-title>Crear petición </h1>\n<div mat-dialog-content class=\"create-request-dialog\">\n  <form [formGroup]=\"createRequestForm\" (ngSubmit)=\"createRequest()\">\n    <mat-card>\n      <mat-card-header>\n        <!-- CODIGO -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label> Código </mat-label>\n          <input matInput #subject name=\"codigo\" formControlName=\"codigo\" placeholder=\"Código\">\n          <mat-error *ngIf=\"createRequestForm.get('codigo').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /CODIGO -->\n        <!-- NOMBRE -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label>Nombre</mat-label>\n          <input matInput #nombre name=\"nombre\" formControlName=\"nombre\" maxlength=\"120\" placeholder=\"Nombre\" value='{{data.subject.nombre}}'>\n          <mat-error *ngIf=\"createRequestForm.get('nombre').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /NOMBRE -->\n      </mat-card-header>\n      <mat-card-content>\n        <!-- SOFTWARE -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label> Software </mat-label>\n          <textarea matInput #software name=\"software\" formControlName=\"software\" placeholder=\"Software\"> </textarea>\n          <mat-error *ngIf=\"createRequestForm.get('software').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /SOFTWARE -->\n      </mat-card-content>\n    </mat-card>\n  </form>\n</div>\n<div mat-dialog-actions align=\"end\">\n  <button type=\"button\" mat-button color=\"warn\">CANCELAR</button>\n  <button type=\"button\" mat-button mat-dialog-close color=\"success\"> ENVIAR </button>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/request/create-request/create-request.component.scss":
+/*!**********************************************************************!*\
+  !*** ./src/app/request/create-request/create-request.component.scss ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "h1 {\n  font-size: 22px;\n  font-weight: 800; }\n\n.create-request-dialog {\n  font-family: 'Raleway'; }\n\n.create-request-dialog h3 {\n    color: rgba(48, 48, 48, 0.690196);\n    margin-top: 0; }\n\n.create-request-dialog mat-card {\n    margin-bottom: 25px; }\n\n.create-request-dialog mat-card mat-card-title {\n      font-size: 20px;\n      font-weight: 500;\n      color: rgba(0, 0, 0, 0.72); }\n\n.create-request-dialog mat-card .mat-card-actions {\n      margin-bottom: 0;\n      padding-bottom: 0; }\n\n.create-request-dialog .create-password-container {\n    margin-top: -18px; }\n\n.create-request-dialog .send-email-container {\n    width: 100%; }\n\n.create-request-dialog .permits-container {\n    width: 50%;\n    margin-top: 25px; }\n"
+
+/***/ }),
+
+/***/ "./src/app/request/create-request/create-request.component.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/request/create-request/create-request.component.ts ***!
+  \********************************************************************/
+/*! exports provided: CreateRequestComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateRequestComponent", function() { return CreateRequestComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (undefined && undefined.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+
+var CreateRequestComponent = /** @class */ (function () {
+    function CreateRequestComponent(fb, toastr, subject, dialog, data) {
+        this.fb = fb;
+        this.toastr = toastr;
+        this.subject = subject;
+        this.dialog = dialog;
+        this.data = data;
+        //
+        // Main user object
+        //
+        this.createRequestForm = this.fb.group({
+            asignatura: [''],
+            codigo: [''],
+            nombre: ['']
+        });
+    }
+    CreateRequestComponent.prototype.ngOnInit = function () {
+        console.log("PRUEBA");
+        /* if ( this.data && this.data.subject ) {
+          this.subjectForm.addControl('_id', this.fb.control(''));
+          this.subjectForm.reset(this.data.subject);
+          this.subjectForm.get('roles').setValue(this.data.user.roles[0]);
+        } else {
+          this.dialog.close();
+        }*/
+    };
+    /**
+     * saveSubject
+     * Saves the new author to database.
+     *
+     */
+    CreateRequestComponent.prototype.createRequest = function () {
+        // Validation
+        if (this.createRequestForm.invalid) {
+            return;
+        }
+        //
+        // Validation OK
+        //
+        var request = this.createRequestForm.value;
+        console.log(request);
+        /* this
+          .subject
+          .update(subject)
+          .subscribe(
+            (subject: Subject) => {
+              this.toastr.success('Asignatura actualizada correctamente', 'Confirmación');
+              this.dialog.close(subject);
+            },
+            (error: any) => {
+              this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+            });
+        */
+    };
+    CreateRequestComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-create-request',
+            template: __webpack_require__(/*! ./create-request.component.html */ "./src/app/request/create-request/create-request.component.html"),
+            styles: [__webpack_require__(/*! ./create-request.component.scss */ "./src/app/request/create-request/create-request.component.scss")]
+        }),
+        __param(4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
+            _subjects_subject_service__WEBPACK_IMPORTED_MODULE_4__["SubjectService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object])
+    ], CreateRequestComponent);
+    return CreateRequestComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/request/request.component.html":
 /*!************************************************!*\
   !*** ./src/app/request/request.component.html ***!
@@ -2124,7 +2187,7 @@ var ProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  request works!\n</p>\n"
+module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div class=\"no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n      </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -2135,7 +2198,7 @@ module.exports = "<p>\n  request works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = ".title {\n  font-weight: 900;\n  padding-left: 5px; }\n\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\n\nh3 {\n  font-size: 18px; }\n\n.no-results-container {\n  margin-top: 40px; }\n"
 
 /***/ }),
 
@@ -2150,6 +2213,10 @@ module.exports = ""
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RequestComponent", function() { return RequestComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
+/* harmony import */ var _create_request_create_request_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./create-request/create-request.component */ "./src/app/request/create-request/create-request.component.ts");
+/* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2160,10 +2227,39 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
+
 var RequestComponent = /** @class */ (function () {
-    function RequestComponent() {
+    function RequestComponent(subjectService, toastr, dialog) {
+        this.subjectService = subjectService;
+        this.toastr = toastr;
+        this.dialog = dialog;
+        //
+        // Dialogs
+        //
+        this.createRequestDialog = null;
     }
     RequestComponent.prototype.ngOnInit = function () {
+    };
+    /**
+     * openCreateRequestDialog
+     * Open the request create dialog
+     *
+     */
+    RequestComponent.prototype.openCreateRequestDialog = function () {
+        this.createRequestDialog = this.dialog.open(_create_request_create_request_component__WEBPACK_IMPORTED_MODULE_3__["CreateRequestComponent"], {
+            width: '700px',
+            data: {
+                dialog: this.createRequestDialog
+            }
+        });
+        this.createRequestDialog.afterClosed().subscribe(function (request) {
+            if (request) {
+                console.log("enviado");
+            }
+        });
     };
     RequestComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2171,7 +2267,9 @@ var RequestComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./request.component.html */ "./src/app/request/request.component.html"),
             styles: [__webpack_require__(/*! ./request.component.scss */ "./src/app/request/request.component.scss")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_subjects_subject_service__WEBPACK_IMPORTED_MODULE_4__["SubjectService"],
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
     ], RequestComponent);
     return RequestComponent;
 }());
