@@ -37,6 +37,7 @@ import { MySubjectsComponent } from './my-subjects/my-subjects.component';
 import { ConfirmDialogComponent } from './subjects/confirm-dialog/confirm-dialog.component';
 import { RequestComponent } from './request/request.component';
 import { OnlyTeacherUsersGuard } from './app-routing/teacher-user-guard';
+import { AccessComponent } from './access/access.component';
 
 registerLocaleData(localeEs, 'es-ES', localeEsExtra);
 
@@ -69,7 +70,8 @@ registerLocaleData(localeEs, 'es-ES', localeEsExtra);
     EnrollDialogComponent,
     MySubjectsComponent,
     ConfirmDialogComponent,
-    RequestComponent
+    RequestComponent,
+    AccessComponent
   ],
   providers: [OnlyTeacherUsersGuard,
     {

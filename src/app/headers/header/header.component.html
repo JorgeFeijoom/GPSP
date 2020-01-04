@@ -5,25 +5,9 @@
     </a>
     <!-- NOT LOGGED USER -->
     <div *ngIf="!user" class="menu">
-      <a [matMenuTriggerFor]="menu" class="menu-element hamb" >
-       <span> <img class="mat-icon" src=".../../../assets/img/icons/Recurso_2.svg"> </span>
-      </a>
       <a [routerLink]="['/auth/login']"  class="menu-element">
         Iniciar sesión <span> <img class="mat-icon" src="../../../assets/img/icons/Recurso_3.svg"></span>
       </a>
-      <a class="menu-element" routerLink="/matricularme">
-        Buscar <span> <mat-icon class="header-menu-icon-margin">search</mat-icon> </span>
-      </a>
-      <mat-menu #menu="matMenu" yPosition="below" [overlapTrigger]="false">
-        <button mat-menu-item [routerLink]="['/']" [routerLinkActive]="'header-button-active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon class="header-menu-icon-margin">home</mat-icon>Inicio</button>
-        <button mat-menu-item *ngFor="let section of dropdown.top" [routerLink]="['/profile']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">face</mat-icon>Mi Perfil</button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item [routerLink]="['/subjects']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">class</mat-icon>Mis asignaturas</button>
-        <button mat-menu-item [routerLink]="['/matricularme']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">queue</mat-icon>Matricularme</button>
-        <button mat-menu-item [routerLink]="['/mv']" [routerLinkActive]="'header-button-active'"><mat-icon class="header-menu-icon-margin">dns</mat-icon>Máquinas virtuales</button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item (click)="logout()"><mat-icon class="header-menu-icon-margin">power_settings_news</mat-icon>Salir</button>
-      </mat-menu>
     </div>
     <!-- /NOT LOGGED USER -->
 

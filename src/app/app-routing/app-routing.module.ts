@@ -15,7 +15,7 @@ const routes: Routes = [{
   path: '',
   component: MainLayoutComponent,
   children: [
-    { path: '', component: MySubjectsComponent, pathMatch: 'full' }
+    { path: '', component: SubjectsComponent, pathMatch: 'full' }
   ]
 }, {
   path: 'admin',
