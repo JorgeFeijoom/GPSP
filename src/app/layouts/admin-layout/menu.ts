@@ -7,9 +7,9 @@ export class Menu {
   constructor () {
 
     this.top = [{
-      url: '/admin/profile',
-      icon: 'face',
-      name: 'Mi Perfil',
+      url: '/admin/request',
+      icon: 'notification_important',
+      name: 'Peticiones',
       pos: 'top'
     }];
 

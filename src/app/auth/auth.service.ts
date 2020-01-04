@@ -8,43 +8,45 @@ import { TokenStorage } from './token.storage';
 @Injectable()
 export class AuthService {
 
-  constructor(private http : HttpClient, private token: TokenStorage) {}
+  constructor(private http: HttpClient, private token: TokenStorage) {}
 
   public $userSource = new Subject<any>();
   private loggedIn: boolean = false;
 
-  login(email : string, password : string) : Observable <any> {
+  login(email: string, password: string): Observable <any> {
     return Observable.create(observer => {
       this.http.post('/api/auth/login', {
         email,
         password
-      }).subscribe((data : any) => {
+      }).subscribe((data: any) => {
         observer.next({ user: data.user });
         this.setUser(data.user);
         this.token.saveToken(data.token);
         observer.complete();
-      })
+      });
     });
   }
 
-  register(fullname : string, email : string, password : string, repeatPassword : string) : Observable <any> {
+  register(fullname: string, email: string, password: string, repeatPassword: string): Observable <any> {
     return Observable.create(observer => {
       this.http.post('/api/auth/register', {
         fullname,
         email,
         password,
         repeatPassword
-      }).subscribe((data : any) => {
+      }).subscribe((data: any) => {
         observer.next({user: data.user});
         this.setUser(data.user);
         this.token.saveToken(data.token);
         observer.complete();
-      })
+      });
     });
   }
 
   setUser(user: any): void {
-    if (user) user.isAdmin = (user.roles.indexOf('admin') > -1);
+    console.log('ROLES: ' + user.roles);
+    if (user) { user.isAdmin = (user.roles.indexOf('admin') > -1); }
+    if (user) { user.isTeacher = (user.roles.indexOf('profesor') > -1); }
     this.loggedIn = true;
     this.$userSource.next(user);
     (<any>window).user = user;
@@ -82,11 +84,11 @@ export class AuthService {
       // backend and store it.
       //
 
-      this.http.get('/api/auth/me').subscribe((data : any) => {
+      this.http.get('/api/auth/me').subscribe((data: any) => {
         this.setUser(data.user);
         observer.next({ user: data.user });
         observer.complete();
-      })
+      });
     });
   }
 
@@ -120,8 +122,7 @@ export class AuthService {
         if ( user && user !== null ) {
           observer.next(true);
           observer.complete();
-        }
-        else {
+        } else {
           observer.next(false);
           observer.complete();
         }
