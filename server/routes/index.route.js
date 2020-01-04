@@ -15,5 +15,6 @@ router.use('/auth', authRoutes);
 router.use('/user', userRoutes);
 router.use('/subject', subjectRoutes);
 router.use('/enroll', enrollRoutes);
+router.use('/request', requestRoutes);
 
 module.exports = router;

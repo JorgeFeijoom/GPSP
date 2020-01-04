@@ -2569,7 +2569,6 @@ var SubjectService = /** @class */ (function () {
           headers: loading === 'no-loading-bar' ? new HttpHeaders({ ignoreLoadingBar: '' }) : {}
         });
     }*/
-    /* Enroll user */
     SubjectService.prototype.getMySubjects = function () {
         var url = '/api/subject/mysubjects';
         return this.http
@@ -2605,6 +2604,20 @@ var SubjectService = /** @class */ (function () {
     SubjectService.prototype.getSubjectsFromIds = function (ids) {
         var url = '/api/subject/getfromids';
         var data = { 'ids': ids };
+        return this.http
+            .post(url, data, { headers: {}, responseType: 'text' });
+    };
+    /* Create software request */
+    SubjectService.prototype.createRequest = function (code, request) {
+        var url = '/api/request/add';
+        var data = { 'codeSubject': code, 'request': request };
+        return this.http
+            .post(url, data, { headers: {}, responseType: 'text' });
+    };
+    /* Remove request user */
+    SubjectService.prototype.removeRequest = function (code) {
+        var url = '/api/enroll/remove';
+        var data = { 'codeSubject': code };
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });
     };
@@ -2870,7 +2883,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/becario/21ninjas/GPSP/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/jorgefeijoo/GPSP/src/main.ts */"./src/main.ts");
 
 
 /***/ })

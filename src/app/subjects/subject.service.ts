@@ -38,7 +38,7 @@ export class SubjectService {
         headers: loading === 'no-loading-bar' ? new HttpHeaders({ ignoreLoadingBar: '' }) : {}
       });
   }*/
-  /* Enroll user */
+
   getMySubjects(): Observable<any> {
     const url = '/api/subject/mysubjects';
     return this.http
@@ -88,6 +88,26 @@ export class SubjectService {
   getSubjectsFromIds(ids): Observable<any> {
     const url = '/api/subject/getfromids';
     const data = {'ids': ids};
+    return this.http
+      .post<any> (url, data,
+        { headers: {}, responseType: 'text' as 'json' }
+      );
+  }
+
+  /* Create software request */
+  createRequest(code, request): Observable<any> {
+    const url = '/api/request/add';
+    const data = {'codeSubject': code, 'request': request};
+    return this.http
+      .post<any> (url, data,
+        { headers: {}, responseType: 'text' as 'json' }
+      );
+  }
+
+  /* Remove request user */
+  removeRequest(code): Observable<any> {
+    const url = '/api/enroll/remove';
+    const data = {'codeSubject': code };
     return this.http
       .post<any> (url, data,
         { headers: {}, responseType: 'text' as 'json' }

@@ -1,9 +1,10 @@
 'use strict';
-const Enrolled = require('../models/enrolled.model.js');
+const Request = require('../models/request.model.js');
 
 module.exports = {
   add,
-  remove
+  remove,
+  update
 };
 
 function add(req, res, next) {
@@ -19,21 +20,21 @@ function add(req, res, next) {
     return next(error);
   }
 
-  let enroll = req.body;
+  let request = req.body;
   let codeSubject = req.body.codeSubject;
 
-  var query = {'idUser': idUser, 'codeSubject': codeSubject},
+  var query = {'codeSubject': codeSubject},
   update = { deletedAt: null },
   options = { upsert: true };
 
   // Find the document
-  Enrolled.findOneAndUpdate(query, update, options, function(error, result) {
+  Request.findOneAndUpdate(query, update, options, function(error, result) {
     if (!error) {
         // If the document doesn't exist
         if (!result) {
-          enroll.idUser = idUser;
-          console.log(enroll);
-          enroll = new Enrolled(enroll);
+          request.idUser = idUser;
+          console.log(request);
+          request = new Request(request);
           return res.sendStatus(200);
         }
         // Save the document
@@ -42,9 +43,9 @@ function add(req, res, next) {
           if ( err ) {
               console.error(err);
               if(!req.user) {
-                  error = new Error('Inicia sesión para matricularte.');
+                  error = new Error('Inicia sesión para crear la petición.');
               }
-              error = new Error('Error: No se ha podido matricular.');
+              error = new Error('Error: No se ha podido crear la petición.');
               error.status = 500;
               return next(error);
           }
@@ -70,9 +71,9 @@ function remove(req, res, next) {
 
   let codeSubject = req.body.codeSubject;
   console.log(codeSubject);
-  Enrolled
-    .findOne({'idUser': idUser, 'codeSubject': codeSubject})
-    .exec((err, enrollSearch) => {
+  Request
+    .findOne({'codeSubject': codeSubject})
+    .exec((err, requestSearch) => {
       // Error - 500
       if ( err ) {
         console.log(err);
@@ -82,13 +83,13 @@ function remove(req, res, next) {
       }
 
       // Result
-      if ( enrollSearch.length === 0 ) {
+      if ( requestSearch.length === 0 ) {
         return res.sendStatus(404);;
       }
 
-      enrollSearch.deletedAt = new Date();
+      requestSearch.deletedAt = new Date();
 
-      enrollSearch
+      requestSearch
         .save((err) => {
           // Error - 500
           if ( err ) {
@@ -103,3 +104,24 @@ function remove(req, res, next) {
         });
     });
 }
+
+function update (req, res, next) {
+    let request = req.request;
+  
+    // Validation OK
+    request = _.extend(request, req.body);
+    request
+      .save((err) => {
+  
+        // Error - 500
+        if ( err ) {
+          console.error(err);
+          let error = new Error('User cannot be updated');
+          error.status = 500;
+          return next(error);
+        }
+  
+        // Success
+        return res.sendStatus(200);
+      });
+  }
