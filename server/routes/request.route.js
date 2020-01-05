@@ -13,3 +13,6 @@ router.route('/remove')
 router.route('/update')
   .post(requestCtrl.remove);
 
+router.route('/get')
+  .get(requestCtrl.get);
+

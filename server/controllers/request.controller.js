@@ -4,7 +4,8 @@ const Request = require('../models/request.model.js');
 module.exports = {
   add,
   remove,
-  update
+  update,
+  get
 };
 
 function add(req, res, next) {
@@ -17,16 +18,14 @@ function add(req, res, next) {
       idUser = req.user._id;
       nameUser= req.user.fullname;
   }
-  console.log('USER: ' + JSON.stringify(req.user));
+
   if(!idUser) {
     let error = new Error('Not logged user');
     return next(error);
   }
 
   let reqForm = req.body;
-  console.log('FORM: ' + reqForm);
   let request = { idUser: idUser, nameUser: nameUser, codeSubject: reqForm.subject.codigo, nameSubject: reqForm.subject.nombre, software: reqForm.software}
-  console.log('REQUEST: ' + JSON.stringify(request));
 
   let codeSubject = request.codeSubject;
   var query = {'codeSubject': codeSubject},
@@ -130,4 +129,34 @@ function update (req, res, next) {
         // Success
         return res.sendStatus(200);
       });
+}
+
+function get(req, res, next) {
+  var idUser;
+  if(!req.user) {
+      idUser = null;
+  } else {
+      idUser = req.user._id;
   }
+
+  Request
+    .find({ idUser: idUser, deletedAt: null })
+    .exec((err, requestSearch) => {
+      // Error - 500
+      if ( err ) {
+        console.log(err);
+        let error = new Error('Cannot retrieve request for the given ids');
+        error.status = 400;
+        return next(error);
+      }
+
+      // Result
+      if ( requestSearch.length === 0 ) {
+        return res.sendStatus(404);
+      }
+      
+      // Success
+      console.log(requestSearch);
+      return res.send(requestSearch);            
+  });
+}

@@ -2219,7 +2219,7 @@ var CreateRequestComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div class=\"no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n      </div>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div *ngIf=\"!isLoading && requests.length === 0\" class=\"no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n\n          <!-- RESULTS -->\n          <div class=\"container\">\n            <div *ngFor=\"let request of requests\">\n              <p> {{ request.software }} </p>\n            </div>\n          </div>\n      </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -2268,12 +2268,25 @@ var RequestComponent = /** @class */ (function () {
         this.subjectService = subjectService;
         this.toastr = toastr;
         this.dialog = dialog;
+        this.requests = {};
+        this.isLoading = true;
         //
         // Dialogs
         //
         this.createRequestDialog = null;
     }
     RequestComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this
+            .subjectService
+            .getRequest()
+            .subscribe(function (request) {
+            console.log(request);
+            _this.requests = request;
+            _this.isLoading = false;
+        }, function (error) {
+            _this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+        });
     };
     /**
      * openCreateRequestDialog
@@ -2960,12 +2973,17 @@ var SubjectService = /** @class */ (function () {
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });
     };
-    /* Remove request user */
+    /* Remove request */
     SubjectService.prototype.removeRequest = function (code) {
         var url = '/api/request/remove';
         var data = { 'codeSubject': code };
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });
+    };
+    /* Get request of user */
+    SubjectService.prototype.getRequest = function () {
+        var url = '/api/request/get';
+        return this.http.get(url, {});
     };
     SubjectService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

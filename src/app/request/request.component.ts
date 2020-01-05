@@ -13,6 +13,8 @@ import { SubjectService } from '../subjects/subject.service';
   styleUrls: ['./request.component.scss']
 })
 export class RequestComponent implements OnInit {
+  requests = {};
+  isLoading = true;
   //
   // Dialogs
   //
@@ -25,6 +27,18 @@ export class RequestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this
+      .subjectService
+      .getRequest()
+      .subscribe(
+        (request) => {
+          console.log(request);
+          this.requests = request;
+          this.isLoading = false;
+        },
+        (error: any) => {
+          this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+        });
   }
 
   /**

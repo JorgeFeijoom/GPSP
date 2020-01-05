@@ -104,7 +104,7 @@ export class SubjectService {
       );
   }
 
-  /* Remove request user */
+  /* Remove request */
   removeRequest(code): Observable<any> {
     const url = '/api/request/remove';
     const data = {'codeSubject': code };
@@ -112,5 +112,11 @@ export class SubjectService {
       .post<any> (url, data,
         { headers: {}, responseType: 'text' as 'json' }
       );
+  }
+
+  /* Get request of user */
+  getRequest(): Observable<any> {
+    const url = '/api/request/get';
+    return this.http.get(url, {});
   }
 }

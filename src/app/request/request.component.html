@@ -15,9 +15,21 @@
               </mat-toolbar-row>
           </mat-toolbar>
 
+          <!-- PROGRESS BAR  -->
+          <div class="progress-bar-container" class="progress-bar-container">
+            <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
+          </div>
+
           <!-- NO ITEMS FOR SHOWING -->
-          <div class="no-results-container">
+          <div *ngIf="!isLoading && requests.length === 0" class="no-results-container">
             <h3> No has creado ninguna petición </h3>
+          </div>
+
+          <!-- RESULTS -->
+          <div class="container">
+            <div *ngFor="let request of requests">
+              <p> {{ request.software }} </p>
+            </div>
           </div>
       </div>
     </div>
