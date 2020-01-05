@@ -95,9 +95,9 @@ export class SubjectService {
   }
 
   /* Create software request */
-  createRequest(code, request): Observable<any> {
+  createRequest(request): Observable<any> {
     const url = '/api/request/add';
-    const data = {'codeSubject': code, 'request': request};
+    const data = request;
     return this.http
       .post<any> (url, data,
         { headers: {}, responseType: 'text' as 'json' }
@@ -106,7 +106,7 @@ export class SubjectService {
 
   /* Remove request user */
   removeRequest(code): Observable<any> {
-    const url = '/api/enroll/remove';
+    const url = '/api/request/remove';
     const data = {'codeSubject': code };
     return this.http
       .post<any> (url, data,

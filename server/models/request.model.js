@@ -7,11 +7,19 @@ const RequestSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  nameUser: {
+    type: String,
+    required: true
+  },
   codeSubject: {
     type: String,
     required: true
   },
-  request: {
+  nameSubject: {
+    type: String,
+    required: true
+  },
+  software: {
     type: String,
     required: true
   },

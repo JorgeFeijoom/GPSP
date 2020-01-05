@@ -16,7 +16,6 @@ export class RequestComponent implements OnInit {
   //
   // Dialogs
   //
-
   createRequestDialog: any = null;
 
   constructor(

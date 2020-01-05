@@ -9,23 +9,29 @@ module.exports = {
 
 function add(req, res, next) {
   var idUser;
+  var nameUser;
   if(!req.user) {
       idUser = null;
+      nameUser = null;
   } else {
       idUser = req.user._id;
+      nameUser= req.user.fullname;
   }
-
+  console.log('USER: ' + JSON.stringify(req.user));
   if(!idUser) {
     let error = new Error('Not logged user');
     return next(error);
   }
 
-  let request = req.body;
-  let codeSubject = req.body.codeSubject;
+  let reqForm = req.body;
+  console.log('FORM: ' + reqForm);
+  let request = { idUser: idUser, nameUser: nameUser, codeSubject: reqForm.subject.codigo, nameSubject: reqForm.subject.nombre, software: reqForm.software}
+  console.log('REQUEST: ' + JSON.stringify(request));
 
+  let codeSubject = request.codeSubject;
   var query = {'codeSubject': codeSubject},
   update = { deletedAt: null },
-  options = { upsert: true };
+  options = {};
 
   // Find the document
   Request.findOneAndUpdate(query, update, options, function(error, result) {
@@ -34,8 +40,8 @@ function add(req, res, next) {
         if (!result) {
           request.idUser = idUser;
           console.log(request);
-          request = new Request(request);
-          return res.sendStatus(200);
+          result = new Request(request);
+          // return res.sendStatus(200);
         }
         // Save the document
         result.save((err) => {

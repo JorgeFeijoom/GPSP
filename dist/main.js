@@ -2060,7 +2060,7 @@ var ProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Crear petición </h1>\n<div mat-dialog-content class=\"create-request-dialog\">\n  <form [formGroup]=\"createRequestForm\" (ngSubmit)=\"createRequest()\">\n    <mat-card>\n      <mat-card-header>\n        <!-- CODIGO -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label> Código </mat-label>\n          <input matInput #subject name=\"codigo\" formControlName=\"codigo\" placeholder=\"Código\">\n          <mat-error *ngIf=\"createRequestForm.get('codigo').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /CODIGO -->\n        <!-- NOMBRE -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label>Nombre</mat-label>\n          <input matInput #nombre name=\"nombre\" formControlName=\"nombre\" maxlength=\"120\" placeholder=\"Nombre\" value='{{data.subject.nombre}}'>\n          <mat-error *ngIf=\"createRequestForm.get('nombre').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /NOMBRE -->\n      </mat-card-header>\n      <mat-card-content>\n        <!-- SOFTWARE -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label> Software </mat-label>\n          <textarea matInput #software name=\"software\" formControlName=\"software\" placeholder=\"Software\"> </textarea>\n          <mat-error *ngIf=\"createRequestForm.get('software').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /SOFTWARE -->\n      </mat-card-content>\n    </mat-card>\n  </form>\n</div>\n<div mat-dialog-actions align=\"end\">\n  <button type=\"button\" mat-button color=\"warn\">CANCELAR</button>\n  <button type=\"button\" mat-button mat-dialog-close color=\"success\"> ENVIAR </button>\n</div>\n"
+module.exports = "<h1 mat-dialog-title>Crear petición </h1>\n<div mat-dialog-content class=\"create-request-dialog\">\n  <form [formGroup]=\"createRequestForm\" (ngSubmit)=\"createRequest()\">\n    <mat-card>\n      <mat-card-header>\n        <!-- ASIGNATURA -->\n        <mat-form-field>\n          <mat-label>Asignatura</mat-label>\n          <mat-select formControlName=\"subject\">\n            <mat-option> -- </mat-option>\n            <mat-optgroup *ngFor=\"let group of subjectGroups\" [label]=\"group.name\">\n              <mat-option *ngFor=\"let subject of group.subject\" [value]=\"subject\">\n                {{subject.codigo}}: {{subject.nombre}}\n              </mat-option>\n            </mat-optgroup>\n          </mat-select>\n          <mat-error *ngIf=\"createRequestForm.get('subject').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /ASIGNATURA -->\n      </mat-card-header>\n      <mat-card-content>\n        <!-- SOFTWARE -->\n        <mat-form-field appearance=\"outline\">\n          <mat-label> Software </mat-label>\n          <textarea matInput #software name=\"software\" formControlName=\"software\" placeholder=\"Software\"> </textarea>\n          <mat-error *ngIf=\"createRequestForm.get('software').hasError('required')\">\n            Este campo es obligatorio\n          </mat-error>\n        </mat-form-field>\n        <!-- /SOFTWARE -->\n      </mat-card-content>\n    </mat-card>\n    <div mat-dialog-actions align=\"end\">\n      <button type=\"button\" mat-button mat-dialog-close color=\"warn\">CANCELAR</button>\n      <button type=\"submit\" mat-button color=\"success\"> ENVIAR </button>\n    </div>    \n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -2108,37 +2108,71 @@ var __param = (undefined && undefined.__param) || function (paramIndex, decorato
 
 
 var CreateRequestComponent = /** @class */ (function () {
-    function CreateRequestComponent(fb, toastr, subject, dialog, data) {
+    function CreateRequestComponent(fb, toastr, subject, dialog, formBuilder, data) {
         this.fb = fb;
         this.toastr = toastr;
         this.subject = subject;
         this.dialog = dialog;
+        this.formBuilder = formBuilder;
         this.data = data;
         //
         // Main user object
         //
         this.createRequestForm = this.fb.group({
-            asignatura: [''],
-            codigo: [''],
-            nombre: ['']
+            software: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]],
+            subject: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]]
         });
+        this.subjectGroups = [
+            {
+                name: 'Primero',
+                subject: [
+                    { codigo: '40800', nombre: 'Álgebra' },
+                    { codigo: '40803', nombre: 'Introducción a la Informática' },
+                    { codigo: '40807', nombre: 'Fundamentos de Programación' },
+                    { codigo: '40808', nombre: 'Fundamentos de los Computadores' },
+                    { codigo: '40806', nombre: 'Fundamentos Físicos de la Informática' },
+                    { codigo: '40805', nombre: 'Matemáticas Computacionales' }
+                ]
+            },
+            {
+                name: 'Segundo',
+                subject: [
+                    { codigo: '40813', nombre: 'Programación I' },
+                    { codigo: '40816', nombre: 'Bases de Datos I' },
+                    { codigo: '40813', nombre: 'Ingeniería del Software I' },
+                    { codigo: '40818', nombre: 'Programación II' },
+                    { codigo: '40814', nombre: 'Fundamentos de los Sistemas Operativos' },
+                ]
+            },
+            {
+                name: 'Tercero',
+                subject: [
+                    { codigo: '40819', nombre: 'Administración de Sistemas Operativos' },
+                    { codigo: '40821', nombre: 'Bases de Datos II' },
+                    { codigo: '40823', nombre: 'Programación III' },
+                    { codigo: '40826', nombre: 'Programación IV' },
+                    { codigo: '40824', nombre: 'Servicios y Seguridad en Red' },
+                ]
+            },
+            {
+                name: 'Cuarto',
+                subject: [
+                    { codigo: '40863', nombre: 'Desarrollo de Aplicaciones Web II' },
+                    { codigo: '40832', nombre: 'Metodologías del Desarrollo Ágil' },
+                    { codigo: '40829', nombre: 'Arquitectura del Software' },
+                    { codigo: '40861', nombre: 'Desarrollo de Aplicaciones Web I' },
+                    { codigo: '40830', nombre: 'Diseño de Interfaces de Usuario' },
+                ]
+            }
+        ];
     }
-    CreateRequestComponent.prototype.ngOnInit = function () {
-        console.log("PRUEBA");
-        /* if ( this.data && this.data.subject ) {
-          this.subjectForm.addControl('_id', this.fb.control(''));
-          this.subjectForm.reset(this.data.subject);
-          this.subjectForm.get('roles').setValue(this.data.user.roles[0]);
-        } else {
-          this.dialog.close();
-        }*/
-    };
     /**
-     * saveSubject
-     * Saves the new author to database.
+     * createRequest
+     * Add request to database.
      *
      */
     CreateRequestComponent.prototype.createRequest = function () {
+        var _this = this;
         // Validation
         if (this.createRequestForm.invalid) {
             return;
@@ -2147,19 +2181,16 @@ var CreateRequestComponent = /** @class */ (function () {
         // Validation OK
         //
         var request = this.createRequestForm.value;
-        console.log(request);
-        /* this
-          .subject
-          .update(subject)
-          .subscribe(
-            (subject: Subject) => {
-              this.toastr.success('Asignatura actualizada correctamente', 'Confirmación');
-              this.dialog.close(subject);
-            },
-            (error: any) => {
-              this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
-            });
-        */
+        console.log('PRUEBA: ' + JSON.stringify(request));
+        this
+            .subject
+            .createRequest(request)
+            .subscribe(function (request) {
+            _this.toastr.success('Petición enviada correctamente', 'Confirmación');
+            _this.dialog.close(request);
+        }, function (error) {
+            _this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+        });
     };
     CreateRequestComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -2167,11 +2198,12 @@ var CreateRequestComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./create-request.component.html */ "./src/app/request/create-request/create-request.component.html"),
             styles: [__webpack_require__(/*! ./create-request.component.scss */ "./src/app/request/create-request/create-request.component.scss")]
         }),
-        __param(4, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+        __param(5, Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
         __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_3__["ToastrService"],
             _subjects_subject_service__WEBPACK_IMPORTED_MODULE_4__["SubjectService"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"], Object])
+            _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"], Object])
     ], CreateRequestComponent);
     return CreateRequestComponent;
 }());
@@ -2922,15 +2954,15 @@ var SubjectService = /** @class */ (function () {
             .post(url, data, { headers: {}, responseType: 'text' });
     };
     /* Create software request */
-    SubjectService.prototype.createRequest = function (code, request) {
+    SubjectService.prototype.createRequest = function (request) {
         var url = '/api/request/add';
-        var data = { 'codeSubject': code, 'request': request };
+        var data = request;
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });
     };
     /* Remove request user */
     SubjectService.prototype.removeRequest = function (code) {
-        var url = '/api/enroll/remove';
+        var url = '/api/request/remove';
         var data = { 'codeSubject': code };
         return this.http
             .post(url, data, { headers: {}, responseType: 'text' });
