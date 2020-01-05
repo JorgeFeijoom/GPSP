@@ -6,6 +6,7 @@ import { debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { CreateRequestComponent } from './create-request/create-request.component';
 import { SubjectService } from '../subjects/subject.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-request',
@@ -24,6 +25,7 @@ export class RequestComponent implements OnInit {
     private subjectService: SubjectService,
     private toastr: ToastrService,
     private dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,9 +58,7 @@ export class RequestComponent implements OnInit {
     });
 
     this.createRequestDialog.afterClosed().subscribe((request) => {
-      if ( request ) {
-        console.log("enviado");
-      }
+      this.ngOnInit();
     });
   }
 }

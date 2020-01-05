@@ -2219,7 +2219,7 @@ var CreateRequestComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div *ngIf=\"!isLoading && requests.length === 0\" class=\"no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n\n          <!-- RESULTS -->\n          <div class=\"container\">\n            <div *ngFor=\"let request of requests\">\n              <p> {{ request.software }} </p>\n            </div>\n          </div>\n      </div>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"main-container progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div *ngIf=\"!isLoading && requests === {}\" class=\"main-container no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n\n          <!-- RESULTS -->\n          <div class=\"requests\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n            <mat-card class=\"element\" *ngFor=\"let request of requests\" fxFlex=\"100\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h3> {{ request.nameSubject }} </h3>\n                <p>  {{ request.codeSubject }} </p>\n              </div>\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h4> Software </h4>\n                <p>\n                  {{request.software}}\n                </p>\n              </div>\n            </mat-card>\n          </div>\n      </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -2230,7 +2230,7 @@ module.exports = "<div class=\"container\">\n    <div class=\"main-container\" f
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".title {\n  font-weight: 900;\n  padding-left: 5px; }\n\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\n\nh3 {\n  font-size: 18px; }\n\n.no-results-container {\n  margin-top: 40px; }\n"
+module.exports = ".title {\n  font-weight: 900;\n  padding-left: 5px; }\n\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\n\nh3 {\n  font-size: 18px; }\n\n.no-results-container {\n  margin-top: 40px; }\n\n.requests .element {\n  margin-bottom: 40px; }\n"
 
 /***/ }),
 
@@ -2249,6 +2249,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm5/ngx-toastr.js");
 /* harmony import */ var _create_request_create_request_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./create-request/create-request.component */ "./src/app/request/create-request/create-request.component.ts");
 /* harmony import */ var _subjects_subject_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../subjects/subject.service */ "./src/app/subjects/subject.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2263,11 +2264,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var RequestComponent = /** @class */ (function () {
-    function RequestComponent(subjectService, toastr, dialog) {
+    function RequestComponent(subjectService, toastr, dialog, router) {
         this.subjectService = subjectService;
         this.toastr = toastr;
         this.dialog = dialog;
+        this.router = router;
         this.requests = {};
         this.isLoading = true;
         //
@@ -2294,6 +2297,7 @@ var RequestComponent = /** @class */ (function () {
      *
      */
     RequestComponent.prototype.openCreateRequestDialog = function () {
+        var _this = this;
         this.createRequestDialog = this.dialog.open(_create_request_create_request_component__WEBPACK_IMPORTED_MODULE_3__["CreateRequestComponent"], {
             width: '700px',
             data: {
@@ -2301,9 +2305,7 @@ var RequestComponent = /** @class */ (function () {
             }
         });
         this.createRequestDialog.afterClosed().subscribe(function (request) {
-            if (request) {
-                console.log("enviado");
-            }
+            _this.ngOnInit();
         });
     };
     RequestComponent = __decorate([
@@ -2314,7 +2316,8 @@ var RequestComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_subjects_subject_service__WEBPACK_IMPORTED_MODULE_4__["SubjectService"],
             ngx_toastr__WEBPACK_IMPORTED_MODULE_2__["ToastrService"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"]])
+            _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatDialog"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
     ], RequestComponent);
     return RequestComponent;
 }());
