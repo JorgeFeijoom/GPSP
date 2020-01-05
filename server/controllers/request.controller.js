@@ -29,7 +29,7 @@ function add(req, res, next) {
 
   let codeSubject = request.codeSubject;
   var query = {'codeSubject': codeSubject},
-  update = { deletedAt: null },
+  update = { deletedAt: null, software: request.software},
   options = {};
 
   // Find the document
