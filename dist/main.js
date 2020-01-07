@@ -12,6 +12,10 @@ var map = {
 		"./src/app/admin/admin.module.ts",
 		"app-admin-admin-module"
 	],
+	"app/admin/import/import.module": [
+		"./src/app/admin/import/import.module.ts",
+		"app-admin-import-import-module"
+	],
 	"app/admin/request/request.module": [
 		"./src/app/admin/request/request.module.ts",
 		"app-admin-request-request-module"
@@ -1343,6 +1347,11 @@ var Menu = /** @class */ (function () {
                 icon: 'notification_important',
                 name: 'Peticiones',
                 pos: 'top'
+            }, {
+                url: '/admin/import',
+                icon: 'import_export',
+                name: 'Importar',
+                pos: 'top'
             }];
         this.middle = [{
                 url: '/admin/users',
@@ -2219,7 +2228,7 @@ var CreateRequestComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"main-container progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div *ngIf=\"!isLoading && requests === null\" class=\"no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n\n          <!-- RESULTS -->\n          <div class=\"requests\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n            <mat-card class=\"element\" *ngFor=\"let request of requests\" fxFlex=\"100\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h3> {{ request.nameSubject }} </h3>\n                <p>  {{ request.codeSubject }} </p>\n              </div>\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h4> Software </h4>\n                <p>\n                  {{request.software}}\n                </p>\n              </div>\n            </mat-card>\n          </div>\n      </div>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"main-container progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div *ngIf=\"!isLoading && requests === null\" class=\"no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n\n          <!-- RESULTS -->\n          <div class=\"requests\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n            <mat-card class=\"element\" *ngFor=\"let request of requests\" fxFlex=\"100\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h3> {{ request.nameSubject }} </h3>\n                <p>  {{ request.codeSubject }} </p>\n              </div>\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h4> Software </h4>\n                <!-- <p>\n                  {{request.software}}\n                </p> -->\n                <p> Visual Studio Code - Versión: 1.12</p>\n                <p> Oracle Server - Versión: 11g </p>\n                <p> Pycharm - Versión: 2.14 </p>\n                <p> R Studio - Versión: 1.1 </p>\n              </div>\n            </mat-card>\n          </div>\n      </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -3251,7 +3260,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/becario/21ninjas/GPSP/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/jorgefeijoo/GPSP/src/main.ts */"./src/main.ts");
 
 
 /***/ })

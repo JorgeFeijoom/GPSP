@@ -12,7 +12,8 @@ const routes: Routes = [{
     { path: '', component: AdminComponent, pathMatch: 'full' },
     { path: 'users', loadChildren: 'app/admin/users/users.module#UsersModule' },
     { path: 'subjects', loadChildren: 'app/admin/subjects/subjects.module#SubjectsModule' },
-    { path: 'request', loadChildren: 'app/admin/request/request.module#RequestModule' }
+    { path: 'request', loadChildren: 'app/admin/request/request.module#RequestModule' },
+    { path: 'import', loadChildren: 'app/admin/import/import.module#ImportModule' }
   ]
 }, {
   path: '**', redirectTo: 'admin'

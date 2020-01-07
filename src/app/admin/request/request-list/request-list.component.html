@@ -28,6 +28,7 @@
             <div fxFlex="35" fxFlex.sm="49">
               <h3> {{ request.nameSubject }} </h3>
               <p>  {{ request.codeSubject }} </p>
+              
               <p class="who"> de {{ request.nameUser }} </p>
             </div>
             <div fxFlex="40" fxFlex.sm="49">
@@ -44,7 +45,7 @@
               <mat-checkbox
                 class="checkbox"
                 [(ngModel)]="request.available">
-                Disponibles
+                Aceptada
               </mat-checkbox>
               <mat-checkbox
                 class="checkbox"

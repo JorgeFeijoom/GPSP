@@ -11,6 +11,11 @@ export class Menu {
       icon: 'notification_important',
       name: 'Peticiones',
       pos: 'top'
+    }, {
+      url: '/admin/import',
+      icon: 'import_export',
+      name: 'Importar',
+      pos: 'top'
     }];
 
     this.middle = [{
