@@ -5,7 +5,8 @@ module.exports = {
   add,
   remove,
   update,
-  get
+  get,
+  getAll
 };
 
 function add(req, res, next) {
@@ -141,6 +142,29 @@ function get(req, res, next) {
 
   Request
     .find({ idUser: idUser, deletedAt: null })
+    .exec((err, requestSearch) => {
+      // Error - 500
+      if ( err ) {
+        console.log(err);
+        let error = new Error('Cannot retrieve request for the given ids');
+        error.status = 400;
+        return next(error);
+      }
+
+      // Result
+      if ( requestSearch.length === 0 ) {
+        return res.sendStatus(404);
+      }
+      
+      // Success
+      console.log(requestSearch);
+      return res.send(requestSearch);            
+  });
+}
+
+function getAll(req, res, next) {
+  Request
+    .find({deletedAt: null })
     .exec((err, requestSearch) => {
       // Error - 500
       if ( err ) {

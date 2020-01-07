@@ -5,4 +5,5 @@ export interface Request {
     request: string;
     available: boolean;
     installed: boolean;
+    software: string;
   }

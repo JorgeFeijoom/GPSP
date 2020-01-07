@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="subjects" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="2%">
-    <div fxFlex="32" fxFlex.sm="49">
+    <div fxFlex="32" fxFlex.sm="32">
       <mat-card class="subject-card">
         <mat-card-header>
           <mat-card-title class="title"> Alumnos </mat-card-title>
@@ -34,7 +34,7 @@
           <button routerLink="/admin/users" mat-button matTooltip="Ver detalles" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles">  person_pin </mat-icon></button> </mat-card-actions>
       </mat-card>
     </div>
-    <div fxFlex="32" fxFlex.sm="49">
+    <div fxFlex="32" fxFlex.sm="32">
       <mat-card class="subject-card">
         <mat-card-header>
           <mat-card-title class="title"> Asignaturas </mat-card-title>
@@ -46,6 +46,20 @@
         </mat-card-content>
         <mat-card-actions class="buttons" fxLayoutAlign="end">
           <button routerLink="/admin/subjects" mat-button matTooltip="Ver detalles" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles">  bookmarks </mat-icon></button> </mat-card-actions>
+      </mat-card>
+    </div>
+    <div fxFlex="32" fxFlex.sm="32">
+      <mat-card class="subject-card">
+        <mat-card-header>
+          <mat-card-title class="title"> Peticiones </mat-card-title>
+          <mat-card-subtitle class="subtitle">Peticiones realizadas por el equipo docente.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="teacher">
+          <p> Listar <span>peticiones</span> disponibles </p>
+          <p> Gestionar <span>peticiones</span> disponibles. </p>
+        </mat-card-content>
+        <mat-card-actions class="buttons" fxLayoutAlign="end">
+          <button routerLink="/admin/request" mat-button matTooltip="Ver detalles" mat-mini-fab color="info"><mat-icon aria-label="Ver detalles"> notification_important </mat-icon></button> </mat-card-actions>
       </mat-card>
     </div>
   </div>

@@ -16,3 +16,5 @@ router.route('/update')
 router.route('/get')
   .get(requestCtrl.get);
 
+router.route('/getall')
+  .get(requestCtrl.getAll);
