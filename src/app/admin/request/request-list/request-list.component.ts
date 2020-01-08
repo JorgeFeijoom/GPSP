@@ -17,7 +17,7 @@ export class RequestListComponent implements OnInit {
 
   acceptRequestAlert = {
     title: '¿Estás seguro?',
-    text: 'Se aceptará la petición y se mostrará su estado al equipo docente, <b> no se podrá revertir la operación. </b>',
+    text: 'Se aceptará la petición y se mostrará su estado al equipo docente, no se podrá revertir la operación.',
     type: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
@@ -26,7 +26,7 @@ export class RequestListComponent implements OnInit {
 
   installRequestAlert = {
     title: '¿Estás seguro?',
-    text: 'Se marcará como instalada la petición y se mostrará su estado al equipo docente, <b> no se podrá revertir la operación. </b>',
+    text: 'Se marcará como instalada la petición y se mostrará su estado al equipo docente, no se podrá revertir la operación.',
     type: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
