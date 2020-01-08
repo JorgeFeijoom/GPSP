@@ -6,7 +6,8 @@ module.exports = {
   remove,
   update,
   get,
-  getAll
+  getAll,
+  accept
 };
 
 function add(req, res, next) {
@@ -182,5 +183,39 @@ function getAll(req, res, next) {
       // Success
       console.log(requestSearch);
       return res.send(requestSearch);            
+  });
+}
+
+function accept(req, res, next) {
+  let requestId = req.body.requestId;
+  console.log('REQUEST: ' + requestId);
+  var query = {'_id': requestId},
+
+  update = {accepted: true, updatedAt: new Date},
+  options = {};
+
+  // Find the document
+  Request.findOneAndUpdate(query, update, options, function(error, result) {
+    if (!error) {
+      // If the document doesn't exist
+      if (!result) {
+        error = new Error('Error: No se ha podido crear la petición.');
+        error.status = 500;
+        return next(error);
+        // return res.sendStatus(200);
+      }
+      // Save the document
+      result.save((err) => {
+        // Error - 500
+        if ( err ) {
+          console.error(err);
+          error = new Error('Error: No se ha podido crear la petición.');
+          error.status = 500;
+          return next(error);
+        }
+        // Success
+        return res.sendStatus(200);
+      });
+    }
   });
 }

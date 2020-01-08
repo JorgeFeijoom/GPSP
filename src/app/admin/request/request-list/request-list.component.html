@@ -44,13 +44,14 @@
             <div class="check-wrap" fxFlex="15" fxFlex.sm="10" fxLayout="column">
               <mat-checkbox
                 class="checkbox"
-                [(ngModel)]="request.available">
+                [swal]="acceptRequestAlert"  (confirm)="acceptRequest(request)"
+                [(ngModel)]="request.accepted">
                 Aceptada
               </mat-checkbox>
               <mat-checkbox
                 class="checkbox"
                 [(ngModel)]="request.installed">
-                Instaladas
+                Instalada
               </mat-checkbox>
             </div>
           </mat-card>

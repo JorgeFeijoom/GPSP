@@ -15,35 +15,51 @@
               </mat-toolbar-row>
           </mat-toolbar>
 
-          <!-- PROGRESS BAR  -->
-          <div class="progress-bar-container" class="main-container progress-bar-container">
-            <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
-          </div>
+        <!-- PROGRESS BAR  -->
+        <div class="progress-bar-container" class="main-container progress-bar-container">
+          <mat-progress-bar *ngIf="isLoading" mode="indeterminate" color="primary"></mat-progress-bar>
+        </div>
 
-          <!-- NO ITEMS FOR SHOWING -->
-          <div *ngIf="!isLoading && requests === null" class="no-results-container">
-            <h3> No has creado ninguna petición </h3>
-          </div>
+        <!-- NO ITEMS FOR SHOWING -->
+        <div *ngIf="!isLoading && requests === null" class="no-results-container">
+          <h3> No existen peticiones </h3>
+        </div>
 
-          <!-- RESULTS -->
-          <div class="requests" fxLayout="row wrap" fxLayoutAlign="space-between start">
-            <mat-card class="element" *ngFor="let request of requests" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start">
-              <div fxFlex="49" fxFlex.sm="49">
-                <h3> {{ request.nameSubject }} </h3>
-                <p>  {{ request.codeSubject }} </p>
-              </div>
-              <div fxFlex="49" fxFlex.sm="49">
-                <h4> Software </h4>
-                <!-- <p>
-                  {{request.software}}
-                </p> -->
-                <p> Visual Studio Code - Versión: 1.12</p>
-                <p> Oracle Server - Versión: 11g </p>
-                <p> Pycharm - Versión: 2.14 </p>
-                <p> R Studio - Versión: 1.1 </p>
-              </div>
-            </mat-card>
-          </div>
-      </div>
+        <!-- RESULTS -->
+        <div class="requests" fxLayout="row wrap" fxLayoutAlign="space-between start">
+          <mat-card class="element" *ngFor="let request of requests" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start">
+            <div fxFlex="35" fxFlex.sm="49">
+              <h3> {{ request.nameSubject }} </h3>
+              <p>  {{ request.codeSubject }} </p>
+              
+              <p class="who"> de {{ request.nameUser }} </p>
+            </div>
+            <div fxFlex="40" fxFlex.sm="49">
+              <h4> Software </h4>
+              <!-- <p>
+                {{request.software}}
+              </p> -->
+              <p> Visual Studio Code - Versión: 1.12</p>
+              <p> Oracle Server - Versión: 11g </p>
+              <p> Pycharm - Versión: 2.14 </p>
+              <p> R Studio - Versión: 1.1 </p>
+            </div>
+            <div class="check-wrap" fxFlex="15" fxFlex.sm="10" fxLayout="column">
+              <mat-checkbox
+                class="checkbox"
+                [(ngModel)]="request.accepted"
+                [disabled]="true">
+                Aceptada
+              </mat-checkbox>
+              <mat-checkbox
+                class="checkbox"
+                [(ngModel)]="request.installed"
+                [disabled]="true">
+                Instalada
+              </mat-checkbox>
+            </div>
+          </mat-card>
+        </div>
     </div>
+  </div>
 </div>

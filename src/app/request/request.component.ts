@@ -36,7 +36,7 @@ export class RequestComponent implements OnInit {
         (request) => {
           console.log(request);
           this.requests = request;
-          console.log("Request: " + request);
+          console.log('Request: ' + request);
           this.isLoading = false;
         },
         (error: any) => {

@@ -61,7 +61,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"app-admin-admin-module":"app-admin-admin-module","app-admin-import-import-module":"app-admin-import-import-module","app-admin-request-request-module":"app-admin-request-request-module","app-admin-subjects-subjects-module~app-admin-users-users-module":"app-admin-subjects-subjects-module~app-admin-users-users-module","app-admin-subjects-subjects-module":"app-admin-subjects-subjects-module","app-admin-users-users-module":"app-admin-users-users-module"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"app-admin-admin-module":"app-admin-admin-module","app-admin-import-import-module":"app-admin-import-import-module","app-admin-request-request-module~app-admin-subjects-subjects-module~app-admin-users-users-module":"app-admin-request-request-module~app-admin-subjects-subjects-module~app-admin-users-users-module","app-admin-request-request-module":"app-admin-request-request-module","app-admin-subjects-subjects-module":"app-admin-subjects-subjects-module","app-admin-users-users-module":"app-admin-users-users-module"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function

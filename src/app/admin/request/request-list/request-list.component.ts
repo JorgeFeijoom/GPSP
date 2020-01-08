@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestService } from '../request.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-request-list',
@@ -10,7 +11,20 @@ export class RequestListComponent implements OnInit {
   requests = null;
   isLoading = true;
 
-  constructor(private requestService: RequestService) { }
+  //
+  // Alerts
+  //
+
+  acceptRequestAlert = {
+    title: '¿Estás seguro?',
+    text: 'Se aceptará la petición y se mostrará su estado al equipo docente',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Aceptar',
+    cancelButtonText: 'Cancelar'
+  };
+
+  constructor(private requestService: RequestService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this
@@ -28,4 +42,17 @@ export class RequestListComponent implements OnInit {
       });
   }
 
+  acceptRequest (request) {
+    this
+    .requestService
+    .acceptRequest(request._id)
+    .subscribe(
+      (request) => {
+        this.toastr.success('Se ha aceptado la petición.', 'Hecho!');
+        this.ngOnInit();
+      },
+      (error: any) => {
+        this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+      });
+  }
 }

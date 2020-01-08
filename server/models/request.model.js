@@ -23,9 +23,9 @@ const RequestSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  available: {
+  accepted: {
     type: Boolean,
-    default: true
+    default: false
   },
   installed: {
     type: Boolean,

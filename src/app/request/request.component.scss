@@ -20,4 +20,27 @@ h3 {
 
 .requests .element {
     margin-bottom: 40px;
+    position: relative;
+
+    .who {
+        color: #a9a9a9;
+        position: absolute;
+        bottom: 10px;
+    }
+}
+
+.sidenav-main-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f3f3;
+    width: 100%;
+}
+
+.check-wrap {
+    padding-top: 20px;
+    .checkbox {
+        margin: 0 10px 10px;
+    }
 }

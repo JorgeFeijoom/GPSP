@@ -14,4 +14,14 @@ export class RequestService {
     const url = '/api/request/getall';
     return this.http.get(url, {});
   }
+
+  acceptRequest(requestId): Observable<any> {
+    console.log('Desde service: ' + requestId);
+    const data = {'requestId': requestId };
+    const url = '/api/request/accept';
+    return this.http
+      .post<any> (url, data,
+        { headers: {}, responseType: 'text' as 'json' }
+      );
+  }
 }

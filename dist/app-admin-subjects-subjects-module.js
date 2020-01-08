@@ -44,11 +44,11 @@ var SubjectService = /** @class */ (function () {
         });
     };
     /**
-   * update
-   * Updates the given subject.
-   *
-   * @param user - The given user to update
-   */
+     * update
+     * Updates the given subject.
+     *
+     * @param user - The given user to update
+     */
     SubjectService.prototype.update = function (subject) {
         var url = '/api/subject/' + subject._id;
         return this.http

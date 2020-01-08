@@ -18,16 +18,17 @@ var map = {
 	],
 	"app/admin/request/request.module": [
 		"./src/app/admin/request/request.module.ts",
+		"app-admin-request-request-module~app-admin-subjects-subjects-module~app-admin-users-users-module",
 		"app-admin-request-request-module"
 	],
 	"app/admin/subjects/subjects.module": [
 		"./src/app/admin/subjects/subjects.module.ts",
-		"app-admin-subjects-subjects-module~app-admin-users-users-module",
+		"app-admin-request-request-module~app-admin-subjects-subjects-module~app-admin-users-users-module",
 		"app-admin-subjects-subjects-module"
 	],
 	"app/admin/users/users.module": [
 		"./src/app/admin/users/users.module.ts",
-		"app-admin-subjects-subjects-module~app-admin-users-users-module",
+		"app-admin-request-request-module~app-admin-subjects-subjects-module~app-admin-users-users-module",
 		"app-admin-users-users-module"
 	],
 	"app/auth/auth.module": [
@@ -1950,7 +1951,7 @@ module.exports = "<div class=\"container\">\n    <!-- <h2> Asignaturas </h2>-->\
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto; }\nh3 {\n  font-size: 18px; }\n.title {\n  font-weight: 900;\n  font-size: 20px; }\n.subjects, .no-results-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0; }\n.no-results-container h3 {\n  font-size: 24px; }\n.subject-card {\n  margin-bottom: 20px; }\n.subject-card .teacher {\n    line-height: 0.8;\n    margin-top: 40px; }\n.subject-card .teacher span {\n      color: #002E67;\n      font-weight: 600px; }\n.subject-card .buttons {\n    margin-top: 20px;\n    margin-bottom: 0px;\n    margin-right: 0px; }\n.subject-card .buttons button {\n      margin-left: 10px;\n      border-radius: 50% !important; }\n"
+module.exports = "/*-----------------------------------------------\n                   Variables\n-----------------------------------------------*/\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\nh3 {\n  font-size: 18px; }\n.title {\n  font-weight: 900;\n  font-size: 20px; }\n.subjects, .no-results-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0; }\n.no-results-container h3 {\n  font-size: 24px; }\n.subject-card {\n  margin-bottom: 20px; }\n.subject-card .teacher {\n    line-height: 0.8;\n    margin-top: 40px; }\n.subject-card .teacher span {\n      color: #002E67;\n      font-weight: 600px; }\n.subject-card .buttons {\n    margin-top: 20px;\n    margin-bottom: 0px;\n    margin-right: 0px; }\n.subject-card .buttons button {\n      margin-left: 10px;\n      border-radius: 50% !important; }\n"
 
 /***/ }),
 
@@ -2228,7 +2229,7 @@ var CreateRequestComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n          <!-- PROGRESS BAR  -->\n          <div class=\"progress-bar-container\" class=\"main-container progress-bar-container\">\n            <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n          </div>\n\n          <!-- NO ITEMS FOR SHOWING -->\n          <div *ngIf=\"!isLoading && requests === null\" class=\"no-results-container\">\n            <h3> No has creado ninguna petición </h3>\n          </div>\n\n          <!-- RESULTS -->\n          <div class=\"requests\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n            <mat-card class=\"element\" *ngFor=\"let request of requests\" fxFlex=\"100\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h3> {{ request.nameSubject }} </h3>\n                <p>  {{ request.codeSubject }} </p>\n              </div>\n              <div fxFlex=\"49\" fxFlex.sm=\"49\">\n                <h4> Software </h4>\n                <!-- <p>\n                  {{request.software}}\n                </p> -->\n                <p> Visual Studio Code - Versión: 1.12</p>\n                <p> Oracle Server - Versión: 11g </p>\n                <p> Pycharm - Versión: 2.14 </p>\n                <p> R Studio - Versión: 1.1 </p>\n              </div>\n            </mat-card>\n          </div>\n      </div>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxFlex=\"100\">\n          <mat-toolbar color=\"accent\">\n              <mat-toolbar-row>\n                <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n                <div><span class=\"title\">Mis Peticiones</span></div>\n                <span class=\"spacer\"></span>\n                <button (click)=\"openCreateRequestDialog()\" mat-icon-button matTooltip=\"Crear\">\n                  <mat-icon>add_alert</mat-icon>\n                </button>\n                <button routerLink=\"/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                  <mat-icon>chevron_left</mat-icon>\n                </button>\n              </mat-toolbar-row>\n          </mat-toolbar>\n\n        <!-- PROGRESS BAR  -->\n        <div class=\"progress-bar-container\" class=\"main-container progress-bar-container\">\n          <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n        </div>\n\n        <!-- NO ITEMS FOR SHOWING -->\n        <div *ngIf=\"!isLoading && requests === null\" class=\"no-results-container\">\n          <h3> No existen peticiones </h3>\n        </div>\n\n        <!-- RESULTS -->\n        <div class=\"requests\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n          <mat-card class=\"element\" *ngFor=\"let request of requests\" fxFlex=\"100\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n            <div fxFlex=\"35\" fxFlex.sm=\"49\">\n              <h3> {{ request.nameSubject }} </h3>\n              <p>  {{ request.codeSubject }} </p>\n              \n              <p class=\"who\"> de {{ request.nameUser }} </p>\n            </div>\n            <div fxFlex=\"40\" fxFlex.sm=\"49\">\n              <h4> Software </h4>\n              <!-- <p>\n                {{request.software}}\n              </p> -->\n              <p> Visual Studio Code - Versión: 1.12</p>\n              <p> Oracle Server - Versión: 11g </p>\n              <p> Pycharm - Versión: 2.14 </p>\n              <p> R Studio - Versión: 1.1 </p>\n            </div>\n            <div class=\"check-wrap\" fxFlex=\"15\" fxFlex.sm=\"10\" fxLayout=\"column\">\n              <mat-checkbox\n                class=\"checkbox\"\n                [(ngModel)]=\"request.accepted\"\n                [disabled]=\"true\">\n                Aceptada\n              </mat-checkbox>\n              <mat-checkbox\n                class=\"checkbox\"\n                [(ngModel)]=\"request.installed\"\n                [disabled]=\"true\">\n                Instalada\n              </mat-checkbox>\n            </div>\n          </mat-card>\n        </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2239,7 +2240,7 @@ module.exports = "<div class=\"container\">\n    <div class=\"main-container\" f
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".title {\n  font-weight: 900;\n  padding-left: 5px; }\n\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\n\nh3 {\n  font-size: 18px; }\n\n.no-results-container {\n  margin-top: 40px; }\n\n.requests .element {\n  margin-bottom: 40px; }\n"
+module.exports = ".title {\n  font-weight: 900;\n  padding-left: 5px; }\n\n.main-container {\n  max-width: 1024px;\n  width: 100%;\n  margin: 0px auto;\n  padding: 20px 0px; }\n\nh3 {\n  font-size: 18px; }\n\n.no-results-container {\n  margin-top: 40px; }\n\n.requests .element {\n  margin-bottom: 40px;\n  position: relative; }\n\n.requests .element .who {\n    color: #a9a9a9;\n    position: absolute;\n    bottom: 10px; }\n\n.sidenav-main-content {\n  display: flex;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n  background-color: #f4f3f3;\n  width: 100%; }\n\n.check-wrap {\n  padding-top: 20px; }\n\n.check-wrap .checkbox {\n    margin: 0 10px 10px; }\n"
 
 /***/ }),
 
@@ -2295,7 +2296,7 @@ var RequestComponent = /** @class */ (function () {
             .subscribe(function (request) {
             console.log(request);
             _this.requests = request;
-            console.log("Request: " + request);
+            console.log('Request: ' + request);
             _this.isLoading = false;
         }, function (error) {
             _this.isLoading = false;
@@ -3260,7 +3261,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jorgefeijoo/GPSP/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/becario/21ninjas/GPSP/src/main.ts */"./src/main.ts");
 
 
 /***/ })

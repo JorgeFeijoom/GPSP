@@ -18,3 +18,6 @@ router.route('/get')
 
 router.route('/getall')
   .get(requestCtrl.getAll);
+
+router.route('/accept')
+  .post(requestCtrl.accept);
