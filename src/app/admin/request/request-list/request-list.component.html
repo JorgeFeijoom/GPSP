@@ -44,7 +44,15 @@
             <div class="check-wrap" fxFlex="15" fxFlex.sm="10" fxLayout="column">
               <mat-checkbox
                 class="checkbox"
-                [swal]="acceptRequestAlert"  (confirm)="acceptRequest(request)"
+                *ngIf="request.accepted"
+                [disabled]="true"
+                [(ngModel)]="request.accepted">
+                Aceptada
+              </mat-checkbox>
+              <mat-checkbox
+                class="checkbox"
+                *ngIf="!request.accepted"
+                [swal]="acceptRequestAlert" (confirm)="acceptRequest(request)"
                 [(ngModel)]="request.accepted">
                 Aceptada
               </mat-checkbox>

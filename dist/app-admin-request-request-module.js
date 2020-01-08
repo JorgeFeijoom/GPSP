@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <div fxFlex=\"100\">\n        <mat-toolbar color=\"accent\">\n            <mat-toolbar-row>\n              <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n              <div><span class=\"title\">Peticiones</span></div>\n              <span class=\"spacer\"></span>\n              <button routerLink=\"/admin/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                <mat-icon>chevron_left</mat-icon>\n              </button>\n            </mat-toolbar-row>\n        </mat-toolbar>\n\n        <!-- PROGRESS BAR  -->\n        <div class=\"progress-bar-container\" class=\"main-container progress-bar-container\">\n          <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n        </div>\n\n        <!-- NO ITEMS FOR SHOWING -->\n        <div *ngIf=\"!isLoading && requests === null\" class=\"no-results-container\">\n          <h3> No existen peticiones </h3>\n        </div>\n\n        <!-- RESULTS -->\n        <div class=\"requests\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n          <mat-card class=\"element\" *ngFor=\"let request of requests\" fxFlex=\"100\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n            <div fxFlex=\"35\" fxFlex.sm=\"49\">\n              <h3> {{ request.nameSubject }} </h3>\n              <p>  {{ request.codeSubject }} </p>\n              \n              <p class=\"who\"> de {{ request.nameUser }} </p>\n            </div>\n            <div fxFlex=\"40\" fxFlex.sm=\"49\">\n              <h4> Software </h4>\n              <!-- <p>\n                {{request.software}}\n              </p> -->\n              <p> Visual Studio Code - Versión: 1.12</p>\n              <p> Oracle Server - Versión: 11g </p>\n              <p> Pycharm - Versión: 2.14 </p>\n              <p> R Studio - Versión: 1.1 </p>\n            </div>\n            <div class=\"check-wrap\" fxFlex=\"15\" fxFlex.sm=\"10\" fxLayout=\"column\">\n              <mat-checkbox\n                class=\"checkbox\"\n                [swal]=\"acceptRequestAlert\"  (confirm)=\"acceptRequest(request)\"\n                [(ngModel)]=\"request.accepted\">\n                Aceptada\n              </mat-checkbox>\n              <mat-checkbox\n                class=\"checkbox\"\n                [(ngModel)]=\"request.installed\">\n                Instalada\n              </mat-checkbox>\n            </div>\n          </mat-card>\n        </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container\">\n  <div class=\"main-container\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <div fxFlex=\"100\">\n        <mat-toolbar color=\"accent\">\n            <mat-toolbar-row>\n              <div class=\"main-icon\"><mat-icon>notification_important</mat-icon></div>\n              <div><span class=\"title\">Peticiones</span></div>\n              <span class=\"spacer\"></span>\n              <button routerLink=\"/admin/\" mat-icon-button matTooltip=\"Volver al Inicio\">\n                <mat-icon>chevron_left</mat-icon>\n              </button>\n            </mat-toolbar-row>\n        </mat-toolbar>\n\n        <!-- PROGRESS BAR  -->\n        <div class=\"progress-bar-container\" class=\"main-container progress-bar-container\">\n          <mat-progress-bar *ngIf=\"isLoading\" mode=\"indeterminate\" color=\"primary\"></mat-progress-bar>\n        </div>\n\n        <!-- NO ITEMS FOR SHOWING -->\n        <div *ngIf=\"!isLoading && requests === null\" class=\"no-results-container\">\n          <h3> No existen peticiones </h3>\n        </div>\n\n        <!-- RESULTS -->\n        <div class=\"requests\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n          <mat-card class=\"element\" *ngFor=\"let request of requests\" fxFlex=\"100\" fxLayout=\"row wrap\" fxLayoutAlign=\"space-between start\">\n            <div fxFlex=\"35\" fxFlex.sm=\"49\">\n              <h3> {{ request.nameSubject }} </h3>\n              <p>  {{ request.codeSubject }} </p>\n              \n              <p class=\"who\"> de {{ request.nameUser }} </p>\n            </div>\n            <div fxFlex=\"40\" fxFlex.sm=\"49\">\n              <h4> Software </h4>\n              <!-- <p>\n                {{request.software}}\n              </p> -->\n              <p> Visual Studio Code - Versión: 1.12</p>\n              <p> Oracle Server - Versión: 11g </p>\n              <p> Pycharm - Versión: 2.14 </p>\n              <p> R Studio - Versión: 1.1 </p>\n            </div>\n            <div class=\"check-wrap\" fxFlex=\"15\" fxFlex.sm=\"10\" fxLayout=\"column\">\n              <mat-checkbox\n                class=\"checkbox\"\n                *ngIf=\"request.accepted\"\n                [disabled]=\"true\"\n                [(ngModel)]=\"request.accepted\">\n                Aceptada\n              </mat-checkbox>\n              <mat-checkbox\n                class=\"checkbox\"\n                *ngIf=\"!request.accepted\"\n                [swal]=\"acceptRequestAlert\" (confirm)=\"acceptRequest(request)\"\n                [(ngModel)]=\"request.accepted\">\n                Aceptada\n              </mat-checkbox>\n              <mat-checkbox\n                class=\"checkbox\"\n                [(ngModel)]=\"request.installed\">\n                Instalada\n              </mat-checkbox>\n            </div>\n          </mat-card>\n        </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -58,7 +58,15 @@ var RequestListComponent = /** @class */ (function () {
         //
         this.acceptRequestAlert = {
             title: '¿Estás seguro?',
-            text: 'Se aceptará la petición y se mostrará su estado al equipo docente',
+            text: 'Se aceptará la petición y se mostrará su estado al equipo docente, <b> no se podrá revertir la operación. </b>',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Aceptar',
+            cancelButtonText: 'Cancelar'
+        };
+        this.installRequestAlert = {
+            title: '¿Estás seguro?',
+            text: 'Se marcará como instalada la petición y se mostrará su estado al equipo docente, <b> no se podrá revertir la operación. </b>',
             type: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Aceptar',
@@ -80,6 +88,18 @@ var RequestListComponent = /** @class */ (function () {
         });
     };
     RequestListComponent.prototype.acceptRequest = function (request) {
+        var _this = this;
+        this
+            .requestService
+            .acceptRequest(request._id)
+            .subscribe(function (request) {
+            _this.toastr.success('Se ha aceptado la petición.', 'Hecho!');
+            _this.ngOnInit();
+        }, function (error) {
+            _this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+        });
+    };
+    RequestListComponent.prototype.installRequest = function (request) {
         var _this = this;
         this
             .requestService

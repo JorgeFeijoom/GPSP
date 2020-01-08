@@ -17,7 +17,16 @@ export class RequestListComponent implements OnInit {
 
   acceptRequestAlert = {
     title: '¿Estás seguro?',
-    text: 'Se aceptará la petición y se mostrará su estado al equipo docente',
+    text: 'Se aceptará la petición y se mostrará su estado al equipo docente, <b> no se podrá revertir la operación. </b>',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Aceptar',
+    cancelButtonText: 'Cancelar'
+  };
+
+  installRequestAlert = {
+    title: '¿Estás seguro?',
+    text: 'Se marcará como instalada la petición y se mostrará su estado al equipo docente, <b> no se podrá revertir la operación. </b>',
     type: 'warning',
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
@@ -43,6 +52,20 @@ export class RequestListComponent implements OnInit {
   }
 
   acceptRequest (request) {
+    this
+    .requestService
+    .acceptRequest(request._id)
+    .subscribe(
+      (request) => {
+        this.toastr.success('Se ha aceptado la petición.', 'Hecho!');
+        this.ngOnInit();
+      },
+      (error: any) => {
+        this.toastr.error('Ha ocurrido un error inesperado. Consulta con un administrador.', 'Error!');
+      });
+  }
+
+  installRequest (request) {
     this
     .requestService
     .acceptRequest(request._id)
