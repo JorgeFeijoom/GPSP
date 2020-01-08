@@ -23,11 +23,6 @@ export class Menu {
       icon: 'queue',
       name: 'Matricularme',
       pos: 'middle'
-    }, {
-      url: '/mv',
-      icon: 'dns',
-      name: 'Máquinas virtuales',
-      pos: 'middle'
     }];
 
     this.bottom = [];
