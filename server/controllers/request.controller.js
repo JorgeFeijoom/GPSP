@@ -7,7 +7,8 @@ module.exports = {
   update,
   get,
   getAll,
-  accept
+  accept,
+  install
 };
 
 function add(req, res, next) {
@@ -188,7 +189,6 @@ function getAll(req, res, next) {
 
 function accept(req, res, next) {
   let requestId = req.body.requestId;
-  console.log('REQUEST: ' + requestId);
   var query = {'_id': requestId},
 
   update = {accepted: true, updatedAt: new Date},
@@ -199,7 +199,7 @@ function accept(req, res, next) {
     if (!error) {
       // If the document doesn't exist
       if (!result) {
-        error = new Error('Error: No se ha podido crear la petición.');
+        error = new Error('Error: No se ha podido aceptar la petición.');
         error.status = 500;
         return next(error);
         // return res.sendStatus(200);
@@ -209,7 +209,39 @@ function accept(req, res, next) {
         // Error - 500
         if ( err ) {
           console.error(err);
-          error = new Error('Error: No se ha podido crear la petición.');
+          error = new Error('Error: No se ha podido aceptar la petición.');
+          error.status = 500;
+          return next(error);
+        }
+        // Success
+        return res.sendStatus(200);
+      });
+    }
+  });
+}
+function install(req, res, next) {
+  let requestId = req.body.requestId;
+  var query = {'_id': requestId},
+
+  update = {installed: true, updatedAt: new Date},
+  options = {};
+
+  // Find the document
+  Request.findOneAndUpdate(query, update, options, function(error, result) {
+    if (!error) {
+      // If the document doesn't exist
+      if (!result) {
+        error = new Error('Error: No se ha podido marcar como instalada la petición.');
+        error.status = 500;
+        return next(error);
+        // return res.sendStatus(200);
+      }
+      // Save the document
+      result.save((err) => {
+        // Error - 500
+        if ( err ) {
+          console.error(err);
+          error = new Error('Error: No se ha podido  marcar como instalada la petición.');
           error.status = 500;
           return next(error);
         }

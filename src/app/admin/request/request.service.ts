@@ -16,9 +16,17 @@ export class RequestService {
   }
 
   acceptRequest(requestId): Observable<any> {
-    console.log('Desde service: ' + requestId);
     const data = {'requestId': requestId };
     const url = '/api/request/accept';
+    return this.http
+      .post<any> (url, data,
+        { headers: {}, responseType: 'text' as 'json' }
+      );
+  }
+
+  installRequest(requestId): Observable<any> {
+    const data = {'requestId': requestId };
+    const url = '/api/request/install';
     return this.http
       .post<any> (url, data,
         { headers: {}, responseType: 'text' as 'json' }

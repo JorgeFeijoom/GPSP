@@ -68,10 +68,10 @@ export class RequestListComponent implements OnInit {
   installRequest (request) {
     this
     .requestService
-    .acceptRequest(request._id)
+    .installRequest(request._id)
     .subscribe(
       (request) => {
-        this.toastr.success('Se ha aceptado la petición.', 'Hecho!');
+        this.toastr.success('Se ha marcado como instalada la petición.', 'Hecho!');
         this.ngOnInit();
       },
       (error: any) => {

@@ -21,3 +21,6 @@ router.route('/getall')
 
 router.route('/accept')
   .post(requestCtrl.accept);
+
+router.route('/install')
+  .post(requestCtrl.install);

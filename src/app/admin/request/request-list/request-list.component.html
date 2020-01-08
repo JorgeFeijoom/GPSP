@@ -58,6 +58,15 @@
               </mat-checkbox>
               <mat-checkbox
                 class="checkbox"
+                *ngIf="request.installed"
+                [disabled]="true"
+                [(ngModel)]="request.installed">
+                Instalada
+              </mat-checkbox>
+              <mat-checkbox
+                class="checkbox"
+                *ngIf="!request.installed"
+                [swal]="installRequestAlert" (confirm)="installRequest(request)"
                 [(ngModel)]="request.installed">
                 Instalada
               </mat-checkbox>
