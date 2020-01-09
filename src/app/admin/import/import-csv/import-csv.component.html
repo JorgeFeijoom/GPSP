@@ -24,9 +24,12 @@
           <mat-card-title class="title"> Alumnos </mat-card-title>
           <mat-card-subtitle class="subtitle">Importación csv</mat-card-subtitle>
         </mat-card-header>
+
         <mat-card-content class="teacher">
-          <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListenerUsers($event)" accept=".csv" />
+          <input type="file" #fileImportInput name="File Upload" 
+          id="txtFileUpload" (change)="fileChangeListenerUsers($event)" accept=".csv" />
         </mat-card-content>
+
         <mat-card-actions class="buttons" fxLayoutAlign="end">
           <button mat-flat-button matTooltip="Enviar" color="info"><mat-icon aria-label="Ver detalles">  save_alt </mat-icon> Enviar </button> </mat-card-actions>
       </mat-card>
@@ -37,12 +40,23 @@
           <mat-card-title class="title"> Asignaturas </mat-card-title>
           <mat-card-subtitle class="subtitle">Importación csv</mat-card-subtitle>
         </mat-card-header>
+
+        <!-- Input file reader -->
         <mat-card-content class="teacher">
-          <input type="file" #fileImportInput name="File Upload" id="txtFileUpload" (change)="fileChangeListenerSubjects($event)" accept=".csv" />
+          <input type="file" #fileImportInput name="File Upload" 
+          id="txtFileUpload" (change)="fileChangeListenerSubjects($event)" accept=".csv" />
         </mat-card-content>
+
         <mat-card-actions class="buttons" fxLayoutAlign="end">
-          <button mat-flat-button matTooltip="Enviar" color="info"><mat-icon aria-label="Ver detalles">  save_alt </mat-icon> Enviar </button> </mat-card-actions>
+          <button mat-flat-button matTooltip="Enviar" color="info">
+            <mat-icon aria-label="Ver detalles">  save_alt </mat-icon> Enviar 
+          </button> 
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>
 </div>
+
+
+
+

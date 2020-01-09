@@ -45,7 +45,7 @@
               <mat-checkbox
                 class="checkbox"
                 *ngIf="request.accepted"
-                [disabled]="true"
+                [disabled]="false"
                 [(ngModel)]="request.accepted">
                 Aceptada
               </mat-checkbox>
@@ -59,7 +59,7 @@
               <mat-checkbox
                 class="checkbox"
                 *ngIf="request.installed"
-                [disabled]="true"
+                [disabled]="false"
                 [(ngModel)]="request.installed">
                 Instalada
               </mat-checkbox>

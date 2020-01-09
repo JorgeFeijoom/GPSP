@@ -65,10 +65,11 @@ export class ImportCsvComponent {
       };
 
     } else {
-      alert('Please import valid .csv file.');
+      alert('Porfavor, seleciona un fichero .csv válido.');
       this.fileReset();
     }
   }
+
 
   getDataRecordsArrayFromCSVFileUsers(csvRecordsArray: any, headerLength: any) {
     const dataArrUsers = [];
@@ -196,3 +197,5 @@ export class CSVRecordSubjects {
 
   }
 }
+
+
